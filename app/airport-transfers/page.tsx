@@ -24,7 +24,7 @@ export default function AirportTransfers() {
       { q: 'How do I book an airport transfer?', a: `Call ${site.phone}, message us on WhatsApp, or email ${site.email} with your date, time, airport and number of passengers.` },
       { q: 'Do you cover early-morning and late-night flights?', a: 'Yes. We are open 24/7, every day.' },
       { q: 'Where do you collect from?', a: 'Anywhere within 15 miles of Banbury. Airport trips always start or end inside that area.' },
-      { q: 'Can you take a group or a lot of luggage?', a: 'Yes. Tell us how many people and bags and we will send a suitable people carrier or minibus.' },
+      { q: 'Can you take a group or a lot of luggage?', a: 'Yes. Tell us how many people and bags and we will send a suitable people carrier or minibus. We also have wheelchair-accessible vehicles, so tell us if you need one.' },
     ]} />
     <RelatedLinks current="/airport-transfers" />
     <ContactStrip />

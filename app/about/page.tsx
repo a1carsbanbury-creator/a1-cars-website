@@ -12,7 +12,7 @@ export default function About() {
   return <PageShell>
     <PageHero eyebrow="About us" title="A Banbury taxi company, open every hour." lead="A1 Cars Banbury runs local taxis, airport transfers, executive cars and group travel from Grimsbury, Banbury." cta={false} />
     <Section title="Who we are">
-      <p>We are a local private hire firm with 20+ vehicles, from everyday saloons to larger people carriers. We are open 24 hours a day, every day, and every journey we take starts or ends within 15 miles of Banbury.</p>
+      <p>We are a local private hire firm with 20+ vehicles, from everyday saloons to larger people carriers, including wheelchair-accessible vehicles. We are open 24 hours a day, every day, and every journey we take starts or ends within 15 miles of Banbury.</p>
     </Section>
     <Section title="Licensed and insured">
       <p>{site.licence}. Our vehicles are covered by the insurance required for private hire.</p>
