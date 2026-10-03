@@ -92,3 +92,35 @@ footer { padding:55px clamp(24px,4vw,72px); display:grid; grid-template-columns:
   box-shadow: none;
   backdrop-filter: none;
 }
+
+/* Information pages (services, about, contact, legal) */
+.info-page { min-height:100vh; background:var(--paper); }
+.info-hero { padding:clamp(56px,9vw,120px) clamp(24px,8vw,130px) clamp(40px,6vw,80px); background:var(--cream); }
+.info-hero h1 { max-width:900px; margin:0 0 22px; font-size:clamp(40px,6.4vw,92px); line-height:.98; letter-spacing:-.04em; font-weight:600; }
+.info-lead { max-width:720px; margin:0 0 30px; color:var(--ink-soft); font-size:clamp(17px,1.6vw,21px); line-height:1.55; }
+.info-actions { display:flex; flex-wrap:wrap; gap:12px; }
+.info-actions .button { min-height:52px; padding:0 22px; display:inline-flex; align-items:center; gap:8px; border-radius:999px; font-weight:700; font-size:14px; }
+.info-actions .quiet-dark { border:1px solid var(--ink); color:var(--ink); background:transparent; }
+.info-actions .quiet-dark:hover { background:var(--ink); color:var(--paper); }
+.info-note { margin:18px 0 0; color:var(--muted); font-size:13px; }
+.info-section { padding:clamp(36px,5vw,64px) clamp(24px,8vw,130px); max-width:1100px; }
+.info-section h2 { margin:0 0 16px; font-size:clamp(26px,3.2vw,40px); letter-spacing:-.03em; line-height:1.1; }
+.info-section p, .info-section li { max-width:720px; color:var(--ink-soft); font-size:17px; line-height:1.65; }
+.info-section ul { padding-left:20px; }
+.info-section a:not(.button) { color:#1f7a4f; text-decoration:underline; text-underline-offset:3px; }
+.faq details { max-width:760px; border-bottom:1px solid var(--line); padding:16px 0; }
+.faq summary { cursor:pointer; font-weight:700; font-size:17px; }
+.faq details p { margin:10px 0 0; }
+.related { list-style:none; padding:0!important; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; max-width:none!important; }
+.related li { max-width:none!important; }
+.related a { display:block; padding:18px 20px; border:1px solid var(--line); border-radius:16px; background:var(--cream); color:var(--ink)!important; font-weight:700; text-decoration:none!important; }
+.related a:hover { border-color:var(--lime); }
+.info-cta { margin:clamp(24px,4vw,56px) clamp(24px,8vw,130px) clamp(48px,7vw,96px); padding:clamp(24px,4vw,40px); display:grid; gap:20px; border-radius:24px; background:var(--lime); }
+.info-cta small { display:block; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+.info-cta strong { display:block; margin-top:6px; font-size:clamp(22px,2.6vw,32px); letter-spacing:-.02em; }
+.info-cta .button.primary { background:var(--ink); color:var(--paper); }
+.contact-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; max-width:none!important; }
+.contact-cards a, .contact-cards div { padding:22px; border:1px solid var(--line); border-radius:18px; background:var(--cream); color:var(--ink)!important; text-decoration:none!important; }
+.contact-cards small { display:block; color:var(--muted); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+.contact-cards strong { display:block; margin-top:8px; font-size:20px; line-height:1.3; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }

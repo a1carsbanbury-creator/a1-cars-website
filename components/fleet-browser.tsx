@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const fleet: { category: string; journeyType: JourneyType; vehicle: string; image: string; alt: string; copy: string }[] = [
-  { category: 'Local taxi', journeyType: 'Local', vehicle: 'Estate taxi', image: '/fleet-estate-taxi.png', alt: 'Black estate taxi in side profile on a white background', copy: 'A practical local option for everyday Banbury journeys.' },
-  { category: 'Executive cars', journeyType: 'Executive', vehicle: 'E-Class executive car', image: '/fleet-executive-saloon.png', alt: 'Black executive saloon in side profile on a white background', copy: 'A modern executive choice for business travel and occasions.' },
-  { category: 'Group & minibus', journeyType: 'Group & minibus', vehicle: 'Ford Transit', image: '/fleet-ford-transit.png', alt: 'Black Ford Transit passenger van in side profile on a white background', copy: 'A straightforward option when your group travels together.' },
+  { category: 'Local taxi', journeyType: 'Local', vehicle: 'Estate taxi', image: '/fleet-estate-taxi.webp', alt: 'Black estate taxi in side profile on a white background', copy: 'A practical local option for everyday Banbury journeys.' },
+  { category: 'Executive cars', journeyType: 'Executive', vehicle: 'E-Class executive car', image: '/fleet-executive-saloon.webp', alt: 'Black executive saloon in side profile on a white background', copy: 'A modern executive choice for business travel and occasions.' },
+  { category: 'Group & minibus', journeyType: 'Group & minibus', vehicle: 'Ford Transit', image: '/fleet-ford-transit.webp', alt: 'Black Ford Transit passenger van in side profile on a white background', copy: 'A straightforward option when your group travels together.' },
 ];
 
 export function FleetBrowser() {
