@@ -1,4 +1,4 @@
-import { ContactStrip, FaqList, PageHero, PageShell, RelatedLinks, Section } from '@/components/page-shell';
+import { ContactStrip, FaqList, Features, PageHero, PageShell, RelatedLinks, Section, Split } from '@/components/page-shell';
 import { pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 
@@ -10,17 +10,21 @@ export const metadata = pageMeta({
 
 export default function ExecutiveTravel() {
   return <PageShell>
-    <PageHero eyebrow="Executive travel" title="Executive cars for business and occasions." lead="Smart, comfortable cars for client pickups, business trips and special days, arranged simply and driven professionally." />
-    <Section title="Where it fits">
-      <ul>
-        <li>Business travel and client transfers</li>
-        <li>Airport runs for directors and teams</li>
-        <li>Weddings and special occasions</li>
-        <li>Event travel, including Silverstone and F1 weekends</li>
-      </ul>
+    <PageHero eyebrow="Executive travel" title="Executive cars" accent="for business and occasions." lead="Smart, comfortable cars for client pickups, business trips and special days, arranged simply and driven professionally." image="/executive-travel.webp" />
+    <Section eyebrow="Where it fits" title="Arrive" accent="well">
+      <Features items={[
+        ['Business travel', 'Client transfers and meetings, on time and presentable.'],
+        ['Airport runs', 'Directors and teams to and from the airport.'],
+        ['Weddings', 'Tell us the date, route and numbers and we will arrange the right car.'],
+        ['Events', 'Silverstone, F1 weekends and other occasions.'],
+      ]} />
     </Section>
-    <Section title="Business accounts">
-      <p>Travelling for work regularly? Email <a href={`mailto:${site.email}`}>{site.email}</a> or call us and we will talk through what your company needs.</p>
+    <Section tone="cream">
+      <Split image="/executive-people-carrier.webp" alt="Executive Mercedes people carrier at an airport terminal" flip>
+        <p className="eyebrow dark"><span />Business accounts</p>
+        <h2>Travelling for work <em>regularly?</em></h2>
+        <p>Email <a href={`mailto:${site.email}`}>{site.email}</a> or call {site.phone} and we will talk through what your company needs.</p>
+      </Split>
     </Section>
     <FaqList items={[
       { q: 'Can I pre-book a car for a client?', a: `Yes. Call ${site.phone} or email us with the pickup, destination, date and time.` },

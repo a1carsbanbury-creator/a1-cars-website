@@ -1,4 +1,4 @@
-import { PageHero, PageShell, Section } from '@/components/page-shell';
+import { PageHero, PageShell, Section, Steps } from '@/components/page-shell';
 import { pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 
@@ -10,7 +10,7 @@ export const metadata = pageMeta({
 
 export default function Contact() {
   return <PageShell>
-    <PageHero eyebrow="Contact" title="Book a taxi in Banbury." lead="The quickest way is to call. You can also message us on WhatsApp or email your journey details. We are open 24/7." cta={false} />
+    <PageHero eyebrow="Contact" title="Book a taxi" accent="in Banbury." lead="The quickest way is to call. You can also message us on WhatsApp or email your journey details. We are open 24/7." image="/hero.webp" cta={false} />
     <Section>
       <div className="contact-cards">
         <a href={site.phoneHref}><small>Call, 24/7</small><strong>{site.phone}</strong></a>
@@ -19,9 +19,13 @@ export default function Contact() {
         <a href={site.mapHref} target="_blank" rel="noreferrer"><small>Find us</small><strong>{site.address}</strong></a>
       </div>
     </Section>
-    <Section title="What to tell us">
-      <p>Your pickup address, where you are going, the date and time, and how many people are travelling. For airports, add your flight time. Every journey starts or ends within 15 miles of Banbury.</p>
-      <p><a href="/fleet">Choose a vehicle and send a booking request</a>.</p>
+    <Section tone="cream" eyebrow="Before you call" title="What to" accent="tell us">
+      <Steps items={[
+        ['Where and when', 'Pickup address, destination, date and time. For airports, add your flight time.'],
+        ['Who is travelling', 'How many people and how much luggage, and tell us if you need a wheelchair-accessible vehicle.'],
+        ['Within 15 miles', 'Every journey starts or ends within 15 miles of Banbury.'],
+      ]} />
+      <p style={{ marginTop: 28 }}><a href="/fleet">Choose a vehicle and send a booking request</a>.</p>
     </Section>
   </PageShell>;
 }

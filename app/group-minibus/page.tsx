@@ -1,4 +1,4 @@
-import { ContactStrip, FaqList, PageHero, PageShell, RelatedLinks, Section } from '@/components/page-shell';
+import { ContactStrip, FaqList, Features, PageHero, PageShell, RelatedLinks, Section, Split } from '@/components/page-shell';
 import { pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 
@@ -10,18 +10,21 @@ export const metadata = pageMeta({
 
 export default function GroupMinibus() {
   return <PageShell>
-    <PageHero eyebrow="Group & minibus" title="Group travel, with one driver and one booking." lead="Travelling together is easier in one vehicle. Tell us how many of you there are and we will match a people carrier or minibus to the group." />
-    <Section title="Good for">
-      <ul>
-        <li>Family trips and celebrations</li>
-        <li>Days out, including Cotswold tours</li>
-        <li>Event travel, such as Silverstone and F1 weekends</li>
-        <li>Airport runs for larger parties</li>
-        <li>Weddings and prom transfers</li>
-      </ul>
+    <PageHero eyebrow="Group & minibus" title="Group travel," accent="one driver, one booking." lead="Travelling together is easier in one vehicle. Tell us how many of you there are and we will match a people carrier or minibus to the group." image="/minibus-travel.webp" />
+    <Section eyebrow="Good for" title="Everyone" accent="arrives together">
+      <Features items={[
+        ['Family trips and celebrations', 'Weddings, parties and prom transfers.'],
+        ['Days out', 'Including Cotswold tours.'],
+        ['Events', 'Silverstone, F1 weekends and more.'],
+        ['Airport runs', 'Larger parties with luggage.'],
+      ]} />
     </Section>
-    <Section title="How to book">
-      <p>Call {site.phone}, message us on WhatsApp, or email {site.email} with the date, pickup, destination and number of passengers. Every journey starts or ends within 15 miles of Banbury.</p>
+    <Section tone="cream">
+      <Split image="/group-travel.webp" alt="A1 Cars people carriers lined up outside a Cotswold manor house">
+        <p className="eyebrow dark"><span />How to book</p>
+        <h2>Tell us the numbers, <em>we do the rest.</em></h2>
+        <p>Call {site.phone}, message us on WhatsApp, or email {site.email} with the date, pickup, destination and number of passengers. Every journey starts or ends within 15 miles of Banbury.</p>
+      </Split>
     </Section>
     <FaqList items={[
       { q: 'How do I know which vehicle I need?', a: 'Tell us the number of passengers and how much luggage. We will recommend the right vehicle when you book.' },
