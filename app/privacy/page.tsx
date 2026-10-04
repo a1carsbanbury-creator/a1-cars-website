@@ -18,7 +18,7 @@ export default function Privacy() {
       <ul>
         <li>Details you give us when you call, message or email to book: name, phone number, pickup and drop-off addresses, journey date and time, passenger numbers, flight details.</li>
         <li>Messages you send on WhatsApp or email.</li>
-        <li>Website usage data through Google Analytics (pages visited, device and approximate location, taps on call, WhatsApp and email links). This uses cookies.</li>
+        <li>Website usage data through Google Analytics (pages visited, device and approximate location, taps on call, WhatsApp and email links). If you accept, this uses a cookie. If you decline or ignore the notice, we still count visits and taps, but anonymously and without a cookie.</li>
       </ul>
       <p>The booking form on this site does not send anything to our servers. It prepares a message that opens in WhatsApp or your email app, and you choose whether to send it.</p>
       <h2>How we use it</h2>
@@ -28,7 +28,7 @@ export default function Privacy() {
       <h2>Your rights</h2>
       <p>Under UK data protection law you can ask to see, correct or delete your information, or object to how we use it. Email us and we will respond. You can also complain to the Information Commissioner&apos;s Office at ico.org.uk.</p>
       <h2>Cookies</h2>
-      <p>Google Analytics sets cookies to measure website use. You can block or delete cookies in your browser settings, or use Google&apos;s opt-out browser add-on.</p>
+      <p>Google Analytics sets a cookie to measure website use only if you tap Accept on the cookie notice. You can change your choice at any time with &quot;Cookie settings&quot; in the footer, or block and delete cookies in your browser settings. We do not use advertising cookies on this site.</p>
     </Prose>
   </PageShell>;
 }

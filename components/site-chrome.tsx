@@ -54,7 +54,7 @@ export function SiteFooter() {
     <footer>
       <a className="brand" href="/" aria-label="A1 Cars Banbury home"><img className="brand-logo" src="/a1-logo-header.png" alt="A1 Cars Banbury" /></a>
       <p>Local taxis · Airport transfers · Executive travel · Group transport<br />{site.area} · Open 24/7 · <a href={site.phoneHref}>{site.phone}</a></p>
-      <p>© 2026 {site.legalName} · Company no. {site.companyNumber}<br /><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a></p>
+      <p>© 2026 {site.legalName} · Company no. {site.companyNumber}<br /><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="#cookies" data-cookie-settings>Cookie settings</a></p>
     </footer>
     <StickyActions />
   </>;

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Instrument_Serif } from 'next/font/google';
 import { Analytics } from '@/components/analytics';
+import { ConsentNotice } from '@/components/consent-notice';
 import { Motion } from '@/components/motion';
 import { SITE_URL, site } from '@/lib/site';
 import './globals.css';
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         {children}
         <Analytics />
+        <ConsentNotice />
         <Motion />
       </body>
     </html>

@@ -255,3 +255,15 @@ h3 { letter-spacing:-.01em; }
 .faq summary, .related strong, .location-card strong { letter-spacing:-.005em; }
 .num { letter-spacing:0; }
 .contact-cards strong { font-family:var(--sans); font-weight:650; letter-spacing:-.02em; font-size:clamp(20px,1.9vw,26px); }
+
+/* Cookie notice: small, non-blocking corner card */
+.consent { position:fixed; z-index:45; left:clamp(14px,2.4vw,32px); bottom:clamp(14px,2.4vw,32px); max-width:340px; padding:16px 18px; border:1px solid rgba(255,255,255,.16); border-radius:20px; color:var(--paper); background:rgba(12,29,26,.94); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); box-shadow:0 16px 40px rgba(0,0,0,.28); animation:dock-in .6s cubic-bezier(.2,.7,.2,1) both; }
+.consent p { margin:0 0 12px; color:#d6ded7; font-size:13px; line-height:1.5; }
+.consent a { color:#8ee0b1; text-decoration:underline; text-underline-offset:2px; }
+.consent div { display:flex; gap:8px; }
+.consent button { min-height:38px; padding:0 16px; border:1px solid rgba(255,255,255,.28); border-radius:999px; color:var(--paper); background:transparent; font:inherit; font-size:12px; font-weight:800; cursor:pointer; transition:background .2s,transform .2s; }
+.consent button:hover { background:rgba(255,255,255,.12); transform:translateY(-1px); }
+.consent .consent-yes { border-color:transparent; color:var(--ink); background:linear-gradient(135deg,#51cb8b,#2a9563); }
+.consent .consent-yes:hover { background:linear-gradient(135deg,#63d89b,#34a572); }
+@media (max-width:780px) { .consent { right:76px; bottom:98px; left:12px; max-width:none; padding:13px 14px; } .consent p { font-size:12px; margin-bottom:10px; } }
+@media (prefers-reduced-motion:reduce) { .consent { animation:none; } }
