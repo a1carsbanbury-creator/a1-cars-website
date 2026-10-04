@@ -1,7 +1,13 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter, Instrument_Serif } from 'next/font/google';
 import { Analytics } from '@/components/analytics';
+import { Motion } from '@/components/motion';
 import { SITE_URL, site } from '@/lib/site';
 import './globals.css';
+
+// Two fonts, used everywhere: Inter for text, Instrument Serif for headlines.
+const sans = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
+const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['normal', 'italic'], variable: '--font-serif', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -24,10 +30,11 @@ export const viewport: Viewport = { themeColor: '#292f37' };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body>
         {children}
         <Analytics />
+        <Motion />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { site } from '@/lib/site';
 
 export const metadata = pageMeta({
   title: 'Contact & Book a Taxi in Banbury',
-  description: 'Call 01295 266 778, message us on WhatsApp or email to book a taxi in Banbury. Open 24/7. 23 Grimsbury Square, Banbury, OX16 3HU.',
+  description: 'Call 01295 266 778, message us on WhatsApp or email to book a taxi in Banbury. Open 24/7. Serving Banbury and the surrounding area.',
   path: '/contact',
 });
 
@@ -16,7 +16,7 @@ export default function Contact() {
         <a href={site.phoneHref}><small>Call, 24/7</small><strong>{site.phone}</strong></a>
         <a href={site.whatsappHref}><small>WhatsApp</small><strong>Message A1 Cars</strong></a>
         <a href={`mailto:${site.email}`}><small>Email</small><strong>{site.email}</strong></a>
-        <a href={site.mapHref} target="_blank" rel="noreferrer"><small>Find us</small><strong>{site.address}</strong></a>
+        <a href="/local-taxi"><small>Where we work</small><strong>{site.area}</strong></a>
       </div>
     </Section>
     <Section tone="cream" eyebrow="Before you call" title="What to" accent="tell us">

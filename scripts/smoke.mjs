@@ -17,6 +17,7 @@ for (const p of pages) {
   check(!!canon && new URL(canon).pathname === p, `${p} self canonical: ${canon}`);
   check(html.includes('01295 266 778'), `${p} phone present`);
   check(!html.includes('banburytravels'), `${p} no old email`);
+  check(!/Grimsbury/i.test(html) && !html.includes('PHO324') && !html.includes('OX16 3HU'), `${p} no street address or licence number`);
 }
 for (const [from, to] of Object.entries(redirects)) {
   const r = await fetch(base + from, { redirect: 'manual' });

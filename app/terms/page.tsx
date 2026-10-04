@@ -19,7 +19,7 @@ export default function Terms() {
       <h2>Information on this site</h2>
       <p>We take care to keep this website accurate, but vehicle images and descriptions are a guide and the vehicle sent may differ. Please call us if something matters to your booking.</p>
       <h2>Who we are</h2>
-      <p>{site.legalName}, company number {site.companyNumber}, {site.address}. {site.licence}. Contact: <a href={`mailto:${site.email}`}>{site.email}</a>, {site.phone}.</p>
+      <p>{site.legalName}, based in Banbury. {site.licence}. Contact: <a href={`mailto:${site.email}`}>{site.email}</a>, {site.phone}.</p>
     </Prose>
   </PageShell>;
 }

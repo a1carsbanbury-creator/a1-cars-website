@@ -174,3 +174,84 @@ footer { padding:55px clamp(24px,4vw,72px); display:grid; grid-template-columns:
   .split, .split.flip { grid-template-columns:1fr; } .split.flip .split-text { order:0; }
   .info-actions .button { flex:1 1 100%; } .sec-inner .related a { min-height:240px; }
 }
+
+/* ===== Consistency + motion pass (2026-10-04) ===== */
+/* Two fonts only: Inter (text) and Instrument Serif (headlines). Loaded in app/layout.tsx. */
+:root { --sans:var(--font-sans),ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; --serif:var(--font-serif),Georgia,serif; }
+html { font-family:var(--sans); }
+body, button, input, select, textarea { font-family:var(--sans); }
+h1, h2, h3, h4, .num, .faq summary, .related strong, .contact-cards strong, .location-card strong { font-family:var(--serif); font-weight:400; }
+h1, h2 { letter-spacing:-.025em; }
+h1 { line-height:.95; }
+h1 { font-size:clamp(56px,7.4vw,116px); }
+.info-hero h1 { font-size:clamp(50px,7.4vw,112px); letter-spacing:-.025em; line-height:.96; }
+.info-hero.compact h1 { font-size:clamp(46px,5.8vw,84px); }
+.sec-head h2 { font-size:clamp(42px,5.4vw,80px); letter-spacing:-.02em; line-height:1; }
+.info-cta h2 { font-size:clamp(58px,8.6vw,132px); letter-spacing:-.025em; line-height:.94; }
+.features h3, .steps h3 { font-family:var(--sans); }
+
+/* Header: stop the email crowding the nav */
+.site-nav > a, .services-trigger, .header-contact a { white-space:nowrap; }
+@media (max-width:1180px) { .header-contact a:first-child { display:none; } .header-contact a:last-child { padding-left:0; border-left:0; } }
+
+/* Hero buttons: the same pill everywhere */
+.info-hero .hero-actions { margin-top:36px; }
+.cta-actions { margin-top:34px; }
+.info-cta .button { min-height:56px; border-radius:999px; padding:0 22px; font-weight:800; }
+.info-cta .button.dark { background:var(--ink); color:var(--paper); box-shadow:0 12px 30px rgba(12,29,26,.25); }
+.info-cta .button.dark span { display:grid; place-items:center; width:33px; height:33px; margin-right:-10px; border-radius:50%; background:var(--lime); color:var(--ink); }
+.button span { transition:transform .25s ease; }
+.button:hover span { transform:translate(2px,-2px) rotate(8deg); }
+
+/* Contact tiles: keep long email inside the box */
+.contact-cards strong { font-size:clamp(22px,2.1vw,30px); overflow-wrap:anywhere; hyphens:auto; }
+.contact-cards a { min-width:0; }
+
+/* Sticky call, on every page. Mobile bar is the existing one; desktop gets a floating pill. */
+.mobile-actions a.mobile-book { justify-content:space-between; color:#0c1d1a; border-right:0; background:linear-gradient(135deg,#51cb8b,#2a9563); }
+.mobile-actions a.mobile-book span { font-size:12px; font-weight:800; }
+.mobile-actions a.mobile-book svg { width:20px; height:20px; color:#0c1d1a; }
+.desk-sticky { display:none; }
+@media (min-width:781px) {
+  .hero-phone { display:none; }
+  .desk-sticky { position:fixed; z-index:40; right:clamp(18px,2.4vw,36px); bottom:clamp(18px,2.4vw,32px); display:flex; align-items:center; gap:10px; animation:dock-in .8s cubic-bezier(.2,.7,.2,1) .9s both; }
+  .desk-call { display:flex; align-items:center; gap:12px; padding:9px 24px 9px 10px; border:1px solid rgba(255,255,255,.2); border-radius:999px; color:var(--paper); background:rgba(12,29,26,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); box-shadow:0 16px 40px rgba(0,0,0,.28); transition:transform .25s ease; }
+  .desk-call:hover { transform:translateY(-3px); }
+  .desk-call svg { width:42px; height:42px; padding:11px; border-radius:50%; color:var(--ink); background:linear-gradient(135deg,#51cb8b,#2a9563); position:relative; animation:ring 3.2s ease-out 2s infinite; }
+  .desk-call span { display:flex; flex-direction:column; gap:2px; }
+  .desk-call small { color:#9fc9b2; font-size:9px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+  .desk-call strong { font-size:17px; letter-spacing:-.02em; }
+  .desk-wa { width:56px; height:56px; display:grid; place-items:center; border-radius:50%; color:#fff; background:#25d366; box-shadow:0 14px 34px rgba(0,0,0,.26); transition:transform .25s ease; }
+  .desk-wa:hover { transform:translateY(-3px) scale(1.05); }
+  .desk-wa svg { width:30px; height:30px; }
+}
+
+/* Motion */
+@keyframes rise { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+@keyframes drift { from { transform:scale(1.12); } to { transform:scale(1.02); } }
+@keyframes dock-in { from { opacity:0; transform:translateY(24px) scale(.96); } to { opacity:1; transform:none; } }
+@keyframes ring { 0% { box-shadow:0 0 0 0 rgba(81,203,139,.55); } 70%, 100% { box-shadow:0 0 0 16px rgba(81,203,139,0); } }
+.info-hero { position:relative; overflow:hidden; isolation:isolate; background:var(--ink); }
+.info-hero::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--hero-shade),var(--hero-img) center/cover no-repeat; animation:drift 2.6s cubic-bezier(.2,.6,.2,1) both; }
+.info-hero.compact::before { display:none; }
+.info-hero-inner > * { animation:rise .9s cubic-bezier(.2,.7,.2,1) both; }
+.info-hero-inner > :nth-child(1) { animation-delay:.1s; } .info-hero-inner > :nth-child(2) { animation-delay:.22s; }
+.info-hero-inner > :nth-child(3) { animation-delay:.38s; } .info-hero-inner > :nth-child(4) { animation-delay:.52s; }
+.motion-ready .reveal { opacity:0; transform:translateY(30px); transition:opacity .85s cubic-bezier(.2,.7,.2,1) calc(var(--i,0) * 90ms),transform .85s cubic-bezier(.2,.7,.2,1) calc(var(--i,0) * 90ms); }
+.motion-ready .reveal.in { opacity:1; transform:none; }
+.motion-ready .sec-inner .related a.reveal.in { transition:transform .25s ease,opacity .6s; }
+.features article, .steps li { transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s,opacity .85s,transform .85s; }
+.motion-ready .features article.in:hover, .motion-ready .steps li.in:hover { transform:translateY(-6px); border-color:var(--lime); box-shadow:0 22px 44px rgba(12,29,26,.1); }
+.split img { transition:transform .6s cubic-bezier(.2,.7,.2,1); }
+.split:hover img { transform:scale(1.015); }
+.faq details[open] p { animation:rise .45s ease both; }
+.trust-bar strong { position:relative; }
+@media (prefers-reduced-motion:reduce) {
+  .info-hero::before, .info-hero-inner > *, .desk-sticky, .desk-call svg, .faq details[open] p { animation:none!important; }
+  .reveal { opacity:1!important; transform:none!important; transition:none!important; }
+}
+/* Tracking tuned for Instrument Serif; contact values in Inter so numbers and "A1" read clearly */
+h3 { letter-spacing:-.01em; }
+.faq summary, .related strong, .location-card strong { letter-spacing:-.005em; }
+.num { letter-spacing:0; }
+.contact-cards strong { font-family:var(--sans); font-weight:650; letter-spacing:-.02em; font-size:clamp(20px,1.9vw,26px); }

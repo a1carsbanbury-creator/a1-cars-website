@@ -13,7 +13,7 @@ export default function Privacy() {
     <PageHero eyebrow="Legal" title="Privacy" accent="policy." lead="Last updated 3 October 2026." cta={false} />
     <Prose>
       <h2>Who we are</h2>
-      <p>{site.legalName} (company number {site.companyNumber}), {site.address}, is responsible for your personal information. Contact us at <a href={`mailto:${site.email}`}>{site.email}</a> or {site.phone}.</p>
+      <p>{site.legalName}, based in Banbury, is responsible for your personal information. Contact us at <a href={`mailto:${site.email}`}>{site.email}</a> or {site.phone}.</p>
       <h2>What we collect</h2>
       <ul>
         <li>Details you give us when you call, message or email to book: name, phone number, pickup and drop-off addresses, journey date and time, passenger numbers, flight details.</li>

@@ -14,10 +14,11 @@ export default function ExecutiveTravel() {
     <Section eyebrow="Where it fits" title="Arrive" accent="well">
       <Features items={[
         ['Business travel', 'Client transfers and meetings, on time and presentable.'],
-        ['Airport runs', 'Directors and teams to and from the airport.'],
         ['Weddings', 'Tell us the date, route and numbers and we will arrange the right car.'],
-        ['Events', 'Silverstone, F1 weekends and other occasions.'],
+        ['Prom transfers', 'Arrive in style, with a smart car and a professional driver.'],
+        ['Events and locations', 'Silverstone, F1 weekends and other occasions.'],
       ]} />
+      <p style={{ marginTop: 28 }}>Heading to the airport? See <a href="/airport-transfers">airport transfers</a>.</p>
     </Section>
     <Section tone="cream">
       <Split image="/executive-people-carrier.webp" alt="Executive Mercedes people carrier at an airport terminal" flip>
