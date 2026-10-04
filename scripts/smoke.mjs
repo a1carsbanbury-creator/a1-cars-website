@@ -17,7 +17,8 @@ for (const p of pages) {
   check(!!canon && new URL(canon).pathname === p, `${p} self canonical: ${canon}`);
   check(html.includes('01295 266 778'), `${p} phone present`);
   check(!html.includes('banburytravels'), `${p} no old email`);
-  check(!/Grimsbury/i.test(html) && !html.includes('PHO324') && !html.includes('OX16 3HU'), `${p} no street address or licence number`);
+  const visible = html.replace(/<script[\s\S]*?<\/script>/g, '');
+  check(!/Grimsbury/i.test(visible) && !visible.includes('PHO324') && !visible.includes('OX16 3HU'), `${p} no street address or licence number`);
 }
 for (const [from, to] of Object.entries(redirects)) {
   const r = await fetch(base + from, { redirect: 'manual' });
@@ -27,5 +28,6 @@ for (const p of ['/sitemap.xml', '/robots.txt', '/favicon.ico', '/apple-touch-ic
 check((await fetch(base + '/does-not-exist')).status === 404, '404 for unknown page');
 const home = await (await fetch(base + '/')).text();
 check(home.includes('G-K9SG5GLPBK'), 'GA4 tag present');
+check(home.includes('streetAddress') && home.includes('23 Grimsbury Square'), 'address present in structured data');
 check(home.includes('rel="icon"') && home.includes('favicon.ico'), 'favicon linked from homepage');
 console.log(fail ? `\n${fail} FAILED` : '\nAll passed'); process.exit(fail ? 1 : 0);
