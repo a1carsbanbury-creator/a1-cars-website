@@ -387,3 +387,43 @@ footer .brand-logo { width:140px; height:88px; background:transparent; }
  .hero-image .photo-slide { object-position:62% top; }.info-hero { min-height:780px; }.info-hero-inner { padding-top:300px; }.info-hero h1 { font-size:clamp(46px,12vw,64px); }.info-hero-slider .photo-slide { object-position:62% top; }.info-hero-slider .photo-slides::after { background:linear-gradient(0deg,var(--ink) 8%,rgba(12,29,26,.8) 44%,rgba(12,29,26,.05) 90%); }
  .journey-vehicle-grid,.destination-links { grid-template-columns:1fr; }.journey-vehicle dl div { font-size:12px; }.destination-links a { padding:26px; }.related { grid-template-columns:1fr; }
 }
+
+/* Reusable pale-background vehicle catalogue, used across the site. */
+.profile-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+.profile-card { width:100%; padding:0; display:flex; flex-direction:column; overflow:hidden; border:1px solid #e2e7e3; border-radius:20px; background:#fff; color:var(--ink); text-align:left; cursor:pointer; box-shadow:0 4px 16px rgba(12,29,26,.025); transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease; }
+.profile-card:hover { transform:translateY(-7px); box-shadow:0 16px 34px rgba(12,29,26,.12); border-color:#93c8a9; }
+.profile-card:focus-visible { outline:3px solid #278252; outline-offset:4px; transform:translateY(-4px); }
+.profile-card-image { display:block; aspect-ratio:1.65; padding:18px; background:#fafbfa; }
+.profile-card-image img { width:100%; height:100%; display:block; object-fit:contain; }
+.profile-card-copy { width:100%; display:flex; flex:1; flex-direction:column; padding:23px; }
+.profile-card-title { min-height:58px; display:block; font-family:var(--serif); font-size:30px; letter-spacing:-.035em; line-height:1.05; }
+.profile-card-capacity { margin:22px 0; padding:17px 0; display:grid; grid-template-columns:1fr 1fr; gap:12px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.profile-card-capacity > span { display:flex; align-items:center; gap:9px; }
+.profile-card-capacity svg { width:21px; height:21px; color:#428763; stroke-width:1.5; flex-shrink:0; }
+.profile-card-capacity > span > span { color:var(--muted); font-size:10px; line-height:1.4; }
+.profile-card-capacity strong { display:block; margin-top:5px; color:var(--ink); font-size:13px; font-weight:700; }
+.profile-book { margin-top:auto; display:flex; align-items:center; justify-content:space-between; color:#267d51; font-size:12px; font-weight:800; }
+.profile-book svg { width:20px; height:20px; }
+.profile-capacity-label { display:block; margin-top:18px; color:#65756a; font-size:9px; letter-spacing:.1em; text-transform:uppercase; }
+.profile-capacity-label + .profile-card-capacity { margin-top:9px; }
+.profile-layout-note { display:block; margin:-9px 0 18px; color:var(--muted); font-size:10px; line-height:1.5; }
+.capacity-review-note { max-width:850px; margin:18px 0 0; color:var(--muted); font-size:11px; line-height:1.65; }
+.profile-cards-scroll { display:grid; grid-auto-flow:column; grid-template-columns:none; grid-auto-columns:calc((100% - 44px)/3); overflow-x:auto; padding:10px 5px 25px; scroll-snap-type:x mandatory; scroll-padding:5px; }
+.profile-cards-scroll .profile-card { scroll-snap-align:start; }
+.home-catalogue { margin-top:52px; }
+.home-catalogue-category + .home-catalogue-category { margin-top:48px; }
+.home-catalogue-heading { display:flex; align-items:baseline; justify-content:space-between; gap:18px; margin-bottom:22px; }
+.home-catalogue-heading h3 { font-size:36px; line-height:1; }
+.home-catalogue-heading a { padding-bottom:6px; border-bottom:1px solid var(--line); font-size:11px; font-weight:750; white-space:nowrap; }
+.quick-booking-form .booking-heading h2 { font-size:45px; }
+.quick-booking-form .booking-heading p:last-child { margin-bottom:18px; }
+.quick-booking-options { margin-top:6px; border-top:1px solid var(--line); }
+.quick-booking-options summary { display:flex; justify-content:space-between; align-items:center; padding:17px 0; font-size:12px; font-weight:750; cursor:pointer; list-style:none; }
+.quick-booking-options summary::-webkit-details-marker { display:none; }
+.quick-booking-options summary span { color:var(--muted); font-size:10px; font-weight:500; }
+.quick-booking-options > div { display:grid; gap:14px; padding-bottom:8px; }
+.quick-booking-form button.booking-whatsapp { width:100%; border:0; cursor:pointer; font:inherit; font-size:13px; font-weight:800; }
+.quick-booking-form button.booking-email { border:0; padding:0; cursor:pointer; font:inherit; font-size:12px; background:transparent; }
+@media(max-width:1050px) { .profile-cards { grid-template-columns:repeat(2,minmax(0,1fr)); }.profile-cards-scroll { grid-template-columns:none; grid-auto-columns:calc((100% - 22px)/2); } }
+@media(max-width:600px) { .profile-cards { grid-template-columns:1fr; }.profile-cards-scroll { grid-template-columns:none; grid-auto-columns:88%; gap:14px; }.profile-card-copy { padding:21px; }.profile-card-title { font-size:30px; min-height:0; }.home-catalogue-heading { align-items:flex-start; flex-direction:column; }.home-catalogue-heading h3 { font-size:32px; } }
+@media(prefers-reduced-motion:reduce) { .profile-card { transition:none; }.profile-card:hover,.profile-card:focus-visible { transform:none; } }

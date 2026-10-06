@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { PhotoSlider } from '@/components/photo-slider';
 import { ArrowUpRight, BriefcaseBusiness, BusFront, CarFront, Plane } from 'lucide-react';
 import { BookingRequest, type JourneyType } from '@/components/booking-request';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { FleetCards } from '@/components/fleet-cards';
+import { fleetCategories } from '@/lib/fleet';
 import { SiteHeader, StickyActions } from '@/components/site-chrome';
 import { site } from '@/lib/site';
 
@@ -22,12 +23,6 @@ const services: {
   { title: 'Group & minibus', description: 'Planned transport for travelling together', href: '/group-minibus', Icon: BusFront },
 ];
 
-const vehicles: [string, string, string, string, JourneyType, string][] = [
-  ['local', 'Local private hire', 'Estate car', 'fleet-estate-taxi.webp', 'Local', 'White estate car in side profile on a white background'],
-  ['executive', 'Executive cars', 'E-Class executive car', 'fleet-executive-saloon.webp', 'Executive', 'Black executive saloon in side profile on a white background'],
-  ['minibus', 'Group & minibus', 'Mercedes V-Class', 'executive-people-carrier.webp', 'Group & minibus', 'Black Mercedes V-Class at an airport'],
-];
-
 const airports = [['Heathrow', 'LHR'], ['Gatwick', 'LGW'], ['Luton', 'LTN'], ['Stansted', 'STN'], ['Birmingham', 'BHX']];
 
 export function HomeClient() {
@@ -40,7 +35,7 @@ export function HomeClient() {
 
     <section className="services reveal" id="services" aria-label="Our services">{services.map(({ title, description, href, Icon }) => <a href={href} key={title}><span className="service-icon"><Icon aria-hidden="true" strokeWidth={1.65} /></span><span><strong>{title}</strong><small>{description}</small></span><b><ArrowUpRight aria-hidden="true" strokeWidth={1.7} /></b></a>)}</section>
 
-    <section className="vehicles reveal" id="vehicles" aria-labelledby="vehicles-title"><div className="section-heading"><p className="eyebrow dark"><span />Travel your way</p><h2 id="vehicles-title">Choose your<br /><em>journey.</em></h2><p>Swipe across the vehicle styles, select your preference, then send a prepared booking request to our team.</p></div><Carousel className="home-fleet-carousel" opts={{ align: 'start', loop: false }}><CarouselContent className="home-fleet-content">{vehicles.map(([slug, label, vehicle, image, journeyType, alt]) => <CarouselItem className="home-fleet-item" key={slug}><article className="vehicle-card"><img src={`/${image}`} alt={alt} /><div><p className="vehicle-label">{label}</p><h3>{vehicle}</h3><a href={`/fleet#${slug}`}>Explore options <span>↗</span></a><button type="button" className="vehicle-book" onClick={() => setBooking({ journeyType, vehicle })}>Book now</button></div></article></CarouselItem>)}</CarouselContent><CarouselPrevious className="home-fleet-previous" /><CarouselNext className="home-fleet-next" /></Carousel></section>
+    <section className="vehicles reveal" id="vehicles" aria-labelledby="vehicles-title"><div className="section-heading"><p className="eyebrow dark"><span />Travel your way</p><h2 id="vehicles-title">Choose your<br /><em>vehicle.</em></h2><p>Private hire, executive cars and minibuses. Choose a vehicle and send a quick booking request.</p></div><div className="home-catalogue">{fleetCategories.map(category => <section className="home-catalogue-category" key={category.id} aria-labelledby={`home-${category.id}`}><div className="home-catalogue-heading"><h3 id={`home-${category.id}`}>{category.title}</h3><a href={`/fleet#${category.id}`}>Explore category ↗</a></div><FleetCards vehicles={category.vehicles} journeyType={category.journeyType} carousel /></section>)}</div></section>
 
     <section className="intro reveal" id="why-us"><p className="eyebrow dark"><span />A Banbury local</p><div className="intro-grid"><h2>Less waiting.<br />More <em>getting on.</em></h2><div><p>Tell us where you need to be and when. We’ll help arrange the right journey, with clear, human service from the first call.</p><a className="underlined-link" href={phoneHref}>Speak to our team <span>↗</span></a></div></div></section>
 
