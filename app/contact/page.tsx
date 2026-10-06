@@ -3,14 +3,14 @@ import { pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 
 export const metadata = pageMeta({
-  title: 'Contact & Book a Taxi in Banbury',
-  description: 'Call 01295 266 778, message us on WhatsApp or email to book a taxi in Banbury. Open 24/7. Serving Banbury and the surrounding area.',
+  title: 'Contact & Book Private Hire in Banbury',
+  description: 'Call 01295 266 778, WhatsApp or email to book private hire in Banbury and surrounding villages within 15 miles. Open 24/7.',
   path: '/contact',
 });
 
 export default function Contact() {
   return <PageShell>
-    <PageHero eyebrow="Contact" title="Book a taxi" accent="in Banbury." lead="The quickest way is to call. You can also message us on WhatsApp or email your journey details. We are open 24/7." image="/hero.webp" cta={false} />
+    <PageHero eyebrow="Contact" title="Your next journey," accent="starts here." lead="Book private hire in Banbury and the surrounding villages. Call, WhatsApp or email your journey details. Open 24/7, with every trip starting or ending within 15 miles of Banbury." image="/revision-home-pickup.webp" cta={false} />
     <Section>
       <div className="contact-cards">
         <a href={site.phoneHref}><small>Call, 24/7</small><strong>{site.phone}</strong></a>

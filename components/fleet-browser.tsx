@@ -2,21 +2,22 @@
 
 import { useState } from 'react';
 import { BookingRequest, type JourneyType } from '@/components/booking-request';
-import { Button } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-
-const fleet: { category: string; journeyType: JourneyType; vehicle: string; image: string; alt: string; copy: string }[] = [
-  { category: 'Local taxi', journeyType: 'Local', vehicle: 'Estate taxi', image: '/fleet-estate-taxi.webp', alt: 'Black estate taxi in side profile on a white background', copy: 'A practical local option for everyday Banbury journeys.' },
-  { category: 'Executive cars', journeyType: 'Executive', vehicle: 'E-Class executive car', image: '/fleet-executive-saloon.webp', alt: 'Black executive saloon in side profile on a white background', copy: 'A modern executive choice for business travel and occasions.' },
-  { category: 'Group & minibus', journeyType: 'Group & minibus', vehicle: 'Ford Transit', image: '/fleet-ford-transit.webp', alt: 'Black Ford Transit passenger van in side profile on a white background', copy: 'A straightforward option when your group travels together.' },
-];
+import { BusFront } from 'lucide-react';
+import { fleetCategories } from '@/lib/fleet';
 
 export function FleetBrowser() {
   const [booking, setBooking] = useState<{ journeyType: JourneyType; vehicle: string } | null>(null);
 
   return <>
-    <Carousel className="fleet-carousel" opts={{ align: 'start', loop: false }}><CarouselContent className="fleet-carousel-content">{fleet.map((vehicle, index) => <CarouselItem className="fleet-carousel-item" key={vehicle.vehicle}><article className="fleet-option" id={index === 0 ? 'local' : index === 1 ? 'executive' : 'minibus'}><div className="fleet-image"><img src={vehicle.image} alt={vehicle.alt} /></div><div className="fleet-option-copy"><p className="eyebrow dark"><span />{vehicle.category}</p><h2>{vehicle.vehicle}</h2><p>{vehicle.copy}</p><Button type="button" className="fleet-book" onClick={() => setBooking({ journeyType: vehicle.journeyType, vehicle: vehicle.vehicle })}>Book this journey <span>↗</span></Button></div></article></CarouselItem>)}</CarouselContent><CarouselPrevious className="fleet-carousel-previous" /><CarouselNext className="fleet-carousel-next" /></Carousel>
-    <p className="fleet-note">Swipe through the vehicle styles, then choose the one you would like to request.</p>
+    <nav className="fleet-category-nav" aria-label="Vehicle categories">{fleetCategories.map(category => <a href={`#${category.id}`} key={category.id}>{category.title} <span>↗</span></a>)}</nav>
+    <p className="fleet-availability">Choose a vehicle preference. Our team will confirm availability, passenger numbers and luggage space before your booking is agreed.</p>
+    {fleetCategories.map(category => <section className="fleet-category" id={category.id} key={category.id} aria-labelledby={`${category.id}-title`}>
+      <div className="fleet-category-heading"><p className="eyebrow dark"><span />Travel your way</p><h2 id={`${category.id}-title`}>{category.title}</h2><p>{category.intro}</p></div>
+      <div className="fleet-catalogue">{category.vehicles.map(vehicle => <article className={`fleet-catalogue-card${vehicle.image ? '' : ' text-led'}`} key={vehicle.name}>
+        <div className={`fleet-catalogue-image${vehicle.name === 'Mercedes V-Class' ? ' lifestyle' : ''}`}>{vehicle.image ? <img src={vehicle.image} alt={vehicle.alt} loading="lazy" /> : <div className="fleet-large-group"><BusFront aria-hidden="true" strokeWidth={1} /><strong>16</strong><span>Travel together</span></div>}</div>
+        <div className="fleet-catalogue-copy"><p className="fleet-tag">{vehicle.tag}</p><h3>{vehicle.name}</h3><p>{vehicle.copy}</p><button type="button" className="fleet-request" onClick={() => setBooking({ journeyType: category.journeyType, vehicle: vehicle.name })}>Request this vehicle <span>↗</span></button></div>
+      </article>)}</div>
+    </section>)}
     <BookingRequest open={booking !== null} onOpenChange={(open) => !open && setBooking(null)} initialJourneyType={booking?.journeyType} vehicle={booking?.vehicle} />
   </>;
 }

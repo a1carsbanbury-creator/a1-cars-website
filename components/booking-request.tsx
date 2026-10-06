@@ -38,6 +38,7 @@ function BookingFields({ initialJourneyType = 'Airport', vehicle, close }: { ini
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [time, setTime] = useState(roundedTime);
   const [passengers, setPassengers] = useState(1);
+  const [bags, setBags] = useState('');
 
   useEffect(() => {
     setJourneyType(initialJourneyType);
@@ -53,7 +54,8 @@ function BookingFields({ initialJourneyType = 'Airport', vehicle, close }: { ini
     `• Date: ${formatDate(date)}`,
     `• Time: ${time}`,
     `• Passengers: ${passengers}`,
-  ].filter(Boolean).join('\n'), [journeyType, vehicle, from, to, date, time, passengers]);
+    bags ? `• Luggage: ${bags}` : '',
+  ].filter(Boolean).join('\n'), [journeyType, vehicle, from, to, date, time, passengers, bags]);
 
   const whatsappHref = `https://wa.me/447823642516?text=${encodeURIComponent(summary)}`;
   const emailHref = `mailto:${email}?subject=${encodeURIComponent('Booking request')}&body=${encodeURIComponent(summary)}`;
@@ -68,6 +70,7 @@ function BookingFields({ initialJourneyType = 'Airport', vehicle, close }: { ini
       {journeyType === 'Airport' && <div className="airport-chips" aria-label="Choose airport">{airports.map((airport) => <Button type="button" key={airport} className={to === airport ? 'airport-chip active' : 'airport-chip'} onClick={() => setTo(airport)}>{airport}</Button>)}</div>}
       <div className="booking-two-col"><label>Date<Input type="date" value={date} onChange={(event) => setDate(event.target.value)} /></label><label>Time<Input type="time" value={time} onChange={(event) => setTime(event.target.value)} /></label></div>
       <div className="passenger-row"><span>Passengers</span><div><Button type="button" className="stepper" aria-label="Reduce passengers" onClick={() => setPassengers((count) => Math.max(1, count - 1))}>−</Button><strong>{passengers}</strong><Button type="button" className="stepper" aria-label="Add passenger" onClick={() => setPassengers((count) => count + 1)}>+</Button></div></div>
+      <label>Luggage / bags<Input value={bags} placeholder="e.g. 2 large cases and 2 cabin bags" onChange={event => setBags(event.target.value)} /></label>
     </div>
     <div className="booking-actions"><a className="booking-whatsapp" href={whatsappHref} onClick={close}>Send on WhatsApp <span>↗</span></a><a className="booking-call" href={phoneHref}>Call 01295 266 778</a><a className="booking-email" href={emailHref}>Email instead</a><p>All major payment cards accepted.</p></div>
   </div>;

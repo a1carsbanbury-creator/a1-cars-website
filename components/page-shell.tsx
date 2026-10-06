@@ -1,17 +1,26 @@
 import type { CSSProperties } from 'react';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { site } from '@/lib/site';
+import { PhotoSlider } from '@/components/photo-slider';
 
 export type Faq = { q: string; a: string };
 
 const services = [
-  { label: 'Local taxi', href: '/local-taxi', image: '/estate-taxi.webp', blurb: 'Everyday journeys around Banbury' },
-  { label: 'Airport transfers', href: '/airport-transfers', image: '/executive-saloon.webp', blurb: 'Planned around your flight' },
-  { label: 'Executive travel', href: '/executive-travel', image: '/executive-travel.webp', blurb: 'Business trips and occasions' },
-  { label: 'Group & minibus', href: '/group-minibus', image: '/minibus-travel.webp', blurb: 'One booking for the whole group' },
+  { label: 'Local private hire', href: '/local-taxi', image: '/revision-home-pickup.webp', blurb: 'Banbury and the surrounding villages' },
+  { label: 'Airport transfers', href: '/airport-transfers', image: '/revision-airport-arrival.webp', blurb: 'Planned around your flight' },
+  { label: 'Executive travel', href: '/executive-travel', image: '/revision-executive-hotel.webp', blurb: 'Business trips and occasions' },
+  { label: 'Group & minibus', href: '/group-minibus', image: '/revision-group-dayout.webp', blurb: 'One booking for the whole group' },
+  { label: 'Silverstone & F1', href: '/silverstone-transfers', image: '/revision-group-dayout.webp', blurb: 'Race days, arranged together' },
+  { label: 'Cotswolds trips', href: '/cotswolds-trips', image: '/revision-home-pickup.webp', blurb: 'Villages, scenery and days out' },
 ];
 
 const stagger = (i: number) => ({ '--i': i }) as CSSProperties;
+const heroPhotos: Record<string, string[]> = {
+  '/revision-home-pickup.webp': ['/revision-home-pickup.webp', '/revision-accessible-arrival.webp', '/revision-fleet-lineup.webp'],
+  '/revision-airport-arrival.webp': ['/revision-airport-arrival.webp', '/executive-people-carrier.webp', '/revision-fleet-lineup.webp'],
+  '/revision-executive-hotel.webp': ['/revision-executive-hotel.webp', '/revision-wedding.webp', '/executive-people-carrier.webp'],
+  '/revision-group-dayout.webp': ['/revision-group-dayout.webp', '/executive-people-carrier.webp', '/revision-fleet-lineup.webp'],
+};
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return <main className="info-page">
@@ -23,7 +32,8 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
 export function PageHero({ eyebrow, title, accent, lead, image, cta = true }: { eyebrow: string; title: string; accent?: string; lead: string; image?: string; cta?: boolean }) {
   return <>
-    <section className={image ? 'info-hero' : 'info-hero compact'} style={image ? ({ '--hero-img': `url('${image}')` } as CSSProperties) : undefined}>
+    <section className={image ? 'info-hero has-slider' : 'info-hero compact'}>
+      {image && <PhotoSlider className="info-hero-slider" images={heroPhotos[image] ?? [image]} label={`${eyebrow} photographs`} />}
       <div className="info-hero-inner">
         <p className="eyebrow"><span />{eyebrow}</p>
         <h1>{title}{accent && <><br /><em>{accent}</em></>}</h1>

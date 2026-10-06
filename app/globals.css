@@ -267,3 +267,123 @@ h3 { letter-spacing:-.01em; }
 .consent .consent-yes:hover { background:linear-gradient(135deg,#63d89b,#34a572); }
 @media (max-width:780px) { .consent { right:76px; bottom:98px; left:12px; max-width:none; padding:13px 14px; } .consent p { font-size:12px; margin-bottom:10px; } }
 @media (prefers-reduced-motion:reduce) { .consent { animation:none; } }
+
+/* Local review: full wordmark, controlled photo rotation and a complete fleet. */
+.brand-logo { width:112px; height:62px; }
+footer .brand-logo { width:140px; height:88px; background:transparent; }
+.photo-slider { position:relative; overflow:hidden; background:var(--ink); }
+.photo-slides { position:absolute; inset:0; }
+.photo-slide { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 900ms ease; }
+.photo-slide.active { opacity:1; }
+.hero-image.photo-slider { background:var(--ink); }
+.hero-image .photo-slides::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,var(--ink),rgba(12,29,26,.1) 35%,rgba(12,29,26,.1)); }
+.photo-controls { position:absolute; z-index:3; right:28px; bottom:28px; display:flex; align-items:center; gap:4px; padding:5px; border:1px solid rgba(255,255,255,.3); border-radius:99px; background:rgba(12,29,26,.82); color:white; }
+.photo-controls > button { width:36px; height:36px; border:0; border-radius:50%; display:grid; place-items:center; background:transparent; color:inherit; cursor:pointer; }
+.photo-controls button:focus-visible { outline:2px solid var(--lime); outline-offset:2px; }
+.photo-controls > button:hover { background:rgba(255,255,255,.13); }
+.photo-controls svg { width:17px; height:17px; }
+.photo-dots { display:flex; gap:2px; }
+.photo-dots button { width:24px; height:32px; padding:0; border:0; background:transparent; cursor:pointer; }
+.photo-dots button::after { content:''; display:block; width:6px; height:6px; margin:auto; border-radius:50%; background:#899b92; }
+.photo-dots button.active::after { background:var(--lime); }
+.info-hero.has-slider::before { display:none; }
+.info-hero-slider { position:absolute; inset:0; z-index:-1; }
+.info-hero-slider .photo-slides::after { content:''; position:absolute; inset:0; background:var(--hero-shade); }
+.info-hero.has-slider .info-hero-inner { padding-bottom:112px; pointer-events:none; }
+.info-hero-inner a { pointer-events:auto; }
+.home-fleet-carousel .vehicle-card img[src="/executive-people-carrier.webp"] { object-fit:cover; padding:0; }
+.fleet-category-nav { display:flex; flex-wrap:wrap; gap:10px; }
+.fleet-category-nav a { display:flex; gap:24px; align-items:center; padding:15px 21px; border:1px solid var(--line); border-radius:99px; background:var(--paper); font-size:13px; font-weight:700; }
+.fleet-category-nav a:hover { background:var(--lime); }
+.fleet-availability { max-width:750px; margin:24px 0 60px; color:var(--muted); font-size:14px; line-height:1.7; }
+.fleet-category { scroll-margin-top:30px; padding:0 0 80px; }
+.fleet-category-heading { margin-bottom:30px; max-width:650px; }
+.fleet-category-heading .eyebrow { margin-bottom:18px; }
+.fleet-category-heading h2 { font-size:clamp(40px,4.5vw,66px); line-height:1; }
+.fleet-category-heading > p:last-child { margin:18px 0 0; color:var(--muted); font-size:15px; line-height:1.7; }
+.fleet-catalogue { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.fleet-catalogue-card { display:flex; flex-direction:column; overflow:hidden; border:1px solid rgba(12,29,26,.09); border-radius:22px; background:var(--paper); }
+.fleet-catalogue-image { aspect-ratio:1.5; overflow:hidden; background:#eeede8; }
+.fleet-catalogue-image img { display:block; width:100%; height:100%; object-fit:contain; }
+.fleet-catalogue-image.lifestyle img { object-fit:cover; object-position:center 52%; }
+.fleet-catalogue-copy { display:flex; flex:1; flex-direction:column; padding:25px; }
+.fleet-tag { margin:0 0 14px; color:#267f53; font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.fleet-catalogue-copy h3 { font-size:30px; line-height:1.06; }
+.fleet-catalogue-copy > p:not(.fleet-tag) { margin:18px 0 24px; color:var(--muted); font-size:13px; line-height:1.65; }
+.fleet-request { width:100%; margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 0 0; border:0; border-top:1px solid var(--line); color:var(--ink); background:transparent; font-size:12px; font-weight:800; cursor:pointer; }
+.fleet-request:hover { color:#267f53; }
+.fleet-request span { font-size:22px; font-weight:400; }
+.fleet-large-group { height:100%; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--paper); background:var(--ink-soft); }
+.fleet-large-group svg { position:absolute; width:130px; height:130px; right:15px; bottom:10px; opacity:.15; }
+.fleet-large-group strong { font-family:var(--serif); font-size:90px; line-height:1; color:var(--lime); font-weight:400; }
+.fleet-large-group span { margin-top:8px; font-size:11px; letter-spacing:.15em; text-transform:uppercase; }
+@media (max-width:1000px) { .fleet-catalogue { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:780px) {
+  .brand-logo { width:98px; height:56px; }
+  .hero-image .photo-slides::after { background:linear-gradient(0deg,var(--ink) 4%,rgba(12,29,26,.15) 70%); }
+  .hero-image .photo-controls { right:18px; top:18px; bottom:auto; }
+  .info-hero-slider .photo-controls { right:20px; bottom:20px; }
+  .fleet-catalogue { grid-template-columns:1fr; }
+  .fleet-category-nav a { padding:12px 16px; font-size:11px; gap:12px; }
+  .fleet-availability { margin-bottom:42px; }
+  .fleet-category { padding-bottom:55px; }
+}
+@media (prefers-reduced-motion:reduce) { .photo-slide { transition:none; } }
+
+/* Approved revision: stronger navigation and service-specific vehicle choices. */
+.site-header { min-height:92px; grid-template-columns:150px minmax(0,1fr) auto; gap:24px; }
+.site-nav { justify-content:center; gap:clamp(16px,2vw,32px); }
+.site-nav > a,.services-trigger { text-transform:uppercase; letter-spacing:.09em; font-size:11px; }
+.services-submenu { width:230px; top:32px; border:1px solid var(--line); border-radius:12px; }
+.services-submenu a { font-size:12px; font-weight:650; }
+.header-contact { gap:9px; flex-direction:column; align-items:flex-end; }
+.header-contact a:last-child { border:0; padding:0; }
+.header-availability { font-size:9px; font-weight:750; letter-spacing:.11em; text-transform:uppercase; color:#347759; }
+.header-contact a { font-size:10px; text-transform:uppercase; letter-spacing:.06em; }
+.header-contact strong { font-size:16px; letter-spacing:0; }
+.hero { min-height:720px; grid-template-columns:minmax(0,.87fr) minmax(0,1.13fr); }
+.hero-content { padding-left:clamp(24px,6vw,100px); padding-right:clamp(24px,4vw,60px); }
+.hero-copy { max-width:430px; }
+.hero-area-note { max-width:420px; color:#b1c5b9; font-size:12px; line-height:1.6; margin:16px 0 0; }
+.photo-slide { object-position:center 42%; }
+.photo-slide[src="/revision-home-pickup.webp"],.photo-slide[src="/revision-airport-arrival.webp"] { object-position:62% 42%; }
+.photo-slide[src="/revision-accessible-arrival.webp"] { object-position:60% 42%; }
+.photo-slide[src="/revision-fleet-lineup.webp"] { object-position:center 58%; }
+.info-hero { min-height:740px; }
+.info-hero-inner { max-width:1500px; }
+.info-hero h1 { max-width:720px; font-size:clamp(48px,6.1vw,92px); }
+.info-lead { max-width:570px; }
+.home-destinations { padding:90px clamp(24px,8vw,130px); background:var(--paper); }
+.home-destinations h2 { font-size:clamp(44px,5vw,74px); line-height:1; margin-bottom:36px; }
+.destination-links { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:30px; }
+.destination-links a { display:flex; flex-direction:column; gap:14px; padding:32px; border:1px solid var(--line); border-radius:20px; background:var(--ink-soft); color:var(--paper); }
+.destination-links a:hover { background:#28463a; }
+.destination-links small { color:#bad5c6; font-size:10px; text-transform:uppercase; letter-spacing:.12em; }
+.destination-links strong { font-family:var(--serif); font-size:36px; font-weight:400; line-height:1.05; }
+.destination-links span { color:var(--lime); font-size:12px; font-weight:750; }
+.journey-vehicles { margin-top:40px; }
+.journey-vehicle-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.journey-vehicle { display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--line); border-radius:22px; overflow:hidden; }
+.journey-vehicle-image { aspect-ratio:1.5; background:#eeede8; }
+.journey-vehicle-image img { display:block; width:100%; height:100%; object-fit:contain; }
+.journey-vehicle-image.lifestyle img { object-fit:cover; }
+.journey-vehicle-placeholder { display:flex; height:100%; flex-direction:column; justify-content:center; align-items:center; gap:18px; background:var(--ink-soft); color:var(--lime); }
+.journey-vehicle-placeholder svg { width:65px; height:65px; stroke-width:1; }
+.journey-vehicle-placeholder span { color:var(--paper); font-size:12px; letter-spacing:.1em; text-transform:uppercase; }
+.journey-vehicle-copy { padding:24px; display:flex; flex:1; flex-direction:column; }
+.journey-vehicle h3 { font-size:30px; line-height:1.05; }
+.journey-vehicle-copy > p { margin:16px 0; color:var(--muted); font-size:13px; line-height:1.6; }
+.journey-vehicle dl { margin:0 0 25px; padding:14px 0 0; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:12px; }
+.journey-vehicle dl div { display:flex; justify-content:space-between; gap:10px; font-size:10px; }
+.journey-vehicle dt { display:flex; align-items:center; gap:5px; font-weight:750; }
+.journey-vehicle dt svg { width:14px; height:14px; }
+.journey-vehicle dd { margin:0; color:var(--muted); }
+.vehicle-capacity-note { color:var(--muted); font-size:13px; line-height:1.7; margin-top:22px; max-width:760px; }
+@media(max-width:1100px) { .site-header { grid-template-columns:120px minmax(0,1fr) auto; gap:16px; padding:0 24px; }.site-nav { gap:16px; }.header-contact strong { font-size:14px; }.header-availability { font-size:8px; }.journey-vehicle-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:900px) and (min-width:781px) { .header-contact { display:none; }.site-header { grid-template-columns:120px minmax(0,1fr); }.hero { min-height:680px; }.hero h1 { font-size:70px; } }
+@media(max-width:780px) {
+ .site-header { min-height:78px; grid-template-columns:1fr auto; gap:20px; }.site-nav { top:77px; justify-content:start; align-items:stretch; gap:0; }.site-nav > a,.services-trigger { font-size:12px; }.services-submenu { width:auto; border:0; border-radius:0; }.header-contact { display:none; }
+ .hero { grid-template-columns:1fr; min-height:800px; }.hero-image { grid-column:1; }.hero-content { align-self:end; padding:230px 24px 90px; }.hero h1 { font-size:clamp(58px,15vw,78px); }.hero-copy { max-width:440px; }.hero-image .photo-slides::after { background:linear-gradient(0deg,var(--ink) 8%,rgba(12,29,26,.73) 38%,rgba(12,29,26,.06) 82%); }
+ .hero-image .photo-slide { object-position:62% top; }.info-hero { min-height:780px; }.info-hero-inner { padding-top:300px; }.info-hero h1 { font-size:clamp(46px,12vw,64px); }.info-hero-slider .photo-slide { object-position:62% top; }.info-hero-slider .photo-slides::after { background:linear-gradient(0deg,var(--ink) 8%,rgba(12,29,26,.8) 44%,rgba(12,29,26,.05) 90%); }
+ .journey-vehicle-grid,.destination-links { grid-template-columns:1fr; }.journey-vehicle dl div { font-size:12px; }.destination-links a { padding:26px; }.related { grid-template-columns:1fr; }
+}

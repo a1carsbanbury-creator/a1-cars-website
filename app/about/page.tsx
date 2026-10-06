@@ -4,13 +4,13 @@ import { site } from '@/lib/site';
 
 export const metadata = pageMeta({
   title: 'About A1 Cars Banbury',
-  description: 'A1 Cars Banbury is a licensed Banbury taxi and private hire company, open 24/7 with 20+ vehicles. Serving Banbury and the surrounding area.',
+  description: 'A1 Cars Banbury is a licensed private hire company, open 24/7 with 20+ vehicles. Every journey starts or ends within 15 miles of Banbury.',
   path: '/about',
 });
 
 export default function About() {
   return <PageShell>
-    <PageHero eyebrow="About us" title="A Banbury taxi company," accent="open every hour." lead="A1 Cars Banbury runs local taxis, airport transfers, executive cars and group travel in Banbury and the surrounding area." image="/executive-travel.webp" cta={false} />
+    <PageHero eyebrow="About us" title="Your local private hire," accent="open every hour." lead="A1 Cars Banbury arranges local journeys, airport transfers, executive travel and group transport for Banbury and the surrounding villages. Every journey starts or ends within 15 miles of Banbury." image="/revision-home-pickup.webp" cta={false} />
     <Section tone="cream">
       <Split image="/group-travel.webp" alt="A1 Cars vehicles outside a Cotswold manor house">
         <p className="eyebrow dark"><span />Who we are</p>
