@@ -1,0 +1,22 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const ts = require('typescript');
+const source = fs.readFileSync(path.join(__dirname, '../lib/booking-summary.ts'), 'utf8');
+const js = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
+const scope = { exports: {}, Date, Intl };
+vm.runInNewContext(js, scope);
+const prepare = scope.exports.prepareBookingSummary;
+const base = { journeyType: 'Local', from: ' Home ', to: ' Banbury station ', date: '2026-10-07', time: '10:00' };
+let count = 0;
+function check(name, test) { test(); count++; console.log(`PASS ${name}`); }
+check('station purpose and addresses', () => { const result = prepare({ ...base, purpose: 'Station pickup · To Banbury station' }); assert.match(result, /Journey purpose: Station pickup · To Banbury station/); assert.match(result, /From: Home\n/); assert.match(result, /To: Banbury station\n/); });
+check('station return purpose', () => assert.match(prepare({ ...base, from: 'Banbury station', to: 'Home', purpose: 'Station pickup · From Banbury station' }), /From: Banbury station\n• To: Home/));
+check('accessible request and practical needs', () => { const result = prepare({ ...base, accessible: true, needs: ' Step-free pickup ' }); assert.match(result, /Wheelchair-accessible vehicle requested: Yes — please confirm arrangements/); assert.match(result, /Practical pickup \/ vehicle needs: Step-free pickup/); });
+check('unchecked access omits stale needs', () => assert.doesNotMatch(prepare({ ...base, accessible: false, needs: 'Step-free pickup' }), /Wheelchair|Practical pickup/));
+check('optional passenger and bags', () => { const result = prepare({ ...base, passengers: 2, bags: ' 1 case ' }); assert.match(result, /Passengers: 2/); assert.match(result, /Luggage: 1 case/); });
+check('quick request does not invent passenger count', () => assert.doesNotMatch(prepare(base), /Passengers:/));
+check('blank date does not throw', () => assert.match(prepare({ ...base, date: '' }), /Date: To be confirmed/));
+check('existing airport and vehicle preferences retained', () => { const result = prepare({ ...base, journeyType: 'Airport', vehicle: 'Mercedes E-Class' }); assert.match(result, /Journey: Airport transfer/); assert.match(result, /Vehicle preference: Mercedes E-Class/); });
+console.log(`${count} local booking summary checks passed; no network requests or messages sent.`);

@@ -45,17 +45,18 @@ export function StickyActions({ onBook }: { onBook?: () => void }) {
     <div className="desk-sticky">
       <a className="desk-call" href={site.phoneHref}><Phone aria-hidden="true" strokeWidth={1.8} /><span><small>Call 24/7</small><strong>{site.phone}</strong></span></a>
       <a className="desk-wa" href={site.whatsappHref} aria-label="Message A1 Cars on WhatsApp">{whatsappIcon}</a>
+      {onBook && <button className="desk-book" type="button" onClick={onBook}>Book now <ArrowUpRight aria-hidden="true" /></button>}
     </div>
   </>;
 }
 
-export function SiteFooter() {
+export function SiteFooter({ stickyActions }: { stickyActions?: React.ReactNode }) {
   return <>
     <footer>
       <a className="brand" href="/" aria-label="A1 Cars Banbury home"><img className="brand-logo" src="/a1-logo-sticker.png" alt="A1 Cars Banbury" /></a>
       <p>Local private hire · Airport transfers · Executive travel · Group transport<br />{site.area} · Open 24/7 · <a href={site.phoneHref}>{site.phone}</a><br /><a href="/silverstone-transfers">Silverstone & F1</a> · <a href="/cotswolds-trips">Cotswolds trips</a></p>
       <p>© 2026 {site.legalName} · Company no. {site.companyNumber}<br /><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="#cookies" data-cookie-settings>Cookie settings</a></p>
     </footer>
-    <StickyActions />
+    {stickyActions ?? <StickyActions />}
   </>;
 }

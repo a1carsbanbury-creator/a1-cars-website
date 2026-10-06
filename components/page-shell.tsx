@@ -22,15 +22,15 @@ const heroPhotos: Record<string, string[]> = {
   '/revision-group-dayout.webp': ['/revision-group-dayout.webp', '/executive-people-carrier.webp', '/revision-fleet-lineup.webp'],
 };
 
-export function PageShell({ children }: { children: React.ReactNode }) {
+export function PageShell({ children, footerActions }: { children: React.ReactNode; footerActions?: React.ReactNode }) {
   return <main className="info-page">
     <SiteHeader />
     {children}
-    <SiteFooter />
+    <SiteFooter stickyActions={footerActions} />
   </main>;
 }
 
-export function PageHero({ eyebrow, title, accent, lead, image, cta = true }: { eyebrow: string; title: string; accent?: string; lead: string; image?: string; cta?: boolean }) {
+export function PageHero({ eyebrow, title, accent, lead, image, cta = true, ctaContent }: { eyebrow: string; title: string; accent?: string; lead: string; image?: string; cta?: boolean; ctaContent?: React.ReactNode }) {
   return <>
     <section className={image ? 'info-hero has-slider' : 'info-hero compact'}>
       {image && <PhotoSlider className="info-hero-slider" images={heroPhotos[image] ?? [image]} label={`${eyebrow} photographs`} />}
@@ -38,7 +38,7 @@ export function PageHero({ eyebrow, title, accent, lead, image, cta = true }: { 
         <p className="eyebrow"><span />{eyebrow}</p>
         <h1>{title}{accent && <><br /><em>{accent}</em></>}</h1>
         <p className="info-lead">{lead}</p>
-        {cta && <div className="hero-actions"><a className="button primary" href={site.phoneHref}>Call {site.phone} <span>↗</span></a><a className="button quiet" href={site.whatsappHref}>WhatsApp us</a></div>}
+        {ctaContent ?? (cta && <div className="hero-actions"><a className="button primary" href={site.phoneHref}>Call {site.phone} <span>↗</span></a><a className="button quiet" href={site.whatsappHref}>WhatsApp us</a></div>)}
       </div>
     </section>
     {image && <TrustBar />}
@@ -50,8 +50,8 @@ export function TrustBar() {
   return <div className="trust-bar">{items.map(([k, v], i) => <div className="reveal" style={stagger(i)} key={k}><small>{k}</small><strong>{v}</strong></div>)}</div>;
 }
 
-export function Section({ eyebrow, title, accent, children, tone = 'paper' }: { eyebrow?: string; title?: string; accent?: string; children: React.ReactNode; tone?: 'paper' | 'cream' | 'ink' }) {
-  return <section className={`sec sec-${tone}`}>
+export function Section({ eyebrow, title, accent, children, tone = 'paper', compact = false }: { eyebrow?: string; title?: string; accent?: string; children: React.ReactNode; tone?: 'paper' | 'cream' | 'ink'; compact?: boolean }) {
+  return <section className={`sec sec-${tone}${compact ? ' sec-compact' : ''}`}>
     <div className="sec-inner">
       {(eyebrow || title) && <div className="sec-head reveal">{eyebrow && <p className={tone === 'ink' ? 'eyebrow' : 'eyebrow dark'}><span />{eyebrow}</p>}{title && <h2>{title}{accent && <> <em>{accent}</em></>}</h2>}</div>}
       {children}
