@@ -10,6 +10,8 @@ const services: [string, string][] = [
   ['Airport transfers', '/airport-transfers'],
   ['Executive cars', '/executive-travel'],
   ['Group & minibus travel', '/group-minibus'],
+  ['Long-distance travel', '/long-distance-travel'],
+  ['All services', '/services'],
 ];
 
 const whatsappIcon = <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 3a13 13 0 0 0-11 19.9L3.4 28.6l5.9-1.5A13 13 0 1 0 16 3Zm0 23.7a10.7 10.7 0 0 1-5.4-1.5l-.4-.2-3.5.9.9-3.4-.2-.4A10.7 10.7 0 1 1 16 26.7Zm5.9-8c-.3-.2-1.7-.8-2-1s-.5-.2-.7.2-.8 1-.9 1.2-.3.3-.6.1a8.7 8.7 0 0 1-2.5-1.6 9.4 9.4 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.3-.5s0-.4 0-.5l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3 .1.3.2.4a12.2 12.2 0 0 0 4.7 4.1c.7.3 1.2.5 1.7.7.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.3s.2-1.2.1-1.3-.2-.2-.5-.4Z" /></svg>;

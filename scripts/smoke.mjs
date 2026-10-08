@@ -1,8 +1,13 @@
 // Usage: node scripts/smoke.mjs [baseUrl]   (default http://localhost:3000)
 const base = (process.argv[2] ?? 'http://localhost:3000').replace(/\/$/, '');
-const pages = ['/', '/local-taxi', '/airport-transfers', '/executive-travel', '/group-minibus', '/fleet', '/about', '/contact', '/privacy', '/terms'];
+const pages = ['/services', '/long-distance-travel', '/', '/local-taxi', '/airport-transfers', '/executive-travel', '/group-minibus', '/fleet', '/about', '/contact', '/privacy', '/terms'];
 const redirects = {
-  '/about.html': '/about', '/contact.html': '/contact', '/services/services-overview.html': '/local-taxi', '/services': '/local-taxi',
+  '/about.html': '/about', '/contact.html': '/contact',
+  // The four disapproved Google Ads sitelinks, plus the paused ad's URL
+  '/services/services-overview': '/services', '/services/services-overview.html': '/services',
+  '/services/long-distance-travel': '/long-distance-travel', '/services/executive-taxi': '/executive-travel',
+  '/services/16-seater-minibus-transfers': '/group-minibus', '/services/banbury-taxi-hire': '/local-taxi',
+  '/services/airport-transfers': '/airport-transfers', '/services/minibus-hire': '/group-minibus',
   '/locations/locations': '/local-taxi', '/locations': '/local-taxi', '/locations/shipston-on-stour.html': '/local-taxi',
 };
 let fail = 0;
