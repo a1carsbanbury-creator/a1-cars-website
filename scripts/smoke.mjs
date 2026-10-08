@@ -10,6 +10,39 @@ const redirects = {
   '/services/airport-transfers': '/airport-transfers', '/services/minibus-hire': '/group-minibus',
   '/locations/locations': '/local-taxi', '/locations': '/local-taxi', '/locations/shipston-on-stour.html': '/local-taxi',
 };
+// The 29 URLs Google Search Console reported as Not found (404) on 8 Oct 2026
+const gsc404 = {
+ "/banbury-to-heathrow-taxi": "/airport-transfers",
+ "/services/services-overview": "/services",
+ "/services/corporate-travel": "/executive-travel",
+ "/services/hospital-taxi-service": "/local-taxi",
+ "/services/corporate-travel.html": "/executive-travel",
+ "/services/minibus-hire": "/group-minibus",
+ "/services/cotswold-tours.html": "/cotswolds-trips",
+ "/locations/charlbury.html": "/local-taxi",
+ "/locations/woodford-halse": "/local-taxi",
+ "/services/cotswold-tours": "/cotswolds-trips",
+ "/banbury-to-birmingham-airport-taxi": "/airport-transfers",
+ "/a1carsbanbury.co.uk/locations/locations.html": "/local-taxi",
+ "/a1carsbanbury.co.uk/services/prom-transfers.html": "/executive-travel",
+ "/a1carsbanbury.co.uk/locations/moreton-in-marsh.html": "/local-taxi",
+ "/a1carsbanbury.co.uk/services/silverstone-f1-transfers.html": "/silverstone-transfers",
+ "/a1carsbanbury.co.uk/index.html": "/",
+ "/a1carsbanbury.co.uk/services/6-8-seater-taxi.html": "/group-minibus",
+ "/a1carsbanbury.co.uk/contact.html": "/contact",
+ "/a1carsbanbury.co.uk/locations/southam.html": "/local-taxi",
+ "/a1carsbanbury.co.uk/services/executive-taxi.html": "/executive-travel",
+ "/a1carsbanbury.co.uk/locations/woodford-halse.html": "/local-taxi",
+ "/a1carsbanbury.co.uk/services/16-seater-minibus-transfers.html": "/group-minibus",
+ "/a1carsbanbury.co.uk/services/minibus-hire.html": "/group-minibus",
+ "/a1carsbanbury.co.uk/services/business-travel.html": "/executive-travel",
+ "/a1carsbanbury.co.uk/services/cotswold-tours.html": "/cotswolds-trips",
+ "/a1carsbanbury.co.uk/services/services-overview.html": "/services",
+ "/a1carsbanbury.co.uk/services/hospital-taxi-service.html": "/local-taxi",
+ "/a1carsbanbury.co.uk/locations/chipping-norton.html": "/local-taxi",
+ "/a1carsbanbury.co.uk/locations/stratford-upon-avon.html": "/local-taxi"
+};
+Object.assign(redirects, gsc404);
 let fail = 0;
 const check = (ok, msg) => { if (!ok) fail++; console.log(`${ok ? 'PASS' : 'FAIL'}  ${msg}`); };
 const titles = new Set();
