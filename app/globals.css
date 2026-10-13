@@ -478,3 +478,53 @@ footer .brand-logo { width:140px; height:88px; background:transparent; }
 @media(max-width:1050px) { .profile-cards { grid-template-columns:repeat(2,minmax(0,1fr)); }.profile-cards-scroll { grid-template-columns:none; grid-auto-columns:calc((100% - 22px)/2); } }
 @media(max-width:600px) { .profile-cards { grid-template-columns:1fr; }.profile-cards-scroll { grid-template-columns:none; grid-auto-columns:88%; gap:14px; }.profile-card-copy { padding:21px; }.profile-card-title { font-size:30px; min-height:0; }.home-catalogue-heading { align-items:flex-start; flex-direction:column; }.home-catalogue-heading h3 { font-size:32px; } }
 @media(prefers-reduced-motion:reduce) { .profile-card { transition:none; }.profile-card:hover,.profile-card:focus-visible { transform:none; } }
+
+/* ===== Christmas mode (switch: lib/season.ts). Remove this block with the switch in January. ===== */
+:root { --xmas-red:#b3202f; --xmas-red-deep:#8a1623; --xmas-gold:#c9a24a; }
+.xmas-banner { min-height:38px; padding:7px clamp(16px,4vw,72px); display:flex; align-items:center; justify-content:center; gap:12px; color:#fff; background:linear-gradient(90deg,var(--xmas-red-deep),var(--xmas-red) 50%,var(--xmas-red-deep)); font-size:12px; text-align:center; position:relative; z-index:11; }
+.xmas-banner p { margin:0; } .xmas-banner strong { font-weight:800; } .xmas-banner > span { color:#f3c9a0; font-size:10px; }
+.xmas-banner a { padding:4px 12px; border:1px solid rgba(255,255,255,.55); border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap; transition:background .2s ease; }
+.xmas-banner a:hover { background:rgba(255,255,255,.16); }
+@media (max-width:640px) { .xmas-banner p > span { display:none; } .xmas-banner { font-size:11px; } }
+
+.brand-logo.is-christmas { width:auto; height:70px; margin:6px 0 -2px; }
+footer .brand-logo.is-christmas { width:auto; height:104px; }
+@media (max-width:780px) { .brand-logo.is-christmas { height:56px; } }
+.nav-xmas { color:var(--xmas-red); font-weight:800; }
+
+/* Snow: sparse, small, behind content, never clickable. */
+.xmas-snow { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+.xmas-snow i { position:absolute; top:-12px; border-radius:50%; background:#fff; opacity:.7; box-shadow:0 0 3px rgba(120,150,170,.45); animation:xmas-fall linear infinite; }
+@keyframes xmas-fall { to { transform:translate3d(var(--drift),108vh,0); } }
+body.xmas > main, body.xmas > .info-page { position:relative; z-index:2; }
+
+/* Santa WhatsApp: red, sits on top of the call / WhatsApp controls. */
+.xmas-sticky { position:fixed; z-index:41; display:flex; align-items:center; gap:10px; padding:9px 14px 9px 10px; color:#fff; border:1px solid rgba(255,255,255,.35); border-radius:999px; background:linear-gradient(135deg,#d12a3c,var(--xmas-red-deep)); box-shadow:0 14px 34px rgba(138,22,35,.4),inset 0 1px rgba(255,255,255,.3); transition:transform .25s ease; }
+.xmas-sticky:hover { transform:translateY(-3px); }
+.xmas-sticky-icon { width:36px; height:36px; display:grid; place-items:center; border-radius:50%; background:rgba(255,255,255,.18); font-size:19px; }
+.xmas-sticky > span:nth-child(2) { display:flex; flex-direction:column; gap:1px; }
+.xmas-sticky small { color:#ffd9cf; font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.xmas-sticky strong { font-size:14px; letter-spacing:-.01em; }
+.xmas-sticky > svg { width:22px; height:22px; }
+@media (min-width:781px) { .xmas-sticky { right:clamp(18px,2.4vw,36px); bottom:calc(clamp(18px,2.4vw,32px) + 70px); } }
+@media (max-width:780px) { .xmas-sticky { left:12px; right:12px; bottom:90px; justify-content:center; } body.xmas { padding-bottom:150px; } body.xmas .floating-whatsapp { display:none; } }
+
+/* Christmas page */
+.xmas-note { max-width:620px; margin:0 0 28px; }
+.sec-ink .xmas-note { color:#d4ddd8; }
+.sec-inner { position:relative; }
+.xmas-picker { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; padding-top:14px; }
+.xmas-pick { min-height:230px; padding:26px; display:flex; flex-direction:column; align-items:flex-start; gap:6px; text-align:left; color:var(--ink); border:1px solid #e2e7e3; border-radius:20px; background:#fff; cursor:pointer; box-shadow:0 8px 24px rgba(12,29,26,.05); transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease; }
+.xmas-pick:hover,.xmas-pick:focus-visible { transform:translateY(-6px); border-color:rgba(179,32,47,.4); box-shadow:0 22px 44px rgba(12,29,26,.14); }
+.xmas-pick-icon { width:46px; height:46px; display:grid; place-items:center; margin-bottom:auto; border-radius:50%; color:#fff; background:linear-gradient(135deg,#d12a3c,var(--xmas-red-deep)); }
+.xmas-pick-icon svg { width:21px; height:21px; }
+.xmas-pick strong { margin-top:18px; font-family:var(--serif); font-size:27px; font-weight:400; letter-spacing:-.03em; line-height:1; }
+.xmas-pick small { color:var(--muted); font-size:13px; line-height:1.4; }
+.xmas-pick-go { margin-top:14px; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:800; color:var(--xmas-red); }
+.xmas-pick-go svg { width:16px; height:16px; }
+/* Section has room above the cards, so the lift is never clipped. */
+.sec:has(.xmas-picker) { overflow:visible; }
+@media (max-width:1000px) { .xmas-picker { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:560px) { .xmas-picker { grid-template-columns:1fr; } .xmas-pick { min-height:0; } }
+
+@media (prefers-reduced-motion:reduce) { .xmas-snow { display:none; } .xmas-sticky,.xmas-pick { transition:none; } }

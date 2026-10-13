@@ -3,6 +3,8 @@ import { Inter, Instrument_Serif } from 'next/font/google';
 import { Analytics } from '@/components/analytics';
 import { ConsentNotice } from '@/components/consent-notice';
 import { Motion } from '@/components/motion';
+import { SeasonalBanner, Snow } from '@/components/seasonal';
+import { christmasMode } from '@/lib/season';
 import { SITE_URL, site } from '@/lib/site';
 import './globals.css';
 
@@ -32,7 +34,9 @@ export const viewport: Viewport = { themeColor: '#292f37' };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
-      <body>
+      <body className={christmasMode ? 'xmas' : undefined}>
+        <SeasonalBanner />
+        <Snow />
         {children}
         <Analytics />
         <ConsentNotice />

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { ArrowUpRight, Phone } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { site } from '@/lib/site';
+import { SiteLogo } from '@/components/site-logo';
+import { christmasMode, christmasWhatsappHref } from '@/lib/season';
 
 const services: [string, string][] = [
   ['Local private hire', '/local-taxi'],
@@ -21,11 +23,11 @@ export function SiteHeader() {
   const close = () => setOpen(false);
   return <>
     <header className="site-header">
-      <a className="brand" href="/" aria-label="A1 Cars Banbury home"><img className="brand-logo" src="/a1-logo-full.png" alt="A1 Cars Banbury" /></a>
+      <a className="brand" href="/" aria-label="A1 Cars Banbury home"><SiteLogo /></a>
       <button className="menu-button" type="button" aria-controls="site-nav" aria-expanded={open} onClick={() => setOpen(!open)}><span className="sr-only">Open navigation</span><i /><i /></button>
       <nav className={open ? 'site-nav open' : 'site-nav'} id="site-nav" aria-label="Main navigation">
         <Collapsible className="services-menu"><CollapsibleTrigger className="services-trigger">Services <span>+</span></CollapsibleTrigger><CollapsibleContent className="services-submenu">{services.map(([label, href]) => <a href={href} key={href} onClick={close}>{label}</a>)}</CollapsibleContent></Collapsible>
-        <a href="/fleet" onClick={close}>Vehicles</a><Collapsible className="services-menu"><CollapsibleTrigger className="services-trigger">Destinations <span>+</span></CollapsibleTrigger><CollapsibleContent className="services-submenu"><a href="/silverstone-transfers" onClick={close}>Silverstone & F1</a><a href="/cotswolds-trips" onClick={close}>Cotswolds trips</a></CollapsibleContent></Collapsible><a href="/about" onClick={close}>About</a><a href="/contact" onClick={close}>Contact</a>
+        {christmasMode && <a className="nav-xmas" href="/christmas" onClick={close}>Christmas</a>}<a href="/fleet" onClick={close}>Vehicles</a><Collapsible className="services-menu"><CollapsibleTrigger className="services-trigger">Destinations <span>+</span></CollapsibleTrigger><CollapsibleContent className="services-submenu"><a href="/silverstone-transfers" onClick={close}>Silverstone & F1</a><a href="/cotswolds-trips" onClick={close}>Cotswolds trips</a></CollapsibleContent></Collapsible><a href="/about" onClick={close}>About</a><a href="/contact" onClick={close}>Contact</a>
         <div className="mobile-menu-contact"><a href={site.phoneHref}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a></div>
       </nav>
       <div className="header-contact"><span className="header-availability">Private hire · Open 24/7</span><a href={site.phoneHref}>Call <strong>{site.phone}</strong></a></div>
@@ -37,6 +39,7 @@ export function SiteHeader() {
 // The sticky call + WhatsApp controls, shown on every page. Mobile: bottom bar. Desktop: floating pill.
 export function StickyActions({ onBook }: { onBook?: () => void }) {
   return <>
+    {christmasMode && <a className="xmas-sticky" href={christmasWhatsappHref} target="_blank" rel="noopener"><span className="xmas-sticky-icon" aria-hidden="true">🎅</span><span><small>Christmas bookings open</small><strong>Reserve on WhatsApp</strong></span>{whatsappIcon}</a>}
     <a className="floating-whatsapp" href={site.whatsappHref} aria-label="Message A1 Cars on WhatsApp">{whatsappIcon}</a>
     <div className="mobile-actions">
       <a href={site.phoneHref}><Phone aria-hidden="true" strokeWidth={1.8} /><span><small>Call A1 Cars</small><strong>{site.phone}</strong></span></a>
@@ -55,7 +58,7 @@ export function StickyActions({ onBook }: { onBook?: () => void }) {
 export function SiteFooter({ stickyActions }: { stickyActions?: React.ReactNode }) {
   return <>
     <footer>
-      <a className="brand" href="/" aria-label="A1 Cars Banbury home"><img className="brand-logo" src="/a1-logo-sticker.png" alt="A1 Cars Banbury" /></a>
+      <a className="brand" href="/" aria-label="A1 Cars Banbury home"><SiteLogo footer /></a>
       <p>Local private hire · Airport transfers · Executive travel · Group transport<br />{site.area} · Open 24/7 · <a href={site.phoneHref}>{site.phone}</a><br /><a href="/silverstone-transfers">Silverstone & F1</a> · <a href="/cotswolds-trips">Cotswolds trips</a></p>
       <p>© 2026 {site.legalName} · Company no. {site.companyNumber}<br /><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="#cookies" data-cookie-settings>Cookie settings</a></p>
     </footer>

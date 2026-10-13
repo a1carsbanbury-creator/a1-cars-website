@@ -8,6 +8,7 @@ import { FleetCards } from '@/components/fleet-cards';
 import { fleetCategories } from '@/lib/fleet';
 import { SiteHeader, StickyActions } from '@/components/site-chrome';
 import { site } from '@/lib/site';
+import { SiteLogo } from '@/components/site-logo';
 
 const { phone, phoneHref, email, whatsappHref, area } = site;
 
@@ -44,7 +45,7 @@ export function HomeClient() {
     <section className="contact reveal" id="contact"><p className="eyebrow dark"><span />Ready when you are</p><h2>Where are you<br /><em>heading?</em></h2><div className="contact-actions"><a className="call-card" href={phoneHref}><small>Call A1 Cars Banbury</small><strong>{phone}</strong><b>↗</b></a><div className="contact-links"><a className="whatsapp-link" href={whatsappHref}><span>Message us on WhatsApp</span><b>↗</b></a><a className="email-link" href={`mailto:${email}`}>{email} <b>↗</b></a></div></div><div className="location-card"><small>Based in Banbury</small><strong>{area}</strong></div></section>
 
     <section className="home-destinations reveal"><p className="eyebrow dark"><span />Days worth travelling for</p><h2>Make a day <em>of it.</em></h2><div className="destination-links"><a href="/silverstone-transfers"><small>Race days & events</small><strong>Silverstone & F1</strong><span>Plan the journey ↗</span></a><a href="/cotswolds-trips"><small>Villages & days out</small><strong>The Cotswolds</strong><span>Travel together ↗</span></a></div></section>
-    <footer><a className="brand" href="/" aria-label="A1 Cars Banbury home"><img className="brand-logo" src="/a1-logo-sticker.png" alt="A1 Cars Banbury" /></a><p>Local private hire · Airport transfers · Executive travel · Group transport</p><p>© 2026 {site.legalName} · Company no. {site.companyNumber}<br /><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="#cookies" data-cookie-settings>Cookie settings</a></p></footer>
+    <footer><a className="brand" href="/" aria-label="A1 Cars Banbury home"><SiteLogo footer /></a><p>Local private hire · Airport transfers · Executive travel · Group transport</p><p>© 2026 {site.legalName} · Company no. {site.companyNumber}<br /><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="#cookies" data-cookie-settings>Cookie settings</a></p></footer>
     <StickyActions onBook={() => setBooking({ journeyType: 'Airport' })} />
     <BookingRequest open={booking !== null} onOpenChange={(open) => !open && setBooking(null)} initialJourneyType={booking?.journeyType} vehicle={booking?.vehicle} />
   </main>;
