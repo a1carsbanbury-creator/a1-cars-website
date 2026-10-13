@@ -493,10 +493,9 @@ footer .brand-logo.is-christmas { width:auto; height:104px; }
 .nav-xmas { color:var(--xmas-red); font-weight:800; }
 
 /* Snow: sparse, small, behind content, never clickable. */
-.xmas-snow { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
-.xmas-snow i { position:absolute; top:-12px; border-radius:50%; background:#fff; opacity:.7; box-shadow:0 0 3px rgba(120,150,170,.45); animation:xmas-fall linear infinite; }
+.xmas-snow { position:fixed; inset:0; z-index:30; pointer-events:none; overflow:hidden; }
+.xmas-snow i { position:absolute; top:-12px; border-radius:50%; background:radial-gradient(circle,#fff 40%,rgba(190,214,232,.95) 100%); opacity:.9; box-shadow:0 0 4px rgba(110,140,165,.5); animation:xmas-fall linear infinite; }
 @keyframes xmas-fall { to { transform:translate3d(var(--drift),108vh,0); } }
-body.xmas > main, body.xmas > .info-page { position:relative; z-index:2; }
 
 /* Santa WhatsApp: red, sits on top of the call / WhatsApp controls. */
 .xmas-sticky { position:fixed; z-index:41; display:flex; align-items:center; gap:10px; padding:9px 14px 9px 10px; color:#fff; border:1px solid rgba(255,255,255,.35); border-radius:999px; background:linear-gradient(135deg,#d12a3c,var(--xmas-red-deep)); box-shadow:0 14px 34px rgba(138,22,35,.4),inset 0 1px rgba(255,255,255,.3); transition:transform .25s ease; }

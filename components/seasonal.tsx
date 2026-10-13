@@ -2,7 +2,7 @@ import { christmasMode } from '@/lib/season';
 
 const flakes = Array.from({ length: 16 }, (_, i) => ({
   left: `${(i * 37 + 7) % 100}%`,
-  size: 3 + (i % 4),
+  size: 5 + (i % 4) * 2,
   dur: 14 + (i * 5) % 11,
   delay: -((i * 7) % 18),
   drift: (i % 2 ? 1 : -1) * (18 + (i % 5) * 8),
