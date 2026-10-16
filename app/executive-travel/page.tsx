@@ -19,7 +19,7 @@ export default function ExecutiveTravel() {
         ['Prom transfers', 'Arrive in style, with a smart car and a professional driver.'],
         ['Events and locations', 'Silverstone, F1 weekends and other occasions.'],
       ]} />
-      <p style={{ marginTop: 28 }}>Heading to the airport? See <a href="/airport-transfers">airport transfers</a>. Planning a race day? Explore <a href="/silverstone-transfers">Silverstone & F1 transfers</a>. Every journey starts or ends within 15 miles of Banbury.</p>
+      <p style={{ marginTop: 28 }}>Heading to the airport? See <a href="/airport-transfers">airport transfers</a>. Planning a race day? Explore <a href="/silverstone-transfers">Silverstone & F1 transfers</a>. Unlimited mileage, confirmed when you book.</p>
     </Section>
     <Section eyebrow="Your vehicle preference" title="Executive travel," accent="your way" tone="cream">
       <VehicleChoices mode="executive" />
