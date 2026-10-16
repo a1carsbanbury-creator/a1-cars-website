@@ -4,7 +4,8 @@ import { Analytics } from '@/components/analytics';
 import { ConsentNotice } from '@/components/consent-notice';
 import { Motion } from '@/components/motion';
 import { SeasonalBanner, Snow } from '@/components/seasonal';
-import { christmasMode } from '@/lib/season';
+import { XmasPreview } from '@/components/xmas-preview';
+import { isChristmas, isChristmasHeavy } from '@/lib/season';
 import { SITE_URL, site } from '@/lib/site';
 import './globals.css';
 
@@ -31,10 +32,14 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: '#292f37' };
 
+// Regenerate pages hourly so the Christmas dates in lib/season.ts take effect without a redeploy.
+export const revalidate = 3600;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
-      <body className={christmasMode ? 'xmas' : undefined}>
+      <body className={isChristmasHeavy() ? 'xmas xmas-heavy' : isChristmas() ? 'xmas' : undefined}>
+        <XmasPreview />
         <SeasonalBanner />
         <Snow />
         {children}
