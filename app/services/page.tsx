@@ -19,7 +19,7 @@ const services = [
 
 export default function Services() {
   return <PageShell>
-    <PageHero eyebrow="Our services" title="Everything we do," accent="in one place." lead="Local private hire, airport transfers, executive cars, group travel and longer journeys from Banbury and the surrounding villages. Open 24/7, every day. Every journey starts or ends within 15 miles of Banbury." image="/revision-home-pickup.webp" />
+    <PageHero eyebrow="Our services" title="Everything we do," accent="in one place." lead="Local private hire, airport transfers, executive cars, group travel and longer journeys from Banbury and the surrounding villages. Open 24/7, every day. Unlimited mileage." image="/revision-home-pickup.webp" />
     <Section eyebrow="Choose a service" title="How can we" accent="help?">
       <div className="related">{services.map((s, i) => <a className="reveal" href={s.href} key={s.href} style={{ ...({ '--i': i } as CSSProperties), backgroundImage: `linear-gradient(0deg, rgba(12,29,26,.88) 8%, rgba(12,29,26,.1) 65%), url('${s.image}')` }}><strong>{s.label}</strong><small>{s.blurb}</small><b aria-hidden="true">↗</b></a>)}</div>
     </Section>

@@ -106,7 +106,7 @@ function QuickBookingFields({ vehicle, journeyType, purpose, initiallyAccessible
       <details className="quick-booking-options"><summary>Passengers & luggage <span>Optional +</span></summary><div><label>Passengers<Input type="number" min="1" step="1" value={passengers} placeholder="Party size" onChange={event => setPassengers(event.target.value)} /></label><label>Luggage / bags<Input value={bags} placeholder="e.g. 2 large cases" onChange={event => setBags(event.target.value)} /></label></div></details>
       <AccessibilityFields accessible={accessible} setAccessible={setAccessible} needs={needs} setNeeds={setNeeds} />
     </div>
-    <div className="booking-actions"><button type="submit" className="booking-whatsapp">Send on WhatsApp <span>↗</span></button><a className="booking-call" href={phoneHref}>Call 01295 266 778</a><button type="submit" data-channel="email" className="booking-email">Email instead</button><p>Every journey starts or ends within 15 miles of Banbury.</p></div>
+    <div className="booking-actions"><button type="submit" className="booking-whatsapp">Send on WhatsApp <span>↗</span></button><a className="booking-call" href={phoneHref}>Call 01295 266 778</a><button type="submit" data-channel="email" className="booking-email">Email instead</button><p>Unlimited mileage. We confirm availability when you book.</p></div>
   </form>;
 }
 

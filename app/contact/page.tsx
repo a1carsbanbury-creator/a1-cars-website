@@ -4,13 +4,13 @@ import { site } from '@/lib/site';
 
 export const metadata = pageMeta({
   title: 'Contact & Book Private Hire in Banbury',
-  description: 'Call 01295 266 778, WhatsApp or email to book private hire in Banbury and surrounding villages within 15 miles. Open 24/7.',
+  description: 'Call 01295 266 778, WhatsApp or email to book private hire in Banbury and surrounding villages. Open 24/7.',
   path: '/contact',
 });
 
 export default function Contact() {
   return <PageShell>
-    <PageHero eyebrow="Contact" title="Your next journey," accent="starts here." lead="Book private hire in Banbury and the surrounding villages. Call, WhatsApp or email your journey details. Open 24/7, with every trip starting or ending within 15 miles of Banbury." image="/revision-home-pickup.webp" cta={false} />
+    <PageHero eyebrow="Contact" title="Your next journey," accent="starts here." lead="Book private hire in Banbury and the surrounding villages. Call, WhatsApp or email your journey details. Open 24/7, with unlimited mileage." image="/revision-home-pickup.webp" cta={false} />
     <Section>
       <div className="contact-cards">
         <a href={site.phoneHref}><small>Call, 24/7</small><strong>{site.phone}</strong></a>
@@ -23,7 +23,7 @@ export default function Contact() {
       <Steps items={[
         ['Where and when', 'Pickup address, destination, date and time. For airports, add your flight time.'],
         ['Who is travelling', 'How many people and how much luggage, and tell us if you need a wheelchair-accessible vehicle.'],
-        ['Within 15 miles', 'Every journey starts or ends within 15 miles of Banbury.'],
+        ['Unlimited mileage', 'No mileage limit on your journey. We confirm availability when you book.'],
       ]} />
       <p style={{ marginTop: 28 }}><a href="/fleet">Choose a vehicle and send a booking request</a>.</p>
     </Section>

@@ -3,7 +3,7 @@ import { businessJsonLd, pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta({
   title: 'A1 Cars Banbury | Private hire & airport transfers',
-  description: 'Private hire for Banbury and surrounding villages within 15 miles. Airport transfers, executive cars and group travel. Open 24/7. Call 01295 266 778.',
+  description: 'Private hire for Banbury and surrounding villages. Airport transfers, executive cars and group travel. Open 24/7. Call 01295 266 778.',
   path: '/',
 });
 

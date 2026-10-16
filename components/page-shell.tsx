@@ -11,6 +11,8 @@ const services = [
   { label: 'Executive travel', href: '/executive-travel', image: '/revision-executive-hotel.webp', blurb: 'Business trips and occasions' },
   { label: 'Group & minibus', href: '/group-minibus', image: '/revision-group-dayout.webp', blurb: 'One booking for the whole group' },
   { label: 'Silverstone & F1', href: '/silverstone-transfers', image: '/revision-group-dayout.webp', blurb: 'Race days, arranged together' },
+  { label: 'Celebrations', href: '/celebrations', image: '/revision-wedding.webp', blurb: 'Birthdays, weddings and parties' },
+  { label: 'Ports & cruises', href: '/port-transfers', image: '/revision-airport-arrival.webp', blurb: 'Southampton Docks and beyond' },
   { label: 'Cotswolds trips', href: '/cotswolds-trips', image: '/revision-home-pickup.webp', blurb: 'Villages, scenery and days out' },
 ];
 
