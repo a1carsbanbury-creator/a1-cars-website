@@ -1,10 +1,11 @@
-import { ContactStrip, FaqList, Features, PageHero, PageShell, RelatedLinks, Section, Split, Steps } from '@/components/page-shell';
+import { ContactStrip, FaqList, PageHero, PageShell, RelatedLinks, Section, Split, Steps } from '@/components/page-shell';
+import { CelebrationCards } from '@/components/celebration-cards';
 import { VehicleChoices } from '@/components/vehicle-choices';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta({
-  title: 'Celebrations: Birthdays, Weddings & Christmas Parties',
-  description: 'Private hire for birthdays, weddings and Christmas parties from Banbury. Executive Mercedes cars, people carriers and minibuses, pre-booked so everyone arrives together. Call 01295 266 778.',
+  title: 'Celebrations: Proms, Birthdays, Weddings & Christmas Parties',
+  description: 'Private hire for proms, birthdays, weddings, Christmas parties and anniversaries from Banbury. Executive cars, people carriers and minibuses. Call 01295 266 778.',
   path: '/celebrations',
 });
 
@@ -14,16 +15,12 @@ export default function Celebrations() {
       eyebrow="Celebrations"
       title="Arrive together."
       accent="Celebrate properly."
-      lead="Birthdays, weddings and Christmas parties are better when nobody is worrying about parking, driving or the last bus. Pre-book your travel and enjoy the occasion from the first hello to the ride home."
-      image="/revision-wedding.webp"
+      lead="Prom nights, birthdays, weddings and festive evenings. Get dressed up, bring your favourite people and let us help arrange the journey there and home."
+      image="/celebration-prom-v1.webp"
+      images={['/celebration-prom-v1.webp', '/celebration-birthday-v1.webp', '/revision-wedding.webp', '/celebration-christmas-v1.webp', '/celebration-anniversary-v1.webp']}
     />
     <Section eyebrow="Occasions we travel to" title="Whatever you’re" accent="celebrating">
-      <Features items={[
-        ['Birthday parties', 'A night out, a surprise dinner or a milestone day. One booking covers the group there and the ride home.'],
-        ['Weddings', 'Arrive in style in a Mercedes, or move guests between the ceremony and the venue in a people carrier or minibus.'],
-        ['Christmas parties', 'Work dos, family gatherings and festive nights out. Everyone travels together and nobody has to stay sober to drive.'],
-        ['Anniversaries and more', 'Engagements, retirements, reunions: tell us the plan and we’ll help you choose the right vehicle.'],
-      ]} />
+      <CelebrationCards />
     </Section>
     <Section tone="cream" eyebrow="Wedding days" title="A calm start to" accent="the big day.">
       <Split image="/revision-wedding.webp" alt="Wedding party arriving by private hire car">
@@ -31,7 +28,7 @@ export default function Celebrations() {
       </Split>
     </Section>
     <Section eyebrow="Party time" title="Everyone in" accent="one vehicle">
-      <p className="info-lead">Group bookings keep the party together, from the first pickup to the last drop-off. Book a return journey and you’ll never be left waiting for a lift at the end of the night.</p>
+      <p className="info-lead">Keep the group together, from the first pickup to the journey home. Tell us your numbers and timings so we can confirm a suitable vehicle and agree your return pickup.</p>
       <VehicleChoices mode="group" />
     </Section>
     <Section tone="cream" eyebrow="Make it special" title="Executive" accent="cars">

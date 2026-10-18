@@ -1,6 +1,7 @@
 import { ContactStrip, FaqList, Features, PageHero, PageShell, RelatedLinks, Section, Split, Steps } from '@/components/page-shell';
 import { pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
+import { AirportLinks } from '@/components/airport-links';
 import { VehicleChoices } from '@/components/vehicle-choices';
 
 export const metadata = pageMeta({
@@ -13,14 +14,8 @@ export default function AirportTransfers() {
   return <PageShell>
     <PageHero eyebrow="Airport transfers" title="From your doorstep," accent="to your departure." lead="Airport transfers from Banbury and the surrounding villages, plus airport pickups bringing you back home. Early flight or late arrival, your journey is planned around you." image="/revision-airport-arrival.webp" />
     <Section eyebrow="Where we go" title="Five airports," accent="one phone call">
-      <Features items={[
-        ['Heathrow · LHR', 'From your home in Banbury or a nearby village to Heathrow, with return pickups.'],
-        ['Birmingham · BHX', 'A pre-booked journey from your doorstep to Birmingham Airport and home again.'],
-        ['Gatwick · LGW', 'Travel to Gatwick at the time your flight needs, with your pickup arranged in advance.'],
-        ['Luton · LTN', 'Early departures and late arrivals, with transport planned both ways.'],
-        ['Stansted · STN', 'Your own car or group vehicle for the journey to Stansted and back.'],
-      ]} />
-      <p style={{ marginTop: 28 }}>All five routes serve Banbury and the surrounding area, with unlimited mileage. We also arrange cruise and sea port transfers.</p>
+      <AirportLinks />
+      <p style={{ marginTop: 28 }}>All five routes serve Banbury and the surrounding area, with availability confirmed when you book. We also arrange cruise and sea port transfers.</p>
     </Section>
     <Section tone="cream">
       <Split image="/executive-people-carrier.webp" alt="A1 Cars people carrier at an airport terminal with passengers and luggage" flip>

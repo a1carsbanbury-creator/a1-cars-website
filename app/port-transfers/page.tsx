@@ -15,7 +15,8 @@ export default function PortTransfers() {
       title="From your door"
       accent="to the gangway."
       lead="Cruise and ferry journeys start with a stress-free transfer. We collect you and your luggage from Banbury and the surrounding villages and take you to Southampton Docks or your departure port, with a return pickup when you’re back."
-      image="/revision-airport-arrival.webp"
+      image="/port-cruise-transfer-v1.webp"
+      images={['/port-cruise-transfer-v1.webp', '/port-ferry-transfer-v1.webp']}
     />
     <Section eyebrow="Ports we cover" title="Southampton and" accent="beyond">
       <Features items={[

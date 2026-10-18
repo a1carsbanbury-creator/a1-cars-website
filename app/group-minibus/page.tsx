@@ -11,7 +11,7 @@ export const metadata = pageMeta({
 
 export default function GroupMinibus() {
   return <PageShell>
-    <PageHero eyebrow="Group & minibus" title="Good company." accent="One shared journey." lead="Friends, family and a day worth making plans for. Arrange a people carrier or minibus for your group, with unlimited mileage." image="/revision-group-dayout.webp" />
+    <PageHero eyebrow="Group & minibus" title="Good company." accent="One shared journey." lead="Friends, family and a day worth making plans for. Arrange a people carrier or minibus for your group, with pickup, destination and timings agreed when you book." image="/revision-group-dayout.webp" />
     <Section eyebrow="Good for" title="Everyone" accent="arrives together">
       <Features items={[
         ['Family trips and celebrations', 'Weddings, parties and prom transfers.'],
@@ -34,7 +34,7 @@ export default function GroupMinibus() {
     </Section>
     <FaqList items={[
       { q: 'How do I know which vehicle I need?', a: 'Tell us the number of passengers and how much luggage. We will recommend the right vehicle when you book.' },
-      { q: 'Can you take us to an event outside the area?', a: 'Yes, with unlimited mileage. For example, we can take you from Banbury to Silverstone and bring you back.' },
+      { q: 'Can you take us to an event outside the area?', a: 'We arrange journeys from Banbury and the surrounding area to events such as Silverstone, with return pickups agreed in advance. Share your plans and we will confirm availability.' },
       { q: 'Can we book for late at night?', a: 'Yes. We are open 24 hours a day, every day.' },
     ]} />
     <RelatedLinks current="/group-minibus" />

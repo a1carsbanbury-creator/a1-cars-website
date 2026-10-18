@@ -8,7 +8,7 @@ export const site = {
   companyNumber: '16396053',
   phone: '01295 266 778',
   phoneHref: 'tel:+441295266778',
-  // Customer email: still the outreach address on purpose. Switch to a1carsbanbury@gmail.com only when Kenneth says so.
+  // Kenneth confirmed retaining this customer enquiry route on 18 October 2026.
   email: 'business@a1carsbanbury.co.uk',
   whatsappHref: 'https://wa.me/447823642516?text=Hi%20A1%20Cars%2C%20I%27d%20like%20to%20book%20a%20journey%20from%20Banbury.',
   // Kenneth (2026-10-04): do not publish the street address on the website. Show the area instead.

@@ -1,5 +1,7 @@
 # PMS website bundle (16 Oct 2026): review notes
 
+**18 October update:** These original notes are retained as history. The combined PR now removes the unsupported unlimited-mileage claim and includes dedicated port imagery and the subsequent booking changes. Read [the current consolidated review](consolidated-website-review.md) for scope, validation and remaining capacity/terms checks.
+
 Tasks from Ken Labs PMS, bundled for review. Nothing here is deployed.
 
 ## Needs Kenneth's confirmation before merge

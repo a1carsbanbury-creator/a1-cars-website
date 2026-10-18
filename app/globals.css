@@ -150,6 +150,46 @@ footer { padding:55px clamp(24px,4vw,72px); display:grid; grid-template-columns:
 .related strong { font-family:var(--serif); font-size:28px; font-weight:400; letter-spacing:-.04em; }
 .related small { margin-top:6px; color:#d6ded7; font-size:14px; }
 .related b { position:absolute; top:20px; right:22px; width:38px; height:38px; display:grid; place-items:center; border-radius:50%; background:var(--lime); color:var(--ink); font-weight:700; }
+.related.services-catalogue { grid-template-columns:repeat(6,minmax(0,1fr)); }
+.occasion-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:24px; }
+.occasion-card { grid-column:span 2; display:flex; flex-direction:column; overflow:hidden; border:1px solid var(--line); border-radius:24px; background:var(--paper); }
+.occasion-card:nth-last-child(2):nth-child(3n+1) { grid-column:2 / span 2; }
+.occasion-card:last-child:nth-child(3n+1) { grid-column:3 / span 2; }
+.occasion-image { overflow:hidden; aspect-ratio:4 / 3; }
+.occasion-image img { display:block; width:100%; height:100%; object-fit:cover; object-position:65% center; transition:transform .4s ease; }
+.occasion-card:hover .occasion-image img { transform:scale(1.035); }
+.occasion-copy { display:flex; flex:1; flex-direction:column; padding:26px; }
+.occasion-eyebrow { margin:0 0 12px; color:var(--green-dark,#29855b); font-size:10px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; }
+.occasion-copy h3 { margin:0 0 16px; font-size:34px; line-height:1.08; }
+.occasion-copy > p:not(.occasion-eyebrow) { margin:0 0 26px; font-size:15px; line-height:1.65; color:#52615b; }
+.occasion-copy button { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:auto; padding:16px 0 0; border:0; border-top:1px solid var(--line); color:#29855b; background:transparent; font:inherit; font-size:13px; font-weight:750; text-align:left; cursor:pointer; }
+.occasion-copy button svg { width:20px; height:20px; }
+@media (min-width:781px) and (max-width:1000px) {
+  .occasion-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .occasion-card { grid-column:span 2; }
+  .occasion-card:nth-last-child(2):nth-child(3n+1) { grid-column:span 2; }
+  .occasion-card:last-child:nth-child(2n+1) { grid-column:2 / span 2; }
+}
+@media (max-width:780px) {
+  .occasion-grid { grid-template-columns:minmax(0,1fr); gap:20px; }
+  .occasion-card { grid-column:1 !important; }
+  .occasion-copy { padding:24px; }
+}
+@media (prefers-reduced-motion:reduce) { .occasion-image img { transition:none; }.occasion-card:hover .occasion-image img { transform:none; } }
+.related.services-catalogue > a { grid-column:span 2; min-height:340px; }
+.services-catalogue > a:nth-last-child(2):nth-child(3n+1) { grid-column:2 / span 2; }
+.services-catalogue > a:last-child:nth-child(3n+1) { grid-column:3 / span 2; }
+@media (min-width:781px) and (max-width:1000px) {
+  .related.services-catalogue { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .related.services-catalogue > a { grid-column:span 2; }
+  .services-catalogue > a:nth-last-child(2):nth-child(3n+1) { grid-column:span 2; }
+  .services-catalogue > a:last-child:nth-child(2n+1) { grid-column:2 / span 2; }
+  .services-catalogue > a:last-child:nth-child(2n) { grid-column:span 2; }
+}
+@media (max-width:780px) {
+  .related.services-catalogue { grid-template-columns:minmax(0,1fr); }
+  .related.services-catalogue > a { grid-column:1 !important; min-height:320px; }
+}
 .info-cta { padding:clamp(70px,10vw,140px) clamp(24px,8vw,130px) clamp(56px,7vw,90px); background:var(--lime); }
 .info-cta h2 { max-width:900px; font-size:clamp(52px,8vw,120px); line-height:.88; letter-spacing:-.06em; }
 .info-cta h2 em { color:var(--ink); }
@@ -527,3 +567,92 @@ footer .brand-logo.is-christmas { width:auto; height:104px; }
 @media (max-width:560px) { .xmas-picker { grid-template-columns:1fr; } .xmas-pick { min-height:0; } }
 
 @media (prefers-reduced-motion:reduce) { .xmas-snow { display:none; } .xmas-sticky,.xmas-pick { transition:none; } }
+/* Booking review: preserve the A1 identity and put the customer's next action first. */
+.enquiry-form { display:grid; gap:16px; color:var(--ink); background:var(--paper); text-align:left; min-width:0; }
+.enquiry-heading h2 { font-size:clamp(30px,3.4vw,42px); line-height:1.04; letter-spacing:-.025em; margin:0; }
+.enquiry-heading p { margin:10px 0 4px; font-size:14px; line-height:1.5; color:#41544b; }
+.enquiry-form label { display:flex; flex-direction:column; gap:7px; font-size:13px; font-weight:650; min-width:0; }
+.enquiry-form input:not([type=checkbox]),.enquiry-form select,.enquiry-form textarea { box-sizing:border-box; width:100%; min-width:0; min-height:48px; border:1px solid #8c9f92; border-radius:8px; background:#fff; color:#182e24; padding:12px; font:400 16px var(--sans); caret-color:#24794e; }
+.enquiry-form textarea { resize:vertical; min-height:80px; }
+.enquiry-form input::placeholder,.enquiry-form textarea::placeholder { color:#5c6f63; opacity:1; }
+.enquiry-form input:focus-visible,.enquiry-form select:focus-visible,.enquiry-form textarea:focus-visible { outline:2px solid #24794e; outline-offset:2px; }
+.enquiry-pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; min-width:0; }
+.enquiry-form .enquiry-check { flex-direction:row; align-items:center; font-weight:500; line-height:1.45; min-height:44px; }
+.enquiry-check input { width:20px; height:20px; flex-shrink:0; accent-color:#24794e; }
+.enquiry-email { display:grid; gap:6px; }
+.enquiry-email > small { color:#52675a; font-size:12px; line-height:1.5; }
+.enquiry-email > small a { color:#24794e; text-underline-offset:3px; }
+.enquiry-selection { margin:0; background:#eaf0e8; padding:13px 15px; border-radius:8px; font-size:14px; line-height:1.5; }
+.enquiry-selection small { display:block; font-size:12px; margin-top:3px; }
+.enquiry-direction { border:0; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.enquiry-direction legend { font-size:13px; font-weight:650; margin-bottom:8px; }
+.enquiry-direction button { min-height:44px; border:0; border-radius:8px; background:#eaf0e8; color:#18362a; font:600 13px var(--sans); padding:9px; cursor:pointer; }
+.enquiry-direction button[aria-pressed=true] { background:#183b2a; color:#fff; }
+.enquiry-options { background:#f0f3ed; border-radius:8px; padding:0 14px; }
+.enquiry-options summary { cursor:pointer; font-size:13px; line-height:1.5; font-weight:600; padding:15px 0; }
+.enquiry-options > label,.enquiry-options > div { margin-bottom:14px; }
+.enquiry-hint { font-size:12px; margin:0 0 12px; overflow-wrap:anywhere; }
+.enquiry-primary,.enquiry-secondary { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:50px; border:0; border-radius:8px; background:#246b49; color:white; font:650 15px var(--sans); padding:13px 16px; text-decoration:none; cursor:pointer; }
+.enquiry-primary:hover { background:#195336; }
+.enquiry-secondary { background:#e5ede4; color:#193b2a; }
+.enquiry-form .enquiry-note { font-size:12px; line-height:1.5; color:#41544b; margin:0; }
+.enquiry-phone { font-size:13px; color:#1e5b3c; font-weight:650; text-align:center; text-underline-offset:4px; }
+.enquiry-ready { display:grid; gap:12px; }
+.enquiry-ready h3 { display:flex; align-items:center; gap:8px; font:650 17px var(--sans); margin:0; }
+.enquiry-ready pre { white-space:pre-wrap; overflow-wrap:anywhere; font:400 13px/1.6 var(--sans); background:#edf2ea; border-radius:8px; padding:16px; margin:0; }
+.enquiry-ready p { font-size:12px; line-height:1.6; margin:0; }
+.enquiry-edit { border:0; background:transparent; color:#1e5b3c; text-decoration:underline; min-height:44px; cursor:pointer; }
+.enquiry-dialog { width:580px!important; max-width:calc(100vw - 32px)!important; max-height:90dvh!important; overflow-y:auto!important; padding:32px!important; background:var(--paper)!important; border-radius:16px!important; display:block!important; }
+.enquiry-drawer { max-height:94dvh!important; padding:20px!important; overflow-y:auto!important; background:var(--paper)!important; border-radius:18px 18px 0 0!important; padding-bottom:max(24px,env(safe-area-inset-bottom))!important; }
+.enquiry-drawer .enquiry-heading { padding-right:32px; }
+.enquiry-close { position:absolute; right:12px; top:10px; display:grid; place-items:center; width:44px; height:44px; background:var(--paper); color:var(--ink); border:0; border-radius:50%; z-index:2; cursor:pointer; }
+.contact-first { display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:center; padding:52px clamp(20px,7vw,110px) 60px; background:var(--cream); }
+.contact-first h1 { font-size:clamp(38px,4.6vw,68px); line-height:1.05; letter-spacing:-.025em; margin:0 0 15px; }
+.contact-first p { font-size:16px; line-height:1.6; }
+.contact-first > img { width:100%; height:520px; object-fit:cover; border-radius:12px; }
+.contact-immediate { display:grid; gap:10px; margin-top:24px; }
+.contact-immediate a { display:flex; align-items:center; gap:16px; padding:15px 18px; min-height:74px; background:#e2ebdf; color:#183b2a; text-decoration:none; border-radius:10px; }
+.contact-immediate a:first-child { background:#246b49; color:#fff; }
+.contact-immediate a > span { flex:1; font-size:18px; font-weight:650; min-width:0; }
+.contact-immediate small { display:block; margin-top:4px; font-size:13px; font-weight:400; overflow-wrap:anywhere; }
+.where-we-work { display:inline-flex; align-items:center; gap:9px; font-size:14px; font-weight:600; margin-top:18px; color:#1e5b3c; text-underline-offset:5px; min-height:36px; }
+.contact-first .contact-confirmation { font-size:12px; margin:10px 0 0; }
+.airport-enquiry-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,510px); align-items:start; gap:clamp(30px,5vw,80px); max-width:1400px; margin:auto; padding:48px clamp(20px,5vw,72px) 64px; }
+.airport-back { display:inline-block; color:#255f42; font-size:13px; margin-bottom:24px; text-underline-offset:4px; }
+.airport-story h1 { font-size:clamp(48px,5.2vw,74px); line-height:.98; letter-spacing:-.025em; margin:0 0 20px; }
+.airport-story p { font-size:16px; line-height:1.7; max-width:65ch; }
+.airport-story .airport-lead { font-size:20px; line-height:1.4; margin-bottom:28px; }
+.airport-story img { width:100%; height:260px; object-fit:cover; border-radius:10px; }
+.airport-story h2 { font-size:32px; line-height:1.1; margin:32px 0 16px; }
+.airport-call { display:inline-flex; padding:15px 0; color:#255f42; font-weight:600; text-underline-offset:5px; }
+.airport-inline-form { padding:28px; background:var(--paper); border-radius:16px; box-shadow:0 8px 32px rgba(20,45,30,.08); }
+.airport-form-tip { font-size:12px; line-height:1.5; margin:18px 0 0; color:#41544b; }
+.airport-route-links,.service-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.airport-route-links a,.service-options button { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px; color:var(--ink); background:var(--cream); border:0; border-radius:10px; text-decoration:none; text-align:left; cursor:pointer; }
+.service-options button { background:#e9eee4; }
+.airport-route-links strong,.service-options strong { display:block; font:400 28px var(--serif); }
+.airport-route-links small,.service-options span span { display:block; margin-top:8px; font:400 14px/1.6 var(--sans); }
+.airport-route-links svg,.service-options svg { flex-shrink:0; }
+.airport-list a { display:flex; align-items:center; justify-content:space-between; padding:20px 0; color:inherit; text-decoration:none; font-size:32px; }
+.airport-list a small { font:600 12px var(--sans); color:#c4ded0; }
+.fleet-carousel { min-width:0; }
+.fleet-carousel-viewport { overflow:hidden; }
+.fleet-carousel-controls { display:none; gap:10px; align-items:center; margin-top:14px; }
+.fleet-carousel-controls > span { flex:1; font-size:12px; color:#405847; }
+.fleet-carousel-controls button { display:grid; place-items:center; width:44px; height:44px; border:0; border-radius:50%; color:#193b2a; background:#e1eadc; cursor:pointer; }
+.always-carousel .profile-cards { display:flex; gap:22px; touch-action:pan-y pinch-zoom; }
+.always-carousel .profile-card { flex:0 0 calc((100% - 44px)/3); min-width:0; }
+.always-carousel .fleet-carousel-controls { display:flex; }
+.profile-card-title small { display:block; font:400 13px var(--sans); margin-top:5px; color:#405847; }
+.profile-card:focus-visible { outline:3px solid #24794e; outline-offset:-3px; }
+@media(max-width:1050px) { .always-carousel .profile-card { flex-basis:calc((100% - 22px)/2); }.contact-first { gap:28px; }.airport-enquiry-layout { gap:28px; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }.airport-inline-form { padding:20px; } }
+@media(max-width:760px) { .contact-first { grid-template-columns:1fr; padding:30px 20px 40px; gap:32px; }.contact-first > img { height:260px; }.contact-first h1 { font-size:40px; }.contact-first p { margin:0 0 12px; }.airport-enquiry-layout { display:flex; flex-direction:column; gap:0; padding:24px 16px 40px; }.airport-story { display:contents; }.airport-story > * { order:2; }.airport-story .airport-back,.airport-story h1,.airport-story .airport-lead { order:0; }.airport-story h1 { font-size:48px; }.airport-story .airport-lead { font-size:17px; margin:0 0 22px; }.airport-inline-form { order:1; width:100%; padding:20px 16px; margin-bottom:32px; box-sizing:border-box; }.airport-story h2 { font-size:30px; }.airport-story img { height:230px; }.airport-story p { font-size:15px; }.airport-story .airport-back { margin-bottom:18px; } }
+@media(max-width:600px) { .fleet-carousel .profile-cards { display:flex; gap:14px; touch-action:pan-y pinch-zoom; }.fleet-carousel .profile-card { flex:0 0 88%; min-width:0; }.fleet-carousel-controls { display:flex; }.airport-route-links,.service-options { grid-template-columns:1fr; }.airport-route-links a,.service-options button { padding:20px; }.enquiry-form { gap:14px; }.enquiry-form input[type=date],.enquiry-form input[type=time] { appearance:none; padding:11px 8px; }.enquiry-heading h2 { font-size:32px; }.enquiry-drawer { padding:20px 16px!important; }.contact-first > img { height:220px; } }
+@media(max-width:350px) { .enquiry-pair { gap:8px; }.enquiry-form label { font-size:12px; }.contact-immediate a { padding:14px 12px; gap:10px; }.contact-immediate small { font-size:12px; } }
+::selection { background:#c7e6ce; color:#102d20; }
+a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #29855b; outline-offset:4px; }
+/* Direct-contact and airport pages already supply the complete booking action. */
+.contact-first + .sec .sec-head h2 { color:var(--ink); }
+@media(max-width:760px) { .airport-story h1 { font-size:clamp(38px,10.5vw,46px); }.airport-story .airport-lead { margin-bottom:18px; }.airport-inline-form { box-shadow:none; }.airport-enquiry-layout { padding-top:18px; } }
+.enquiry-inputs { display:grid; gap:16px; }
+.enquiry-inputs[hidden] { display:none; }

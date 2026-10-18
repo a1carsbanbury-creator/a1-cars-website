@@ -18,7 +18,7 @@ export default function LongDistanceTravel() {
         ['Family and business trips', 'Visits, meetings and events in other towns and cities.'],
         ['Events and days out', 'Silverstone, F1 weekends and other occasions.'],
       ]} />
-      <p style={{ marginTop: 28 }}>Unlimited mileage. We collect you in Banbury or the surrounding area and take you where you need to go, or bring you back.</p>
+      <p style={{ marginTop: 28 }}>Longer journeys to or from Banbury and the surrounding area, planned around your destination and timings. We confirm availability when you book.</p>
     </Section>
     <Section tone="cream" eyebrow="How it works" title="Booked in" accent="three steps">
       <Steps items={[

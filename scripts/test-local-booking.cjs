@@ -13,7 +13,7 @@ let count = 0;
 function check(name, test) { test(); count++; console.log(`PASS ${name}`); }
 check('station purpose and addresses', () => { const result = prepare({ ...base, purpose: 'Station pickup · To Banbury station' }); assert.match(result, /Journey purpose: Station pickup · To Banbury station/); assert.match(result, /From: Home\n/); assert.match(result, /To: Banbury station\n/); });
 check('station return purpose', () => assert.match(prepare({ ...base, from: 'Banbury station', to: 'Home', purpose: 'Station pickup · From Banbury station' }), /From: Banbury station\n• To: Home/));
-check('accessible request and practical needs', () => { const result = prepare({ ...base, accessible: true, needs: ' Step-free pickup ' }); assert.match(result, /Wheelchair-accessible vehicle requested: Yes — please confirm arrangements/); assert.match(result, /Practical pickup \/ vehicle needs: Step-free pickup/); });
+check('accessible request and practical needs', () => { const result = prepare({ ...base, accessible: true, needs: ' Step-free pickup ' }); assert.match(result, /Wheelchair-accessible vehicle requested: Yes; please confirm arrangements/); assert.match(result, /Practical pickup \/ vehicle needs: Step-free pickup/); });
 check('unchecked access omits stale needs', () => assert.doesNotMatch(prepare({ ...base, accessible: false, needs: 'Step-free pickup' }), /Wheelchair|Practical pickup/));
 check('optional passenger and bags', () => { const result = prepare({ ...base, passengers: 2, bags: ' 1 case ' }); assert.match(result, /Passengers: 2/); assert.match(result, /Luggage: 1 case/); });
 check('quick request does not invent passenger count', () => assert.doesNotMatch(prepare(base), /Passengers:/));

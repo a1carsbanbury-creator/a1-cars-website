@@ -10,7 +10,7 @@ export const metadata = pageMeta({
 });
 export default function LocalTaxi() {
   return <LocalJourneyBooking><PageShell footerActions={<LocalStickyActions />}>
-    <PageHero eyebrow="Local private hire" title="In and around Banbury," accent="there for your plans." lead="Private hire for Banbury and the surrounding villages, day and night. From your doorstep to the station, an appointment or a night out." image="/revision-home-pickup.webp" ctaContent={<LocalHeroActions />} />
+    <PageHero eyebrow="Local private hire" title="In and around Banbury," accent="there for your plans." lead="Private hire for Banbury and the surrounding villages, day and night. From your doorstep to the station, an appointment or a night out." image="/local-private-hire-estate-v1.webp" ctaContent={<LocalHeroActions />} />
     <Section eyebrow="Where are you heading?" title="Choose your" accent="local journey">
       <LocalJourneyOptions />
     </Section>
@@ -28,7 +28,7 @@ export default function LocalTaxi() {
     <FaqList items={[
       { q: 'How do I book a private hire journey?', a: `Choose a journey above, enter your pickup and destination, and send the prepared request. Or call ${site.phone}. Our team will confirm the arrangements.` },
       { q: 'Are you open at night and at weekends?', a: 'Yes. A1 Cars Banbury is open 24 hours a day, every day of the year.' },
-      { q: 'How far can you take me?', a: 'Unlimited mileage. Tell us where you are going when you book and we will confirm the journey.' },
+      { q: 'How far can you take me?', a: 'We arrange local and longer journeys to or from Banbury and the surrounding area. Tell us your pickup and destination, and we will confirm availability when you book.' },
       { q: 'Do you have wheelchair-accessible vehicles?', a: 'Yes. Choose the wheelchair-accessible journey card or tick the option in the booking form. Share practical pickup needs so our team can confirm the right arrangements.' },
       { q: 'Is my booking confirmed when I send the request?', a: 'No. The request goes to our team, who confirm the vehicle, timings and arrangements before your booking is agreed.' },
       { q: 'Can I pay by card?', a: 'Yes, all major payment cards are accepted.' },

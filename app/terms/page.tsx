@@ -15,7 +15,7 @@ export default function Terms() {
       <h2>Booking requests</h2>
       <p>Sending a booking request through this website, WhatsApp, email or phone is a request only. A journey is booked when A1 Cars Banbury confirms it with you. Prices and timings are confirmed when you book.</p>
       <h2>Where we operate</h2>
-      <p>We serve Banbury and the surrounding area with unlimited mileage. We confirm whether we can accept your journey when you book.</p>
+      <p>We arrange journeys to or from Banbury and the surrounding area. We confirm whether we can accept your journey when you book.</p>
       <h2>Information on this site</h2>
       <p>We take care to keep this website accurate, but vehicle images and descriptions are a guide and the vehicle sent may differ. Please call us if something matters to your booking.</p>
       <h2>Who we are</h2>
