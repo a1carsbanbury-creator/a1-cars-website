@@ -36,17 +36,11 @@ export function SiteHeader() {
   </>;
 }
 
-// The sticky call + WhatsApp controls, shown on every page. Mobile: bottom bar. Desktop: floating pill.
+// Floating contact controls; the duplicate full-width mobile action bar was removed.
 export function StickyActions({ onBook }: { onBook?: () => void }) {
   return <>
     {christmasMode && <a className="xmas-sticky" href={christmasWhatsappHref} target="_blank" rel="noopener"><span className="xmas-sticky-icon" aria-hidden="true">🎅</span><span><small>Christmas bookings open</small><strong>Reserve on WhatsApp</strong></span>{whatsappIcon}</a>}
     <a className="floating-whatsapp" href={site.whatsappHref} aria-label="Message A1 Cars on WhatsApp">{whatsappIcon}</a>
-    <div className="mobile-actions">
-      <a href={site.phoneHref}><Phone aria-hidden="true" strokeWidth={1.8} /><span><small>Call A1 Cars</small><strong>{site.phone}</strong></span></a>
-      {onBook
-        ? <button type="button" onClick={onBook}><span>Book now</span><ArrowUpRight aria-hidden="true" strokeWidth={1.8} /></button>
-        : <a className="mobile-book" href="/fleet"><span>Book now</span><ArrowUpRight aria-hidden="true" strokeWidth={1.8} /></a>}
-    </div>
     <div className="desk-sticky">
       <a className="desk-call" href={site.phoneHref}><Phone aria-hidden="true" strokeWidth={1.8} /><span><small>Call 24/7</small><strong>{site.phone}</strong></span></a>
       <a className="desk-wa" href={site.whatsappHref} aria-label="Message A1 Cars on WhatsApp">{whatsappIcon}</a>
@@ -57,10 +51,30 @@ export function StickyActions({ onBook }: { onBook?: () => void }) {
 
 export function SiteFooter({ stickyActions }: { stickyActions?: React.ReactNode }) {
   return <>
-    <footer>
-      <a className="brand" href="/" aria-label="A1 Cars Banbury home"><SiteLogo footer /></a>
-      <p>Local private hire · Airport transfers · Executive travel · Group transport<br />{site.area} · Open 24/7 · <a href={site.phoneHref}>{site.phone}</a><br /><a href="/silverstone-transfers">Silverstone & F1</a> · <a href="/cotswolds-trips">Cotswolds trips</a></p>
-      <p>© 2026 {site.legalName} · Company no. {site.companyNumber}<br /><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="#cookies" data-cookie-settings>Cookie settings</a></p>
+    <footer className="site-footer">
+      <div className="footer-directory">
+        <div className="footer-contact">
+          <a className="brand" href="/" aria-label="A1 Cars Banbury home"><SiteLogo footer /></a>
+        </div>
+        <nav aria-label="Footer services"><h2>Journeys</h2><ul>
+          {services.filter(([, href]) => href !== '/services').map(([label, href]) => <li key={href}><a href={href}>{label}</a></li>)}
+          <li><a href="/celebrations">Celebrations</a></li><li><a href="/services">All services</a></li>
+        </ul></nav>
+        <nav aria-label="Footer destinations"><h2>Destinations</h2><ul>
+          <li><a href="/banbury-to-heathrow-taxi">Heathrow Airport</a></li>
+          <li><a href="/banbury-to-birmingham-airport-taxi">Birmingham Airport</a></li>
+          <li><a href="/banbury-to-gatwick-taxi">Gatwick Airport</a></li>
+          <li><a href="/banbury-to-luton-taxi">Luton Airport</a></li>
+          <li><a href="/banbury-to-stansted-taxi">Stansted Airport</a></li>
+          <li><a href="/port-transfers">Ports &amp; cruises</a></li>
+          <li><a href="/silverstone-transfers">Silverstone &amp; F1</a></li>
+          <li><a href="/cotswolds-trips">Cotswolds trips</a></li>
+        </ul></nav>
+        <nav aria-label="Footer company"><h2>A1 Cars</h2><ul>
+          <li><a href="/about">About us</a></li><li><a href="/fleet">Our vehicles</a></li><li><a href="/contact">Contact us</a></li>
+        </ul></nav>
+      </div>
+      <div className="footer-legal"><nav aria-label="Legal and privacy"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="#cookies" data-cookie-settings>Cookie settings</a></nav></div>
     </footer>
     {stickyActions ?? <StickyActions />}
   </>;

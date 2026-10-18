@@ -9,7 +9,7 @@ export const vehicleCatalogue: Record<string, FleetVehicle> = {
   estate: { id: 'estate', name: 'Estate', image: '/fleet-estate-taxi.webp', alt: 'Illustrative estate in side profile', passengers: 4, luggage: '3 cases' },
   mercedesEstate: { id: 'mercedes-estate', name: 'Estate', image: '/profile-mercedes-estate.webp', alt: 'Illustrative estate in side profile', passengers: 4, luggage: '3 cases' },
   superb: { id: 'superb', name: 'Saloon', image: '/profile-superb.webp', alt: 'Illustrative saloon in side profile', passengers: 4, luggage: '2 cases' },
-  touran: { id: 'touran', name: 'MPV / people carrier', image: '/profile-touran.webp', alt: 'Illustrative compact MPV in side profile', passengers: 'Up to 6', luggage: '3 cases with 4 passengers', capacityNote: 'Fewer cases when every seat is used', tradeoff: true },
+  touran: { id: 'touran', name: 'MPV / People carrier', image: '/profile-touran.webp', alt: 'Illustrative compact MPV in side profile', passengers: 'Up to 6', luggage: '3 cases with 4 passengers', capacityNote: 'Fewer cases when every seat is used', tradeoff: true },
   eclassBlack: { id: 'eclass-black', name: 'Mercedes E-Class', image: '/fleet-executive-saloon.webp', alt: 'Mercedes E-Class saloon in side profile', passengers: 4, luggage: '2 cases' },
   eclassSilver: { id: 'eclass-silver', name: 'Mercedes E-Class', image: '/profile-eclass-silver.webp', alt: 'Mercedes E-Class saloon in side profile', passengers: 4, luggage: '2 cases' },
   sclass: { id: 'sclass', name: 'Mercedes S-Class', image: '/profile-sclass.webp', alt: 'Mercedes S-Class saloon in side profile', passengers: 4, luggage: '2 cases' },

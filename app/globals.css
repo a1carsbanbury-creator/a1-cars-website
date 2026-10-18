@@ -656,3 +656,47 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 @media(max-width:760px) { .airport-story h1 { font-size:clamp(38px,10.5vw,46px); }.airport-story .airport-lead { margin-bottom:18px; }.airport-inline-form { box-shadow:none; }.airport-enquiry-layout { padding-top:18px; } }
 .enquiry-inputs { display:grid; gap:16px; }
 .enquiry-inputs[hidden] { display:none; }
+
+/* Enquiry hierarchy and shared footer: local review, 18 October 2026. */
+.enquiry-access { display:grid; gap:4px; padding:8px 0; }
+.enquiry-access > small { margin-left:30px; color:#41544b; font-size:12px; line-height:1.5; }
+.enquiry-access > label:not(.enquiry-check) { margin-top:10px; }
+.enquiry-optional { min-width:0; margin:8px 0 0; padding:20px 16px 16px; border:0; border-radius:8px; background:#f0f3ed; display:grid; gap:16px; }
+.enquiry-optional legend { padding:0; font:650 18px var(--sans); }
+.enquiry-optional > p { margin:-4px 0 0; color:#41544b; font-size:13px; line-height:1.5; }
+.enquiry-optional .enquiry-options { padding:0; border-radius:0; }
+.enquiry-optional .enquiry-options summary { padding:8px 0; min-height:44px; display:list-item; align-content:center; }
+footer.site-footer { display:block; padding:52px clamp(24px,6vw,96px) 116px; background:#edf1ed; color:var(--ink); }
+.footer-directory { display:grid; grid-template-columns:minmax(220px,1.35fr) 1fr 1fr .7fr; gap:36px; max-width:1400px; margin:0 auto; }
+.site-footer .footer-contact { min-width:0; }
+.site-footer .brand { display:inline-flex; }
+.site-footer .brand-logo { width:130px; height:82px; object-fit:contain; }
+.site-footer .footer-contact p { text-align:left; font-size:14px; line-height:1.65; margin:12px 0; color:#41544b; }
+.site-footer .footer-phone { display:inline-block; font-size:22px; font-weight:750; letter-spacing:-.025em; padding:6px 0; }
+.footer-contact-links { display:flex; gap:22px; font-size:14px; margin-top:4px; }
+.footer-contact-links a { min-height:44px; display:inline-flex; align-items:center; }
+.site-footer h2 { margin:12px 0 16px; font:700 16px var(--sans); letter-spacing:0; line-height:1.3; }
+.site-footer ul { list-style:none; padding:0; margin:0; }
+.site-footer li a { display:inline-flex; align-items:center; min-height:36px; padding:5px 0; font-size:14px; line-height:1.4; }
+.site-footer a:hover { color:#1e5b3c; text-decoration:underline; text-underline-offset:4px; }
+.site-footer a:focus-visible { outline:2px solid #24794e; outline-offset:4px; }
+.footer-legal { max-width:1400px; margin:36px auto 0; display:flex; justify-content:space-between; align-items:center; gap:24px; }
+.site-footer .footer-legal p { text-align:left; font:400 12px/1.6 var(--sans); color:#41544b; margin:0; }
+.footer-legal p span { display:block; }
+.footer-legal nav { display:flex; flex-wrap:wrap; gap:8px 24px; }
+.footer-legal nav a { font-size:12px; min-height:44px; display:inline-flex; align-items:center; }
+@media(max-width:1000px) { .footer-directory { grid-template-columns:1.2fr 1fr 1fr; gap:28px; }.footer-contact { grid-column:1 / -1; }.footer-directory .footer-contact { display:grid; grid-template-columns:170px 1fr; gap:0 20px; align-items:center; }.footer-contact .brand { grid-row:1 / 4; }.site-footer .footer-contact p { margin:0 0 4px; }.footer-contact-links { margin:0; } }
+@media(max-width:600px) { footer.site-footer { padding:32px 24px 110px; }.footer-directory { grid-template-columns:1fr 1fr; gap:22px; }.footer-directory .footer-contact { grid-template-columns:1fr; gap:0; }.footer-contact .brand { grid-row:auto; }.site-footer .footer-contact p { margin:8px 0; }.site-footer h2 { margin-top:0; margin-bottom:10px; }.site-footer li a { min-height:44px; font-size:13px; }.footer-directory nav:last-child { grid-column:1 / -1; }.footer-directory nav:last-child ul { display:flex; flex-wrap:wrap; gap:0 24px; }.footer-legal { margin-top:24px; display:grid; gap:12px; }.footer-legal nav { gap:4px 20px; }.enquiry-optional { padding:18px 12px 12px; } }
+
+/* Mobile review corrections: make the drawer content the single scroll owner. */
+.enquiry-drawer { overflow:hidden!important; }
+.enquiry-drawer > [data-slot="drawer-content"] { overflow-y:auto; overscroll-behavior-y:contain; touch-action:pan-y; -webkit-overflow-scrolling:touch; }
+.fleet-carousel-controls button:disabled { opacity:.4; cursor:default; }
+@media(max-width:767px) {
+  .site-footer .footer-contact { display:block; }
+  .site-footer .footer-contact > p,.site-footer .footer-contact > .footer-phone,.site-footer .footer-contact > .footer-contact-links { display:none; }
+}
+
+/* Footer annotation: logo and directories only, at every screen width. */
+.site-footer .footer-contact { display:block; }
+.footer-legal { justify-content:flex-end; }
