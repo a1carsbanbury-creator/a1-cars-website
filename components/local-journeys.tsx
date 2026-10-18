@@ -53,5 +53,5 @@ export function LocalBookingGuide() {
     if (target.current) observer.observe(target.current);
     return () => observer.disconnect();
   }, []);
-  return <div className="local-booking-guide"><p className="booking-guide-caption">How to book — a simple guide</p><ol ref={target} className={visible ? 'booking-guide-steps active' : 'booking-guide-steps'}>{bookingSteps.map(([title, copy], index) => <li key={title} style={{ '--step': index } as React.CSSProperties}><span className="booking-step-number">{index + 1}</span><h3>{title}</h3><p>{copy}</p></li>)}</ol><p className="booking-guide-note">This explains the booking steps. Sending a request does not confirm a booking.</p></div>;
+  return <div className="local-booking-guide"><p className="booking-guide-caption">How to book ; a simple guide</p><ol ref={target} className={visible ? 'booking-guide-steps active' : 'booking-guide-steps'}>{bookingSteps.map(([title, copy], index) => <li key={title} style={{ '--step': index } as React.CSSProperties}><span className="booking-step-number">{index + 1}</span><h3>{title}</h3><p>{copy}</p></li>)}</ol><p className="booking-guide-note">This explains the booking steps. Sending a request does not confirm a booking.</p></div>;
 }

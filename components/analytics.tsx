@@ -17,7 +17,10 @@ gtag('js',new Date());gtag('config','${GA_ID}');`;
 
 // Fires a GA4 event whenever a visitor taps a call, WhatsApp or email link (the real conversions).
 export function Analytics() {
+  // Local previews and browser verification must not pollute the live account.
+  const isPreview = process.env.NEXT_PUBLIC_LOCAL_PREVIEW === '1';
   useEffect(() => {
+    if (isPreview) return;
     const onClick = (event: MouseEvent) => {
       const link = (event.target as Element | null)?.closest?.('a[href]');
       if (!link || !window.gtag) return;
@@ -27,8 +30,9 @@ export function Analytics() {
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
-  }, []);
+  }, [isPreview]);
 
+  if (isPreview) return null;
   return <>
     <Script id="ga4-init" strategy="afterInteractive">{init}</Script>
     <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />

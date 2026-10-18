@@ -15,7 +15,7 @@ const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['nor
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: 'A1 Cars Banbury | Private hire & airport transfers', template: '%s | A1 Cars Banbury' },
-  description: 'Private hire for Banbury and surrounding villages within 15 miles. Airport transfers, executive cars and group travel. Open 24/7. Call 01295 266 778.',
+  description: 'Private hire for Banbury and surrounding villages. Airport transfers, executive cars and group travel. Open 24/7. Call 01295 266 778.',
   applicationName: site.name,
   icons: {
     icon: [

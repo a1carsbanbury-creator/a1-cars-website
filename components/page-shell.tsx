@@ -2,15 +2,18 @@ import type { CSSProperties } from 'react';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { site } from '@/lib/site';
 import { PhotoSlider } from '@/components/photo-slider';
+import { ServiceOptions } from '@/components/service-options';
 
 export type Faq = { q: string; a: string };
 
 const services = [
-  { label: 'Local private hire', href: '/local-taxi', image: '/revision-home-pickup.webp', blurb: 'Banbury and the surrounding villages' },
+  { label: 'Local private hire', href: '/local-taxi', image: '/local-private-hire-estate-v1.webp', blurb: 'Banbury and the surrounding villages' },
   { label: 'Airport transfers', href: '/airport-transfers', image: '/revision-airport-arrival.webp', blurb: 'Planned around your flight' },
   { label: 'Executive travel', href: '/executive-travel', image: '/revision-executive-hotel.webp', blurb: 'Business trips and occasions' },
   { label: 'Group & minibus', href: '/group-minibus', image: '/revision-group-dayout.webp', blurb: 'One booking for the whole group' },
   { label: 'Silverstone & F1', href: '/silverstone-transfers', image: '/revision-group-dayout.webp', blurb: 'Race days, arranged together' },
+  { label: 'Celebrations', href: '/celebrations', image: '/revision-wedding.webp', blurb: 'Birthdays, weddings and parties' },
+  { label: 'Ports & cruises', href: '/port-transfers', image: '/port-cruise-transfer-v1.webp', blurb: 'Southampton Docks and beyond' },
   { label: 'Cotswolds trips', href: '/cotswolds-trips', image: '/revision-home-pickup.webp', blurb: 'Villages, scenery and days out' },
 ];
 
@@ -30,10 +33,10 @@ export function PageShell({ children, footerActions }: { children: React.ReactNo
   </main>;
 }
 
-export function PageHero({ eyebrow, title, accent, lead, image, cta = true, ctaContent }: { eyebrow: string; title: string; accent?: string; lead: string; image?: string; cta?: boolean; ctaContent?: React.ReactNode }) {
+export function PageHero({ eyebrow, title, accent, lead, image, images, cta = true, ctaContent }: { eyebrow: string; title: string; accent?: string; lead: string; image?: string; images?: string[]; cta?: boolean; ctaContent?: React.ReactNode }) {
   return <>
     <section className={image ? 'info-hero has-slider' : 'info-hero compact'}>
-      {image && <PhotoSlider className="info-hero-slider" images={heroPhotos[image] ?? [image]} label={`${eyebrow} photographs`} />}
+      {image && <PhotoSlider className="info-hero-slider" images={images ?? heroPhotos[image] ?? [image]} label={`${eyebrow} photographs`} />}
       <div className="info-hero-inner">
         <p className="eyebrow"><span />{eyebrow}</p>
         <h1>{title}{accent && <><br /><em>{accent}</em></>}</h1>
@@ -60,7 +63,7 @@ export function Section({ eyebrow, title, accent, children, tone = 'paper', comp
 }
 
 export function Features({ items }: { items: [string, string][] }) {
-  return <div className="features">{items.map(([t, d], i) => <article className="reveal" style={stagger(i)} key={t}><span className="num">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></article>)}</div>;
+  return <ServiceOptions items={items} />;
 }
 
 export function Steps({ items }: { items: [string, string][] }) {

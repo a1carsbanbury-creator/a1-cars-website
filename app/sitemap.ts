@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
+import { airports } from '@/lib/airports';
 import { SITE_URL } from '@/lib/site';
 
-const paths = ['/', '/local-taxi', '/airport-transfers', '/executive-travel', '/group-minibus', '/long-distance-travel', '/services', '/silverstone-transfers', '/cotswolds-trips', '/fleet', '/christmas', '/about', '/contact', '/privacy', '/terms'];
+const paths = ['/', '/local-taxi', '/airport-transfers', '/executive-travel', '/group-minibus', '/long-distance-travel', '/services', '/silverstone-transfers', '/cotswolds-trips', '/fleet', '/christmas', '/celebrations', '/port-transfers', '/about', '/contact', '/privacy', '/terms'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return paths.map((path) => ({
+  return [...paths, ...airports.map(airport => `/${airport.slug}`)].map((path) => ({
     url: `${SITE_URL}${path === '/' ? '' : path}`,
     changeFrequency: 'monthly',
     priority: path === '/' ? 1 : path === '/privacy' || path === '/terms' ? 0.3 : 0.8,

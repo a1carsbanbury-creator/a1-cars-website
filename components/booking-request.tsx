@@ -1,124 +1,106 @@
 'use client';
-
-import { useEffect, useMemo, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { useEffect, useId, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { ArrowRight, Check, Mail, MessageCircle, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@/components/ui/drawer';
-import { Input } from '@/components/ui/input';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { prepareBookingSummary } from '@/lib/booking-summary';
-
-type JourneyType = 'Airport' | 'Local' | 'Executive' | 'Group & minibus';
-
-type BookingRequestProps = {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  initialJourneyType?: JourneyType;
-  vehicle?: string;
-  quick?: boolean;
-  purpose?: string;
-  initiallyAccessible?: boolean;
-};
-
-const phoneHref = 'tel:+441295266778';
-const email = 'business@a1carsbanbury.co.uk';
-const airports = ['Heathrow (LHR)', 'Gatwick (LGW)', 'Luton (LTN)', 'Stansted (STN)', 'Birmingham (BHX)'];
-const journeyTypes: JourneyType[] = ['Airport', 'Local', 'Executive', 'Group & minibus'];
-
-function roundedTime() {
-  const date = new Date();
-  date.setHours(date.getHours() + 1, date.getMinutes() < 30 ? 30 : 60, 0, 0);
-  return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
-}
-
-function AccessibilityFields({ accessible, setAccessible, needs, setNeeds }: { accessible: boolean; setAccessible: (value: boolean) => void; needs: string; setNeeds: (value: string) => void }) {
-  return <div className="booking-accessibility"><label className="accessibility-check"><input type="checkbox" checked={accessible} onChange={event => setAccessible(event.target.checked)} /><span>Wheelchair-accessible vehicle needed</span></label>{accessible && <label className="accessibility-needs">Practical pickup or vehicle needs (optional)<textarea value={needs} maxLength={500} placeholder="e.g. step-free pickup or space for a mobility aid" onChange={event => setNeeds(event.target.value)} /><small>Share practical arrangements only. No medical details needed. Our team will confirm a suitable vehicle.</small></label>}</div>;
-}
-
-function BookingFields({ initialJourneyType = 'Airport', vehicle, close }: { initialJourneyType?: JourneyType; vehicle?: string; close: () => void }) {
-  const [journeyType, setJourneyType] = useState<JourneyType>(initialJourneyType);
-  const [from, setFrom] = useState('Banbury');
-  const [to, setTo] = useState(initialJourneyType === 'Airport' ? airports[0] : 'To be confirmed');
-  const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
-  const [time, setTime] = useState(roundedTime);
-  const [passengers, setPassengers] = useState(1);
-  const [bags, setBags] = useState('');
-  const [accessible, setAccessible] = useState(false);
-  const [needs, setNeeds] = useState('');
-
-  useEffect(() => {
-    setJourneyType(initialJourneyType);
-    setTo(initialJourneyType === 'Airport' ? airports[0] : 'To be confirmed');
-  }, [initialJourneyType, vehicle]);
-
-  const summary = useMemo(() => prepareBookingSummary({ journeyType, vehicle, from: from || 'Banbury', to, date, time, passengers, bags, accessible, needs }), [journeyType, vehicle, from, to, date, time, passengers, bags, accessible, needs]);
-
-  const whatsappHref = `https://wa.me/447823642516?text=${encodeURIComponent(summary)}`;
-  const emailHref = `mailto:${email}?subject=${encodeURIComponent('Booking request')}&body=${encodeURIComponent(summary)}`;
-
-  return <div className="booking-form">
-    <div className="booking-heading"><p className="eyebrow dark"><span />Arrange a journey</p><h2>Book in a<br /><em>few taps.</em></h2><p>Choose what you need, then send the details directly to our team.</p></div>
-    <div className="booking-fields">
-      <fieldset><legend>Journey type</legend><div className="journey-chips">{journeyTypes.map((type) => <Button type="button" key={type} className={journeyType === type ? 'journey-chip active' : 'journey-chip'} onClick={() => { setJourneyType(type); if (type === 'Airport' && to === 'To be confirmed') setTo(airports[0]); }}>{type}</Button>)}</div></fieldset>
-      {vehicle && <p className="vehicle-preference">Vehicle preference: <strong>{vehicle}</strong></p>}
-      <label>From<Input value={from} onChange={(event) => setFrom(event.target.value)} /></label>
-      <label>To<Input value={to} onChange={(event) => setTo(event.target.value)} /></label>
-      {journeyType === 'Airport' && <div className="airport-chips" aria-label="Choose airport">{airports.map((airport) => <Button type="button" key={airport} className={to === airport ? 'airport-chip active' : 'airport-chip'} onClick={() => setTo(airport)}>{airport}</Button>)}</div>}
-      <div className="booking-two-col"><label>Date<Input type="date" value={date} onChange={(event) => setDate(event.target.value)} /></label><label>Time<Input type="time" value={time} onChange={(event) => setTime(event.target.value)} /></label></div>
-      <div className="passenger-row"><span>Passengers</span><div><Button type="button" className="stepper" aria-label="Reduce passengers" onClick={() => setPassengers((count) => Math.max(1, count - 1))}>−</Button><strong>{passengers}</strong><Button type="button" className="stepper" aria-label="Add passenger" onClick={() => setPassengers((count) => count + 1)}>+</Button></div></div>
-      <label>Luggage / bags<Input value={bags} placeholder="e.g. 2 large cases and 2 cabin bags" onChange={event => setBags(event.target.value)} /></label>
-      <AccessibilityFields accessible={accessible} setAccessible={setAccessible} needs={needs} setNeeds={setNeeds} />
-    </div>
-    <div className="booking-actions"><a className="booking-whatsapp" href={whatsappHref} onClick={close}>Send on WhatsApp <span>↗</span></a><a className="booking-call" href={phoneHref}>Call 01295 266 778</a><a className="booking-email" href={emailHref}>Email instead</a><p>All major payment cards accepted.</p></div>
-  </div>;
-}
-
-function QuickBookingFields({ vehicle, journeyType, purpose, initiallyAccessible = false, close }: { vehicle?: string; journeyType: JourneyType; purpose?: string; initiallyAccessible?: boolean; close: () => void }) {
+import { site } from '@/lib/site';
+export type JourneyType = 'Airport' | 'Local' | 'Executive' | 'Group & minibus';
+type FormProps = { initialJourneyType?: JourneyType; vehicle?: string; purpose?: string; initiallyAccessible?: boolean; airport?: string; source?: string };
+type BookingRequestProps = FormProps & { open: boolean; onOpenChange: (open: boolean) => void; quick?: boolean };
+const airportNames = ['Heathrow (LHR)', 'Birmingham (BHX)', 'Gatwick (LGW)', 'Luton (LTN)', 'Stansted (STN)'];
+const pageServices: Record<string, string> = { '/local-taxi': 'Local taxi', '/airport-transfers': 'Airport transfer', '/executive-travel': 'Executive travel', '/group-minibus': 'Group & minibus', '/port-transfers': 'Port & cruise transfer', '/silverstone-transfers': 'Silverstone & F1 transfer', '/celebrations': 'Celebration', '/cotswolds-trips': 'Cotswolds trip', '/long-distance-travel': 'Long-distance travel', '/christmas': 'Christmas travel' };
+const journeyLabels: Record<JourneyType, string> = { Airport: 'Airport transfer', Local: 'Local taxi', Executive: 'Executive travel', 'Group & minibus': 'Group & minibus' };
+const journeySuggestions = Array.from(new Set(Object.values(pageServices)));
+export function EnquiryForm({ initialJourneyType = 'Local', vehicle, purpose, initiallyAccessible = false, airport, source }: FormProps) {
+  const path = usePathname() ?? '/';
+  const journeyListId = useId();
+  const [journey, setJourney] = useState(pageServices[path] ?? (airport ? 'Airport transfer' : journeyLabels[initialJourneyType]));
+  const [selectedAirport, setAirport] = useState(airport ?? '');
+  const [direction, setDirection] = useState('to');
   const [from, setFrom] = useState('');
-  const [to, setTo] = useState(purpose === 'Station pickup' ? 'Banbury station' : '');
+  const [to, setTo] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [passengers, setPassengers] = useState('');
   const [bags, setBags] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailOffers, setEmailOffers] = useState(false);
+  const [consentRecordedAt, setConsentRecordedAt] = useState<string>();
+  const [flight, setFlight] = useState('');
+  const [extra, setExtra] = useState('');
+  const [returnTrip, setReturnTrip] = useState(false);
+  const [returnDate, setReturnDate] = useState('');
+  const [returnTime, setReturnTime] = useState('');
   const [accessible, setAccessible] = useState(initiallyAccessible);
   const [needs, setNeeds] = useState('');
-  const [stationDirection, setStationDirection] = useState<'to' | 'from'>('to');
-  const selectedPurpose = purpose === 'Station pickup' ? `${purpose} · ${stationDirection === 'to' ? 'To' : 'From'} Banbury station` : purpose;
-  const summary = prepareBookingSummary({ journeyType, vehicle, purpose: selectedPurpose, from, to, date, time, passengers, bags, accessible, needs });
-  function changeStationDirection(direction: 'to' | 'from') {
-    if (direction === stationDirection) return;
-    const otherAddress = stationDirection === 'to' ? from : to;
-    setFrom(direction === 'from' ? 'Banbury station' : otherAddress);
-    setTo(direction === 'to' ? 'Banbury station' : otherAddress);
-    setStationDirection(direction);
+  const [prepared, setPrepared] = useState(false);
+  const service = journey.trim();
+  const isAirport = /^airport(?: transfer)?$/i.test(service);
+  const station = purpose === 'Station pickup' && /^local(?: taxi)?$/i.test(service);
+  const pickup = isAirport && direction === 'from' ? selectedAirport : station && direction === 'from' ? 'Banbury station' : from;
+  const destination = isAirport && direction === 'to' ? selectedAirport : station && direction === 'to' ? 'Banbury station' : to;
+  const [minDate, setMinDate] = useState('');
+  useEffect(() => {
+    const today = new Date();
+    setMinDate(`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`);
+  }, []);
+  function changeDirection(value: string) {
+    if (value === direction) return;
+    const address = direction === 'to' ? from : to;
+    setFrom(value === 'to' ? address : '');
+    setTo(value === 'from' ? address : '');
+    setDirection(value); setPrepared(false);
   }
-  function send(event: React.FormEvent<HTMLFormElement>, channel: 'whatsapp' | 'email') {
+  const summary = prepareBookingSummary({ journeyType: service, vehicle, purpose, from: pickup, to: destination, date, time, passengers, bags, email, emailOffers, consentRecordedAt, accessible, needs, page: path, source: source ?? purpose ?? (vehicle ? 'Vehicle choice' : airport ? `${airport} enquiry` : 'Book a journey'), flight: isAirport ? flight : undefined, extra, returnDate: returnTrip ? returnDate : undefined, returnTime: returnTrip ? returnTime : undefined });
+  function prepare(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    window.location.href = channel === 'whatsapp' ? `https://wa.me/447823642516?text=${encodeURIComponent(summary)}` : `mailto:${email}?subject=Booking%20request&body=${encodeURIComponent(summary)}`;
-    close();
+    const form = event.currentTarget;
+    const selectedDate = (form.elements.namedItem('pickupDate') as HTMLInputElement).value;
+    const selectedTime = (form.elements.namedItem('pickupTime') as HTMLInputElement).value;
+    const selectedReturnDate = (form.elements.namedItem('returnDate') as HTMLInputElement | null)?.value ?? '';
+    const selectedReturnTime = (form.elements.namedItem('returnTime') as HTMLInputElement | null)?.value ?? '';
+    const pickupDate = new Date(`${selectedDate}T${selectedTime}`);
+    if (!Number.isFinite(pickupDate.getTime()) || pickupDate.getTime() <= Date.now()) {
+      const input = event.currentTarget.querySelector<HTMLInputElement>('input[type="time"]');
+      input?.setCustomValidity('Choose a future pickup date and time.'); input?.reportValidity(); return;
+    }
+    const returnPickupDate = new Date(`${selectedReturnDate}T${selectedReturnTime}`);
+    if (returnTrip && (!Number.isFinite(returnPickupDate.getTime()) || returnPickupDate.getTime() <= pickupDate.getTime())) {
+      const input = event.currentTarget.querySelectorAll<HTMLInputElement>('input[type="time"]')[1];
+      input?.setCustomValidity('Choose a return after the outbound pickup.'); input?.reportValidity(); return;
+    }
+    setDate(selectedDate); setTime(selectedTime);
+    setReturnDate(selectedReturnDate); setReturnTime(selectedReturnTime);
+    setConsentRecordedAt(emailOffers && email.trim() ? new Date().toISOString() : undefined);
+    setPrepared(true);
   }
-  return <form className="booking-form quick-booking-form" onSubmit={event => send(event, (event.nativeEvent as SubmitEvent).submitter?.getAttribute('data-channel') === 'email' ? 'email' : 'whatsapp')}>
-    <div className="booking-heading"><p className="eyebrow dark"><span />Quick booking</p><h2>Your journey,<br /><em>in a few taps.</em></h2><p>Send a request. Our team will confirm the arrangements.</p></div>
-    {vehicle && <p className="vehicle-preference">Vehicle preference: <strong>{vehicle}</strong></p>}
-    {purpose && <p className="journey-purpose">Journey purpose: <strong>{purpose}</strong></p>}
-    {purpose === 'Station pickup' && <fieldset className="station-direction"><legend>Station journey</legend><div><button type="button" aria-pressed={stationDirection === 'to'} onClick={() => changeStationDirection('to')}>To Banbury station</button><button type="button" aria-pressed={stationDirection === 'from'} onClick={() => changeStationDirection('from')}>From Banbury station</button></div></fieldset>}
-    <div className="booking-fields"><label>From<Input required pattern={'.*\\S.*'} title="Enter a pickup address" value={from} placeholder="Pickup address" onChange={event => setFrom(event.target.value)} /></label><label>To<Input required pattern={'.*\\S.*'} title="Enter a destination" value={to} placeholder="Destination" onChange={event => setTo(event.target.value)} /></label><div className="booking-two-col"><label>Date<Input required type="date" value={date} onChange={event => setDate(event.target.value)} /></label><label>Time<Input required type="time" value={time} onChange={event => setTime(event.target.value)} /></label></div>
-      <details className="quick-booking-options"><summary>Passengers & luggage <span>Optional +</span></summary><div><label>Passengers<Input type="number" min="1" step="1" value={passengers} placeholder="Party size" onChange={event => setPassengers(event.target.value)} /></label><label>Luggage / bags<Input value={bags} placeholder="e.g. 2 large cases" onChange={event => setBags(event.target.value)} /></label></div></details>
-      <AccessibilityFields accessible={accessible} setAccessible={setAccessible} needs={needs} setNeeds={setNeeds} />
+  return <form className="enquiry-form" onSubmit={prepare} onChange={event => { setPrepared(false); const target = event.target; if (target instanceof HTMLInputElement) { target.setCustomValidity(''); event.currentTarget.querySelectorAll('input[type="time"]').forEach(input => (input as HTMLInputElement).setCustomValidity('')); } }}>
+    <div className="enquiry-heading"><h2>{airport ? 'Your airport journey' : 'Arrange your journey'}</h2><p>Send the details. We’ll confirm availability and price.</p></div>
+    <div className="enquiry-inputs" hidden={prepared}>
+    {vehicle && <p className="enquiry-selection">Vehicle preference: <strong>{vehicle}</strong><small>Model preference only. We confirm a suitable vehicle and capacity.</small></p>}
+    {purpose && <p className="enquiry-selection">Occasion or booking choice: <strong>{purpose}</strong></p>}
+    <label>Journey type<input required pattern={'.*\\S.*'} maxLength={100} list={journeyListId} value={journey} placeholder="Choose or describe your journey" onChange={event => setJourney(event.target.value)} /><datalist id={journeyListId}>{journeySuggestions.map(type => <option value={type} key={type} />)}</datalist></label>
+    {isAirport && <><label>Airport<select required value={selectedAirport} onChange={event => setAirport(event.target.value)}><option value="">Choose an airport</option>{airportNames.map(name => <option key={name}>{name}</option>)}</select></label><fieldset className="enquiry-direction"><legend>Which way?</legend><button type="button" aria-pressed={direction === 'to'} onClick={() => { changeDirection('to'); }}>To the airport</button><button type="button" aria-pressed={direction === 'from'} onClick={() => { changeDirection('from'); }}>From the airport</button></fieldset></>}
+    {station && <fieldset className="enquiry-direction"><legend>Station journey</legend>{['to','from'].map(value => <button key={value} type="button" aria-pressed={direction === value} onClick={() => { changeDirection(value); }}>{value === 'to' ? 'To' : 'From'} Banbury station</button>)}</fieldset>}
+    {(!isAirport && !station || direction === 'to') && <label>Pickup address or postcode<input required maxLength={180} pattern={'.*\\S.*'} autoComplete="street-address" value={from} placeholder="Enter your pickup postcode or address" onChange={event => setFrom(event.target.value)} /></label>}
+    {(!isAirport && !station || direction === 'from') && <label>Destination address or postcode<input required maxLength={180} pattern={'.*\\S.*'} value={to} placeholder="Enter your destination postcode or address" onChange={event => setTo(event.target.value)} /></label>}
+    <div className="enquiry-pair"><label>Pickup date<input name="pickupDate" required type="date" min={minDate} value={date} onInput={event => setDate(event.currentTarget.value)} onChange={event => setDate(event.target.value)} /></label><label>Pickup time<input name="pickupTime" required type="time" value={time} onInput={event => setTime(event.currentTarget.value)} onChange={event => setTime(event.target.value)} /></label></div>
+    <div className="enquiry-pair"><label>Passengers (optional)<input type="number" inputMode="numeric" min="1" max="100" step="1" value={passengers} placeholder="Number of passengers" onChange={event => setPassengers(event.target.value)} /></label><label>Luggage (optional)<input maxLength={150} value={bags} placeholder="e.g. 2 large cases" onChange={event => setBags(event.target.value)} /></label></div>
+    <div className="enquiry-email"><label>Email address (optional)<input type="email" inputMode="email" autoComplete="email" maxLength={254} required={emailOffers} value={email} placeholder="Your email address (optional)" onChange={event => setEmail(event.target.value)} /></label><label className="enquiry-check"><input type="checkbox" checked={emailOffers} onChange={event => setEmailOffers(event.target.checked)} /><span>Email me A1 Cars Banbury offers and discounts.</span></label><small>Optional. You can opt out anytime. <a href="/privacy#email-offers">Privacy</a></small></div>
+    {isAirport && <label>Flight / terminal (optional)<input maxLength={150} value={flight} placeholder="Flight number, terminal, arrival / departure time" onChange={event => setFlight(event.target.value)} /></label>}
+    <details className="enquiry-options" open={initiallyAccessible || undefined}><summary>Return journey, extra stops or access needs</summary><label className="enquiry-check"><input type="checkbox" checked={returnTrip} onChange={event => setReturnTrip(event.target.checked)} />Include a return journey</label>{returnTrip && <><p className="enquiry-hint">Return from {destination || 'your destination'} to {pickup || 'your pickup address'}.</p><div className="enquiry-pair"><label>Return date<input name="returnDate" required type="date" min={date || minDate} value={returnDate} onChange={event => setReturnDate(event.target.value)} /></label><label>Return pickup time<input name="returnTime" required type="time" value={returnTime} onChange={event => setReturnTime(event.target.value)} /></label></div></>}<label>Extra stops / journey notes (optional)<textarea maxLength={600} value={extra} placeholder="Additional pickup addresses, stops or timing details" onChange={event => setExtra(event.target.value)} /></label><label className="enquiry-check"><input type="checkbox" checked={accessible} onChange={event => setAccessible(event.target.checked)} />Wheelchair-accessible vehicle requested</label>{accessible && <label>Practical access needs (optional)<textarea maxLength={400} value={needs} placeholder="Practical pickup or vehicle arrangements" onChange={event => setNeeds(event.target.value)} /><small>No medical details needed. We’ll confirm the arrangements.</small></label>}</details>
     </div>
-    <div className="booking-actions"><button type="submit" className="booking-whatsapp">Send on WhatsApp <span>↗</span></button><a className="booking-call" href={phoneHref}>Call 01295 266 778</a><button type="submit" data-channel="email" className="booking-email">Email instead</button><p>Every journey starts or ends within 15 miles of Banbury.</p></div>
+    {!prepared ? <button className="enquiry-primary" type="submit">Prepare enquiry <ArrowRight size={18} /></button> : <div className="enquiry-ready" role="status"><h3><Check size={20} /> Your enquiry is ready</h3><pre>{summary}</pre><a className="enquiry-primary" href={`https://wa.me/447823642516?text=${encodeURIComponent(summary)}`} target="_blank" rel="noopener noreferrer"><MessageCircle size={19} /> Open WhatsApp</a><a className="enquiry-secondary" href={`mailto:${site.email}?subject=${encodeURIComponent('Journey enquiry: ' + (purpose ?? airport ?? service))}&body=${encodeURIComponent(summary)}`}><Mail size={18} /> Open email draft</a><button type="button" className="enquiry-edit" onClick={() => setPrepared(false)}>Edit details</button><p>Nothing has been sent yet. WhatsApp opens a message to A1 Cars; email opens your email app addressed to {site.email}. Press Send there. If no email app opens, use WhatsApp or call us.</p></div>}
+    <p className="enquiry-note">This is an enquiry. Your booking is confirmed only when our team agrees availability, price and arrangements.</p>
+    <a className="enquiry-phone" href={site.phoneHref}>Prefer to call? {site.phone}</a>
   </form>;
 }
-
-export function BookingRequest({ open, onOpenChange, initialJourneyType, vehicle, quick = false, purpose, initiallyAccessible }: BookingRequestProps) {
-  const isMobile = useIsMobile();
-  const fields = quick ? <QuickBookingFields key={`${vehicle ?? ''}-${purpose ?? ''}-${initiallyAccessible ?? false}-${open}`} vehicle={vehicle} journeyType={initialJourneyType ?? 'Local'} purpose={purpose} initiallyAccessible={initiallyAccessible} close={() => onOpenChange(false)} /> : <BookingFields initialJourneyType={initialJourneyType} vehicle={vehicle} close={() => onOpenChange(false)} />;
-
-  if (isMobile) {
-    return <Drawer open={open} onOpenChange={onOpenChange} showSwipeHandle><DrawerContent className="booking-drawer"><DrawerTitle className="sr-only">Arrange a journey</DrawerTitle><DrawerDescription className="sr-only">Send a prefilled booking request to A1 Cars on WhatsApp.</DrawerDescription>{fields}</DrawerContent></Drawer>;
-  }
-
-  return <Dialog open={open} onOpenChange={onOpenChange}><DialogContent className="booking-dialog" showCloseButton><DialogTitle className="sr-only">Arrange a journey</DialogTitle><DialogDescription className="sr-only">Send a prefilled booking request to A1 Cars on WhatsApp.</DialogDescription>{fields}</DialogContent></Dialog>;
+export function BookingRequest({ open, onOpenChange, quick: _quick, ...props }: BookingRequestProps) {
+  const mobile = useIsMobile();
+  const fields = <EnquiryForm key={`${open}-${props.vehicle}-${props.purpose}-${props.airport}`} {...props} />;
+  if (mobile) return <Drawer open={open} onOpenChange={onOpenChange}><DrawerContent className="booking-drawer enquiry-drawer"><DrawerTitle className="sr-only">Journey enquiry</DrawerTitle><DrawerDescription className="sr-only">Prepare a journey enquiry for WhatsApp or email.</DrawerDescription><button className="enquiry-close" type="button" aria-label="Close enquiry" onClick={() => onOpenChange(false)}><X size={20} /></button>{fields}</DrawerContent></Drawer>;
+  return <Dialog open={open} onOpenChange={onOpenChange}><DialogContent className="booking-dialog enquiry-dialog" showCloseButton><DialogTitle className="sr-only">Journey enquiry</DialogTitle><DialogDescription className="sr-only">Prepare a journey enquiry for WhatsApp or email.</DialogDescription>{fields}</DialogContent></Dialog>;
 }
-
-export type { JourneyType };
