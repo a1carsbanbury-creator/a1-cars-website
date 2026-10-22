@@ -10,7 +10,7 @@ export const metadata = pageMeta({
 
 export default function About() {
   return <PageShell>
-    <PageHero eyebrow="About us" title="Your local private hire," accent="open every hour." lead="A1 Cars Banbury arranges local journeys, airport transfers, executive travel and group transport for Banbury and the surrounding villages." image="/revision-home-pickup.webp" cta={false} />
+    <PageHero eyebrow="About us" title="Your local private hire," accent="open every hour." lead="A1 Cars Banbury arranges local journeys, airport transfers, executive travel and group transport for Banbury and the surrounding villages." image="/revision-home-pickup-optimized.webp" cta={false} />
     <Section tone="cream">
       <Split image="/group-travel.webp" alt="A1 Cars vehicles outside a Cotswold manor house">
         <p className="eyebrow dark"><span />Who we are</p>

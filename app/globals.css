@@ -386,9 +386,9 @@ footer .brand-logo { width:140px; height:88px; background:transparent; }
 .hero-copy { max-width:430px; }
 .hero-area-note { max-width:420px; color:#b1c5b9; font-size:12px; line-height:1.6; margin:16px 0 0; }
 .photo-slide { object-position:center 42%; }
-.photo-slide[src="/revision-home-pickup.webp"],.photo-slide[src="/revision-airport-arrival.webp"] { object-position:62% 42%; }
-.photo-slide[src="/revision-accessible-arrival.webp"] { object-position:60% 42%; }
-.photo-slide[src="/revision-fleet-lineup.webp"] { object-position:center 58%; }
+.photo-slide[src="/revision-home-pickup-optimized.webp"],.photo-slide[src="/revision-airport-arrival.webp"] { object-position:62% 42%; }
+.photo-slide[src="/revision-accessible-arrival-optimized.webp"] { object-position:60% 42%; }
+.photo-slide[src="/revision-fleet-lineup-optimized.webp"] { object-position:center 58%; }
 .info-hero { min-height:740px; }
 .info-hero-inner { max-width:1500px; }
 .info-hero h1 { max-width:720px; font-size:clamp(48px,6.1vw,92px); }

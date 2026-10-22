@@ -14,7 +14,7 @@ const services = [
   { label: 'Airport transfers', href: '/airport-transfers', image: '/revision-airport-arrival.webp', blurb: 'Heathrow, Birmingham, Gatwick, Luton and Stansted' },
   { label: 'Executive travel', href: '/executive-travel', image: '/revision-executive-hotel.webp', blurb: 'Business meetings, corporate travel and professional pickups' },
   { label: 'Group & minibus', href: '/group-minibus', image: '/revision-group-dayout.webp', blurb: 'People carriers and minibuses for the whole group' },
-  { label: 'Long-distance travel', href: '/long-distance-travel', image: '/revision-fleet-lineup.webp', blurb: 'Journeys beyond the local area, planned in advance' },
+  { label: 'Long-distance travel', href: '/long-distance-travel', image: '/revision-fleet-lineup-optimized.webp', blurb: 'Journeys beyond the local area, planned in advance' },
 ];
 
 const occasions = [

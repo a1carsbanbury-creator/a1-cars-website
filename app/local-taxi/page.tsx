@@ -16,12 +16,12 @@ export default function LocalTaxi() {
     </Section>
     <Section tone="cream" compact><LocalBookingGuide /><p className="local-journey-area">Local trips around Banbury and the surrounding area. Heading to an airport? See <a href="/airport-transfers">airport transfers</a>.</p></Section>
     <Section>
-      <Split image="/revision-fleet-lineup.webp" alt="Illustration of estate cars, executive cars and people carriers">
+      <Split image="/revision-fleet-lineup-optimized.webp" alt="Illustration of estate cars, executive cars and people carriers">
         <p className="eyebrow dark"><span />Our fleet</p><h2>Cars for every <em>journey.</em></h2><p>We have 20+ vehicles, from everyday saloons and estates to larger people carriers. Tell us your party size and bags so we can confirm the right vehicle.</p><a className="underlined-link" href="/fleet">See our vehicles <span>↗</span></a>
       </Split>
     </Section>
     <Section tone="cream" eyebrow="Accessible journeys" title="A welcome arrival," accent="for everyone">
-      <Split image="/revision-accessible-arrival.webp" alt="Illustration of a wheelchair user smiling with a driver beside an accessible vehicle" flip>
+      <Split image="/revision-accessible-arrival-optimized.webp" alt="Illustration of a wheelchair user smiling with a driver beside an accessible vehicle" flip>
         <p>Wheelchair-accessible vehicles are available to request. Tell us the practical pickup or vehicle arrangements you need when booking. Our team will confirm a suitable vehicle.</p><LocalAccessibleAction />
       </Split>
     </Section>

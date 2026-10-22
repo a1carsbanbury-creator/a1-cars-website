@@ -27,7 +27,7 @@ export default function PortTransfers() {
       ]} />
     </Section>
     <Section tone="cream" eyebrow="Cruise luggage, sorted" title="Room for" accent="everything you packed.">
-      <Split image="/revision-fleet-lineup.webp" alt="A1 Cars Banbury vehicles ready for a port transfer">
+      <Split image="/revision-fleet-lineup-optimized.webp" alt="A1 Cars Banbury vehicles ready for a port transfer">
         <p>Cruise holidays mean big cases. Tell us how many people and how much luggage, and we’ll recommend the right vehicle. Larger vehicles carry fewer cases when every seat is used, so a quick conversation when you book avoids surprises on the day.</p>
       </Split>
     </Section>

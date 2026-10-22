@@ -14,15 +14,15 @@ const services = [
   { label: 'Silverstone & F1', href: '/silverstone-transfers', image: '/revision-group-dayout.webp', blurb: 'Race days, arranged together' },
   { label: 'Celebrations', href: '/celebrations', image: '/revision-wedding.webp', blurb: 'Birthdays, weddings and parties' },
   { label: 'Ports & cruises', href: '/port-transfers', image: '/port-cruise-transfer-v1.webp', blurb: 'Southampton Docks and beyond' },
-  { label: 'Cotswolds trips', href: '/cotswolds-trips', image: '/revision-home-pickup.webp', blurb: 'Villages, scenery and days out' },
+  { label: 'Cotswolds trips', href: '/cotswolds-trips', image: '/revision-home-pickup-optimized.webp', blurb: 'Villages, scenery and days out' },
 ];
 
 const stagger = (i: number) => ({ '--i': i }) as CSSProperties;
 const heroPhotos: Record<string, string[]> = {
-  '/revision-home-pickup.webp': ['/revision-home-pickup.webp', '/revision-accessible-arrival.webp', '/revision-fleet-lineup.webp'],
-  '/revision-airport-arrival.webp': ['/revision-airport-arrival.webp', '/executive-people-carrier.webp', '/revision-fleet-lineup.webp'],
+  '/revision-home-pickup-optimized.webp': ['/revision-home-pickup-optimized.webp', '/revision-accessible-arrival-optimized.webp', '/revision-fleet-lineup-optimized.webp'],
+  '/revision-airport-arrival.webp': ['/revision-airport-arrival.webp', '/executive-people-carrier.webp', '/revision-fleet-lineup-optimized.webp'],
   '/revision-executive-hotel.webp': ['/revision-executive-hotel.webp', '/revision-wedding.webp', '/executive-people-carrier.webp'],
-  '/revision-group-dayout.webp': ['/revision-group-dayout.webp', '/executive-people-carrier.webp', '/revision-fleet-lineup.webp'],
+  '/revision-group-dayout.webp': ['/revision-group-dayout.webp', '/executive-people-carrier.webp', '/revision-fleet-lineup-optimized.webp'],
 };
 
 export function PageShell({ children, footerActions }: { children: React.ReactNode; footerActions?: React.ReactNode }) {

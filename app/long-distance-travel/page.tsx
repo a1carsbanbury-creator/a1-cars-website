@@ -10,7 +10,7 @@ export const metadata = pageMeta({
 
 export default function LongDistanceTravel() {
   return <PageShell>
-    <PageHero eyebrow="Long-distance travel" title="Further afield," accent="planned properly." lead="A comfortable, pre-booked journey from your door in Banbury or a nearby village to wherever you are going, and home again. Open 24/7, every day." image="/revision-fleet-lineup.webp" />
+    <PageHero eyebrow="Long-distance travel" title="Further afield," accent="planned properly." lead="A comfortable, pre-booked journey from your door in Banbury or a nearby village to wherever you are going, and home again. Open 24/7, every day." image="/revision-fleet-lineup-optimized.webp" />
     <Section eyebrow="Where it fits" title="Journeys worth" accent="a good driver">
       <Features items={[
         ['Airports', 'Heathrow, Birmingham, Gatwick, Luton and Stansted, with return pickups.'],
