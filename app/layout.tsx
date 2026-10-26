@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: { default: 'A1 Cars Banbury | Private hire & airport transfers', template: '%s | A1 Cars Banbury' },
   description: 'Private hire for Banbury and surrounding villages. Airport transfers, executive cars and group travel. Open 24/7. Call 01295 266 778.',
   applicationName: site.name,
+  robots: process.env.VERCEL_ENV === 'preview' ? { index: false, follow: false } : undefined,
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '48x48' },
