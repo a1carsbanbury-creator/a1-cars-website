@@ -42,7 +42,7 @@ export default function Christmas() {
     <FaqList items={[
       { q: 'Are you open on Christmas Day and Boxing Day?', a: 'We are open 24 hours a day, every day. Availability at peak times is confirmed when you book, so please book early.' },
       { q: 'Do you have early-booking rates?', a: 'Ask when you book and we will confirm what is available for your date and journey.' },
-      { q: 'Which car should we choose?', a: 'The E-Class suits smaller family trips, the 7-seat people carrier and V-Class suit families with luggage, the 8-seat minibus suits bigger groups, and the 16-seat minibus is for parties and large gatherings. Capacities are confirmed when you book.' },
+      { q: 'Which car should we choose?', a: 'The E-Class suits smaller family trips, the MPV / people carrier and V-Class suit families with luggage, the 8-seat minibus suits bigger groups, and the 16-seat minibus is for parties and large gatherings. Capacities are confirmed when you book.' },
     ]} />
     <ContactStrip />
   </PageShell>;
