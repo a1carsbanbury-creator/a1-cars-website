@@ -13,7 +13,8 @@ declare global {
 const init = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
 var c='denied';try{if(localStorage.getItem('a1-consent')==='granted')c='granted';}catch(e){}
 gtag('consent','default',{analytics_storage:c,ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-gtag('js',new Date());gtag('config','${GA_ID}');`;
+gtag('js',new Date());gtag('config','${GA_ID}');
+window.dispatchEvent(new Event('a1-analytics-ready'));`;
 
 // Fires a GA4 event whenever a visitor taps a call, WhatsApp or email link (the real conversions).
 export function Analytics() {
@@ -34,7 +35,7 @@ export function Analytics() {
 
   if (isPreview) return null;
   return <>
-    <Script id="ga4-init" strategy="afterInteractive" onReady={() => { window.dispatchEvent(new Event('a1-analytics-ready')); }}>{init}</Script>
+    <Script id="ga4-init" strategy="afterInteractive">{init}</Script>
     <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
   </>;
 }
