@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GA_ID } from '@/lib/site';
 
 declare global {
@@ -18,10 +18,13 @@ window.dispatchEvent(new Event('a1-analytics-ready'));`;
 
 // Fires a GA4 event whenever a visitor taps a call, WhatsApp or email link (the real conversions).
 export function Analytics() {
-  // Local previews and browser verification must not pollute the live account.
-  const isPreview = process.env.NEXT_PUBLIC_LOCAL_PREVIEW === '1';
+  // Local and Vercel review hosts must not pollute A1's live GA4 property.
+  const [enabled, setEnabled] = useState(false);
   useEffect(() => {
-    if (isPreview) return;
+    setEnabled(process.env.NEXT_PUBLIC_LOCAL_PREVIEW !== '1' && !window.location.hostname.endsWith('.vercel.app'));
+  }, []);
+  useEffect(() => {
+    if (!enabled) return;
     const onClick = (event: MouseEvent) => {
       const link = (event.target as Element | null)?.closest?.('a[href]');
       if (!link || !window.gtag) return;
@@ -31,9 +34,9 @@ export function Analytics() {
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
-  }, [isPreview]);
+  }, [enabled]);
 
-  if (isPreview) return null;
+  if (!enabled) return null;
   return <>
     <Script id="ga4-init" strategy="afterInteractive">{init}</Script>
     <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
