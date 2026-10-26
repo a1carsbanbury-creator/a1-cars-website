@@ -31,7 +31,6 @@ export default function LocalTaxi() {
       { q: 'How far can you take me?', a: 'We arrange local and longer journeys to or from Banbury and the surrounding area. Tell us your pickup and destination, and we will confirm availability when you book.' },
       { q: 'Do you have wheelchair-accessible vehicles?', a: 'Yes. Choose the wheelchair-accessible journey card or tick the option in the booking form. Share practical pickup needs so our team can confirm the right arrangements.' },
       { q: 'Is my booking confirmed when I send the request?', a: 'No. The request goes to our team, who confirm the vehicle, timings and arrangements before your booking is agreed.' },
-      { q: 'Can I pay by card?', a: 'Yes, all major payment cards are accepted.' },
     ]} />
     <RelatedLinks current="/local-taxi" /><ContactStrip />
   </PageShell></LocalJourneyBooking>;
