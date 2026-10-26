@@ -11,8 +11,8 @@ export function pageMeta({ title, description, path }: { title: string; descript
   };
 }
 
-// Every journey starts or ends within 15 miles of Banbury (SOURCE_OF_TRUTH.md). 15 miles = 24,140 m.
 // Street address is in structured data only, not shown on the pages (Kenneth, 2026-10-04). Must match the Google Business Profile.
+// Coordinates align with the recorded Maps pin and the OX16 3HU postcode; they are not a customer pickup point.
 export const businessJsonLd = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'TaxiService'],
@@ -25,7 +25,7 @@ export const businessJsonLd = {
   telephone: '+441295266778',
   email: site.email,
   address: { '@type': 'PostalAddress', streetAddress: '23 Grimsbury Square', addressLocality: 'Banbury', addressRegion: 'Oxfordshire', postalCode: 'OX16 3HU', addressCountry: 'GB' },
-  geo: { '@type': 'GeoCoordinates', latitude: 52.0629, longitude: -1.3398 },
-  areaServed: { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: 52.0629, longitude: -1.3398 }, geoRadius: 24140 },
+  geo: { '@type': 'GeoCoordinates', latitude: 52.0700122, longitude: -1.3235795 },
+  areaServed: { '@type': 'Place', name: 'Banbury and the surrounding area' },
   openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '00:00', closes: '23:59' },
 };
