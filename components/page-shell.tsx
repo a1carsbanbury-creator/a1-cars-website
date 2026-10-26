@@ -33,9 +33,9 @@ export function PageShell({ children, footerActions }: { children: React.ReactNo
   </main>;
 }
 
-export function PageHero({ eyebrow, title, accent, lead, image, images, cta = true, ctaContent }: { eyebrow: string; title: string; accent?: string; lead: string; image?: string; images?: string[]; cta?: boolean; ctaContent?: React.ReactNode }) {
+export function PageHero({ eyebrow, title, accent, lead, image, images, cta = true, ctaContent, className }: { eyebrow: string; title: string; accent?: string; lead: string; image?: string; images?: string[]; cta?: boolean; ctaContent?: React.ReactNode; className?: string }) {
   return <>
-    <section className={image ? 'info-hero has-slider' : 'info-hero compact'}>
+    <section className={`${image ? 'info-hero has-slider' : 'info-hero compact'}${className ? ` ${className}` : ''}`}>
       {image && <PhotoSlider className="info-hero-slider" images={images ?? heroPhotos[image] ?? [image]} label={`${eyebrow} photographs`} />}
       <div className="info-hero-inner">
         <p className="eyebrow"><span />{eyebrow}</p>

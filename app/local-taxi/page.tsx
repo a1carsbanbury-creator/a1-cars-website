@@ -10,7 +10,7 @@ export const metadata = pageMeta({
 });
 export default function LocalTaxi() {
   return <LocalJourneyBooking><PageShell footerActions={<LocalStickyActions />}>
-    <PageHero eyebrow="Local private hire" title="Local private hire in Banbury," accent="there for your plans." lead="Private hire for Banbury and the surrounding villages, day and night. From your doorstep to the station, an appointment or a night out." image="/local-private-hire-estate-v1.webp" ctaContent={<LocalHeroActions />} />
+    <PageHero eyebrow="Local private hire" title="Local private hire in Banbury," accent="there for your plans." lead="Private hire for Banbury and the surrounding villages, day and night. From your doorstep to the station, an appointment or a night out." image="/local-private-hire-estate-v1.webp" ctaContent={<LocalHeroActions />} className="local-search-hero" />
     <Section eyebrow="Where are you heading?" title="Choose your" accent="local journey">
       <LocalJourneyOptions />
     </Section>
