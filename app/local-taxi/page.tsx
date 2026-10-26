@@ -4,13 +4,13 @@ import { pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 
 export const metadata = pageMeta({
-  title: 'Local Private Hire in Banbury & Nearby Villages',
-  description: 'Local private hire in Banbury and the surrounding villages. Station pickups, hospital trips, school runs and nights out. Open 24/7.',
+  title: 'Banbury Taxi & Local Private Hire',
+  description: 'Pre-book local taxi and private hire journeys in Banbury, including Banbury railway station, appointments and nights out. Open 24/7.',
   path: '/local-taxi',
 });
 export default function LocalTaxi() {
   return <LocalJourneyBooking><PageShell footerActions={<LocalStickyActions />}>
-    <PageHero eyebrow="Local private hire" title="Local private hire in Banbury," accent="there for your plans." lead="Private hire for Banbury and the surrounding villages, day and night. From your doorstep to the station, an appointment or a night out." image="/local-private-hire-estate-v1.webp" ctaContent={<LocalHeroActions />} className="local-search-hero" />
+    <PageHero eyebrow="Local private hire" title="Local private hire in Banbury," accent="there for your plans." lead="Private hire for Banbury and the surrounding villages, day and night. Pre-book a journey to or from Banbury railway station, an appointment or a night out." image="/local-private-hire-estate-v1.webp" ctaContent={<LocalHeroActions />} className="local-search-hero" />
     <Section eyebrow="Where are you heading?" title="Choose your" accent="local journey">
       <LocalJourneyOptions />
     </Section>
