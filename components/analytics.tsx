@@ -34,7 +34,7 @@ export function Analytics() {
 
   if (isPreview) return null;
   return <>
-    <Script id="ga4-init" strategy="afterInteractive">{init}</Script>
+    <Script id="ga4-init" strategy="afterInteractive" onReady={() => { window.dispatchEvent(new Event('a1-analytics-ready')); }}>{init}</Script>
     <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
   </>;
 }
