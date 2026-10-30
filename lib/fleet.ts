@@ -20,7 +20,7 @@ export const vehicleCatalogue: Record<string, FleetVehicle> = {
   sprinter: { id: 'sprinter', name: '16-seat minibus', image: '/profile-sprinter.webp', alt: '16-seat minibus in side profile', passengers: 'Up to 16', luggage: 'To confirm', capacityNote: 'Fewer cases when every seat is used', tradeoff: true },
 };
 export const fleetCategories: { id: string; title: string; intro: string; journeyType: JourneyType; vehicles: FleetVehicle[] }[] = [
-  { id: 'local', title: 'Standard cars', intro: 'Practical cars for everyday journeys, station pickups and family plans.', journeyType: 'Local', vehicles: [vehicleCatalogue.estate, vehicleCatalogue.mercedesEstate, vehicleCatalogue.superb] },
+  { id: 'local', title: 'Standard cars', intro: 'Practical cars for everyday journeys, station pickups and family plans.', journeyType: 'Local', vehicles: [vehicleCatalogue.superb, { ...vehicleCatalogue.estate, name: 'Standard Estate' }, vehicleCatalogue.transporter, { ...vehicleCatalogue.mercedesEstate, name: 'Mercedes Estate 1' }] },
   { id: 'executive', title: 'Executive cars', intro: 'Mercedes cars and premium people carriers for business and occasions.', journeyType: 'Executive', vehicles: [vehicleCatalogue.eclassBlack, vehicleCatalogue.sclass, vehicleCatalogue.vclass] },
-  { id: 'minibus', title: 'People carriers & minibuses', intro: 'MPVs and minibuses for travelling together. Choose a category to suit your group.', journeyType: 'Group & minibus', vehicles: [vehicleCatalogue.touran, vehicleCatalogue.transporter, vehicleCatalogue.transit, vehicleCatalogue.tourneo, vehicleCatalogue.sprinter] },
+  { id: 'minibus', title: 'People carriers & minibuses', intro: 'MPVs and minibuses for travelling together. Choose a category to suit your group.', journeyType: 'Group & minibus', vehicles: [vehicleCatalogue.touran, vehicleCatalogue.transporter, vehicleCatalogue.sprinter] },
 ];
