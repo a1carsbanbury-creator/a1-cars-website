@@ -261,9 +261,9 @@ h1 { font-size:clamp(56px,7.4vw,116px); }
   .desk-call span { display:flex; flex-direction:column; gap:2px; }
   .desk-call small { color:#9fc9b2; font-size:9px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
   .desk-call strong { font-size:17px; letter-spacing:-.02em; }
-  .desk-wa { width:56px; height:56px; display:grid; place-items:center; border-radius:50%; color:#fff; background:#25d366; box-shadow:0 14px 34px rgba(0,0,0,.26); transition:transform .25s ease; }
-  .desk-wa:hover { transform:translateY(-3px) scale(1.05); }
-  .desk-wa svg { width:30px; height:30px; }
+  .desk-wa { min-height:54px; padding:0 18px; display:flex; align-items:center; justify-content:center; gap:9px; border:1px solid #4fbd7e; border-radius:999px; color:#fff; background:#178c50; box-shadow:0 14px 34px rgba(0,0,0,.26); font-size:12px; font-weight:800; transition:transform .25s ease,background .25s ease; }
+  .desk-wa:hover { transform:translateY(-3px); background:#117944; }
+  .desk-wa svg { width:24px; height:24px; flex:0 0 auto; }
 }
 
 /* Motion */
@@ -462,8 +462,9 @@ footer .brand-logo { width:140px; height:88px; background:transparent; }
 .local-journey-action { display:flex; width:100%; align-items:center; justify-content:space-between; gap:12px; padding-top:16px; margin-top:auto; border-top:1px solid var(--line); color:#287b51; font-size:12px; font-weight:750; }
 .local-journey-action svg { width:18px; height:18px; }
 .local-accessible-action { padding:0 0 8px; color:inherit; background:transparent; border:0; border-bottom:1px solid var(--ink); cursor:pointer; }
-.desk-book { min-height:54px; padding:0 20px; display:flex; align-items:center; gap:15px; border:1px solid #6dc293; border-radius:99px; color:var(--ink); background:var(--lime); font-size:12px; font-weight:800; cursor:pointer; }
-.desk-book svg { width:19px; height:19px; }
+.desk-book { min-height:54px; padding:0 21px; display:flex; align-items:center; justify-content:center; gap:10px; border:1px solid #6dc293; border-radius:99px; color:var(--ink); background:var(--lime); font-size:12px; font-weight:800; cursor:pointer; transition:transform .25s ease,background .25s ease; }
+.desk-book:hover { transform:translateY(-3px); background:#4bc987; }
+.desk-book svg { width:23px; height:23px; flex:0 0 auto; }
 .booking-accessibility { padding:17px 0 0; border-top:1px solid var(--line); }
 .booking-accessibility .accessibility-check { display:flex; flex-direction:row; align-items:center; gap:10px; font-size:12px; line-height:1.5; cursor:pointer; }
 .accessibility-check input { width:18px; height:18px; flex-shrink:0; accent-color:#278252; }
@@ -520,7 +521,7 @@ footer .brand-logo { width:140px; height:88px; background:transparent; }
 @media(prefers-reduced-motion:reduce) { .profile-card { transition:none; }.profile-card:hover,.profile-card:focus-visible { transform:none; } }
 
 /* ===== Christmas mode (switch: lib/season.ts). Remove this block with the switch in January. ===== */
-:root { --xmas-red:#b3202f; --xmas-red-deep:#8a1623; --xmas-gold:#c9a24a; }
+:root { --xmas-red:#b3202f; --xmas-red-deep:#8a1623; --xmas-accent:var(--lime); }
 .xmas-banner { min-height:38px; padding:7px clamp(16px,4vw,72px); display:flex; align-items:center; justify-content:center; gap:12px; color:#fff; background:linear-gradient(90deg,var(--xmas-red-deep),var(--xmas-red) 50%,var(--xmas-red-deep)); font-size:12px; text-align:center; position:relative; z-index:11; }
 .xmas-banner p { margin:0; } .xmas-banner strong { font-weight:800; } .xmas-banner > span { color:#f3c9a0; font-size:10px; }
 .xmas-banner a { padding:4px 12px; border:1px solid rgba(255,255,255,.55); border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap; transition:background .2s ease; }
@@ -542,7 +543,7 @@ footer .brand-logo.is-christmas { width:auto; height:104px; }
 .xmas-sticky:hover { transform:translateY(-3px); }
 .xmas-sticky-icon { width:36px; height:36px; display:grid; place-items:center; border-radius:50%; background:rgba(255,255,255,.18); font-size:19px; }
 .xmas-sticky > span:nth-child(2) { display:flex; flex-direction:column; gap:1px; }
-.xmas-sticky small { color:#ffd9cf; font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.xmas-sticky small { color:#c7f1d8; font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
 .xmas-sticky strong { font-size:14px; letter-spacing:-.01em; }
 .xmas-sticky > svg { width:22px; height:22px; }
 @media (min-width:781px) { .xmas-sticky { right:clamp(18px,2.4vw,36px); bottom:calc(clamp(18px,2.4vw,32px) + 70px); } }
@@ -707,4 +708,50 @@ footer.site-footer { display:block; padding:52px clamp(24px,6vw,96px) 116px; bac
 @media(max-width:780px) {
   .hero h1.local-search-heading { font-size:clamp(44px,10vw,58px); }
   .info-hero.local-search-hero h1 { font-size:clamp(40px,9vw,58px); }
+}
+
+/* Heavier Christmas experience: date-gated in lib/season.ts. */
+.xmas-snow i:nth-child(n+17) { display:none; }
+body.xmas-heavy .xmas-snow i:nth-child(n+17) { display:block; }
+body.xmas-heavy .xmas-snow i { opacity:.95; transform-origin:center; }
+body.xmas-heavy .xmas-banner { min-height:46px; font-size:14px; background:linear-gradient(105deg,var(--xmas-red-deep),var(--xmas-red) 52%,var(--xmas-red-deep)); border-bottom:3px solid var(--xmas-accent); }
+body.xmas-heavy .xmas-banner > span:first-child { font-size:18px; color:var(--xmas-accent); animation:xmas-twinkle 1.6s ease-in-out infinite; }
+body.xmas-heavy .xmas-banner a { background:#fff; color:var(--xmas-red-deep); border-color:#fff; }
+body.xmas-heavy .site-header { position:relative; }
+body.xmas-heavy .site-header::after { content:''; position:absolute; left:0; right:0; bottom:-9px; height:18px; z-index:5; pointer-events:none;
+  background:
+    radial-gradient(circle at 12px 9px,#e23a4c 0 5px,transparent 6px) 0 0/48px 18px repeat-x,
+    radial-gradient(circle at 24px 12px,#8ee0b1 0 5px,transparent 6px) 0 0/48px 18px repeat-x,
+    radial-gradient(circle at 36px 9px,#3fae6a 0 5px,transparent 6px) 0 0/48px 18px repeat-x;
+  filter:drop-shadow(0 0 5px rgba(255,220,150,.75)); animation:xmas-twinkle 2.2s ease-in-out infinite; }
+body.xmas-heavy .hero::before,body.xmas-heavy .page-hero::before { background-image:linear-gradient(0deg,rgba(138,22,35,.38),rgba(138,22,35,0) 60%); }
+body.xmas-heavy .sec-ink,body.xmas-heavy .info-cta { background-image:radial-gradient(circle at 12% 18%,rgba(179,32,47,.32),transparent 45%),radial-gradient(circle at 88% 80%,rgba(201,162,74,.22),transparent 40%); }
+body.xmas-heavy .sec h2 em,body.xmas-heavy .hero h1 em { color:var(--xmas-accent); }
+body.xmas-heavy .eyebrow span { background:var(--xmas-accent); }
+body.xmas-heavy .profile-card,body.xmas-heavy .features article,body.xmas-heavy .destination-links a { border-color:rgba(179,32,47,.28); }
+body.xmas-heavy .profile-card:hover,body.xmas-heavy .destination-links a:hover { box-shadow:0 18px 40px rgba(179,32,47,.2); }
+body.xmas-heavy footer { border-top:4px solid var(--xmas-red); background-image:repeating-linear-gradient(135deg,rgba(179,32,47,.16) 0 18px,transparent 18px 36px); }
+body.xmas-heavy .xmas-sticky { animation:xmas-pulse 2.4s ease-in-out infinite; }
+@keyframes xmas-twinkle { 0%,100% { opacity:1; } 50% { opacity:.55; } }
+@keyframes xmas-pulse { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+@media (max-width:600px) {
+  body.xmas-heavy .xmas-snow i { opacity:.46; box-shadow:none; }
+  body.xmas-heavy .xmas-snow i:nth-child(n+11) { display:none; }
+}
+@media (prefers-reduced-motion:reduce) { body.xmas-heavy .site-header::after,body.xmas-heavy .xmas-banner > span:first-child,body.xmas-heavy .xmas-sticky { animation:none; } }
+
+/* Mobile booking dock: keep the essential 24/7 call, WhatsApp and booking actions in thumb reach. */
+@media (max-width:780px) {
+  .desk-sticky { position:fixed; z-index:40; right:10px; bottom:10px; left:10px; min-height:68px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); overflow:hidden; border:1px solid rgba(255,255,255,.2); border-radius:18px; color:var(--paper); background:rgba(12,29,26,.96); box-shadow:0 13px 35px rgba(0,0,0,.28); }
+  .desk-sticky.has-book { grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); background:#278d60; }
+  .desk-call { min-width:0; padding:9px 8px; display:flex; align-items:center; gap:6px; border-right:1px solid rgba(255,255,255,.22); background:#267f59; }
+  .desk-call svg { width:21px; height:21px; flex:0 0 auto; color:#8ee0b1; }
+  .desk-call span { min-width:0; display:flex; flex-direction:column; gap:2px; }
+  .desk-call small { color:#b7c9bf; font-size:8px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+  .desk-call strong { overflow:hidden; color:var(--paper); font-size:13px; letter-spacing:-.025em; text-overflow:ellipsis; white-space:nowrap; }
+  .desk-wa { min-width:0; padding:0 10px; display:flex; align-items:center; justify-content:center; gap:7px; border-right:1px solid rgba(255,255,255,.14); color:#fff; background:#168d51; font-size:10px; font-weight:800; }
+  .desk-wa svg { width:22px; height:22px; flex:0 0 auto; }
+  .desk-book { min-height:68px; padding:0 12px; justify-content:center; gap:8px; border:0; border-radius:0; background:var(--lime); font-size:11px; white-space:nowrap; }
+  .desk-book svg { width:22px; height:22px; }
+  body.xmas .xmas-sticky { bottom:89px; }
 }

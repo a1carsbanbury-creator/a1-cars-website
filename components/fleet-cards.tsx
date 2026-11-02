@@ -9,7 +9,7 @@ export function FleetCards({ vehicles, journeyType, carousel = false }: { vehicl
   const [index, setIndex] = useState(0);
   const [canPrevious, setCanPrevious] = useState(false);
   const [canNext, setCanNext] = useState(false);
-  const [viewport, api] = useEmblaCarousel({ loop: false, align: 'start', active: carousel, breakpoints: { '(max-width:600px)': { active: true } } });
+  const [viewport, api] = useEmblaCarousel({ loop: false, align: 'start', dragFree: true, duration: 20, active: carousel, breakpoints: { '(max-width:600px)': { active: true } } });
   const sync = useCallback(() => { if (!api) return; setIndex(api.selectedScrollSnap()); setCanPrevious(api.canScrollPrev()); setCanNext(api.canScrollNext()); }, [api]);
   useEffect(() => { if (!api) return; sync(); api.on('select', sync).on('reInit', sync); return () => { api.off('select', sync).off('reInit', sync); }; }, [api, sync]);
   return <>
