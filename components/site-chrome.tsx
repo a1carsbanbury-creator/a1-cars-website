@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowUpRight, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { site } from '@/lib/site';
 import { SiteLogo } from '@/components/site-logo';
@@ -41,10 +41,11 @@ export function StickyActions({ onBook }: { onBook?: () => void }) {
   return <>
     {isChristmas() && <a className="xmas-sticky" href={christmasWhatsappHref} target="_blank" rel="noopener"><span className="xmas-sticky-icon" aria-hidden="true">🎅</span><span><small>Christmas bookings open</small><strong>Reserve on WhatsApp</strong></span>{whatsappIcon}</a>}
     <a className="floating-whatsapp" href={site.whatsappHref} aria-label="Message A1 Cars on WhatsApp">{whatsappIcon}</a>
-    <div className="desk-sticky">
+    <div className={onBook ? 'desk-sticky has-book' : 'desk-sticky'}>
       <a className="desk-call" href={site.phoneHref}><Phone aria-hidden="true" strokeWidth={1.8} /><span><small>Call 24/7</small><strong>{site.phone}</strong></span></a>
-      <a className="desk-wa" href={site.whatsappHref} aria-label="Message A1 Cars on WhatsApp">{whatsappIcon}</a>
-      {onBook && <button className="desk-book" type="button" onClick={onBook}>Book now <ArrowUpRight aria-hidden="true" /></button>}
+      {onBook
+        ? <button className="desk-book" type="button" onClick={onBook} aria-label="Book now with A1 Cars">{whatsappIcon}<span>Book now</span></button>
+        : <a className="desk-wa" href={site.whatsappHref} aria-label="Message A1 Cars on WhatsApp">{whatsappIcon}<span>WhatsApp</span></a>}
     </div>
   </>;
 }

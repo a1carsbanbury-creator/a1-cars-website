@@ -1,6 +1,6 @@
 import { isChristmas } from '@/lib/season';
 
-const flakes = Array.from({ length: 56 }, (_, i) => ({
+const flakes = Array.from({ length: 24 }, (_, i) => ({
   left: `${(i * 37 + 7) % 100}%`,
   size: 5 + (i % 4) * 2,
   dur: 14 + (i * 5) % 11,
